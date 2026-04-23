@@ -94,7 +94,34 @@ mvn verify -pl its
 The workspace `pom.xml` pins plugin versions at literals because
 this POM doesn't inherit from ike-parent:
 
-- `network.ike.tooling:ike-maven-plugin:125`
-- `network.ike.platform:ike-workspace-maven-plugin:1`
+- `network.ike.tooling:ike-maven-plugin:126`
+- `network.ike.platform:ike-workspace-maven-plugin:1-SNAPSHOT`
 
 Use `ws:align-publish` to keep these in sync with the subprojects.
+
+## `.mvn/jvm.config` constraints
+
+Maven's `.mvn/jvm.config` is parsed as raw JVM arguments — one token
+per line, NO comment syntax. A `#` at column 0 is passed to the JVM
+as if it were a main-class name, and IntelliJ will show:
+
+```
+Error: Could not find or load main class #
+Caused by: java.lang.ClassNotFoundException: #
+```
+
+Do NOT add `#`-prefixed comments to `.mvn/jvm.config`. The standard
+workspace-root content is a single line:
+
+- `--sun-misc-unsafe-memory-access=allow` — suppresses the JFFI
+  `sun.misc.Unsafe` deprecation warnings emitted by
+  JRuby/AsciidoctorJ on Java 24+.
+
+Also do NOT set `-Denv.PATH` or PATH-related options here or in
+`MAVEN_OPTS`: PATH entries containing spaces (e.g. JetBrains
+Toolbox) cause the JVM launcher to bail with the same
+"Could not find or load main class" error for an unrelated reason.
+
+`ws:create` seeds this file correctly; `ws:init` seeds the same
+content in each cloned subproject (never overwriting an existing
+file).

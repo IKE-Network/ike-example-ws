@@ -35,9 +35,9 @@
         <!-- Pinned literals — this IT reactor does not inherit
              from ike-parent, so Maven does not interpolate
              properties for extension plugins here anyway. -->
-        <ike-platform.version>1</ike-platform.version>
-        <ike-docs.version>1</ike-docs.version>
-        <ike-tooling.version>125</ike-tooling.version>
+        <ike-platform.version>1-SNAPSHOT</ike-platform.version>
+        <ike-docs.version>1-SNAPSHOT</ike-docs.version>
+        <ike-tooling.version>126</ike-tooling.version>
     </properties>
 
     <build>
