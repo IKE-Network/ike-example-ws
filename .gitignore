@@ -1,0 +1,46 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.ike-backup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+.mvn/local-repo/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Component repos — cloned into this workspace by ws:init.
+# Each maintains its own .git — excluded from the workspace's git
+# so Syncthing carries the tree but not nested Git internals.
+/ike-docs/
+/ike-platform/
+/doc-example/
+/example-project/
+
+# ws:* report artifacts
+checkpoints/
+plan.yaml
+ws꞉*.md
+ike꞉*.md
+
+# Claude Code (regenerated from ike-build-standards artifact)
+.claude/

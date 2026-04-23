@@ -1,0 +1,83 @@
+# workspace.yaml — IKE Example Workspace Manifest
+# ══════════════════════════════════════════════════
+#
+# Integration workspace for the IKE five-repo split. Orchestrates
+# the full release cascade end-to-end: ike-docs, ike-platform,
+# doc-example, example-project. Used for verifying that a coordinated
+# release across these components produces consumable Nexus artifacts
+# before cutting tags on each repo.
+#
+# Convention: workspace repos use the `-ws` suffix.
+# See IKE-MAVEN.md naming conventions for the full standard.
+
+schema-version: "1.0"
+generated: 2026-04-23
+
+defaults:
+  branch: main
+  maven-version: "4.0.0-rc-5"
+
+subprojects:
+
+  # ike-tooling is intentionally NOT a workspace subproject.
+  # It is the bootstrap project — the source of ike-maven-plugin,
+  # which every other subproject uses at build time. Its own release
+  # relies on ike:release-publish from the plugin it produces
+  # (self-bootstrap). Release ike-tooling manually from its own
+  # repo; downstream picks up the new tag via ike-tooling.version.
+
+  ike-docs:
+    type: infrastructure
+    description: >
+      Documentation plumbing: ike-doc-maven-plugin (the extensions=true
+      provider of ike-doc packaging), koncept-asciidoc-extension,
+      minimal-fonts, docbook-xsl, ike-doc-resources, semantic-linebreak.
+    repo: https://github.com/IKE-Network/ike-docs.git
+    branch: main
+    version: 1-SNAPSHOT
+    groupId: network.ike.docs
+    depends-on: []
+
+  ike-platform:
+    type: infrastructure
+    description: >
+      Parent POM (ike-parent), BOM (ike-bom), and workspace plugin
+      (ike-workspace-maven-plugin). Consumes ike-docs via the
+      extensions=true declaration on ike-doc-maven-plugin.
+    repo: https://github.com/IKE-Network/ike-platform.git
+    branch: main
+    version: 1-SNAPSHOT
+    groupId: network.ike.platform
+    depends-on:
+      - subproject: ike-docs
+        relationship: build
+
+  doc-example:
+    type: example
+    description: >
+      Standalone doc-only project using ike-doc packaging. Inherits
+      network.ike.platform:ike-parent directly from Nexus.
+    repo: https://github.com/IKE-Network/doc-example.git
+    branch: main
+    version: 1-SNAPSHOT
+    groupId: network.ike.examples
+    depends-on:
+      - subproject: ike-platform
+        relationship: build
+      - subproject: ike-docs
+        relationship: build
+
+  example-project:
+    type: example
+    description: >
+      Standalone Java + docs project demonstrating a single-command
+      build that compiles sources, runs tests, and renders AsciiDoc.
+    repo: https://github.com/IKE-Network/example-project.git
+    branch: main
+    version: 1-SNAPSHOT
+    groupId: network.ike.examples
+    depends-on:
+      - subproject: ike-platform
+        relationship: build
+      - subproject: ike-docs
+        relationship: build

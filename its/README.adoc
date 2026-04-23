@@ -1,0 +1,69 @@
+= Integration Tests — IKE Example Workspace
+:toc: left
+:toclevels: 2
+
+End-to-end smoke tests that verify the five-repo split works from
+the perspective of an external consumer. Each IT is a self-contained
+POM project under `src/it/` that `maven-invoker-plugin` executes in
+a fresh Maven environment, resolving `ike-docs` and `ike-platform`
+artifacts from Nexus (or from the local repository if already
+installed).
+
+== What each IT must assert
+
+1. **Artifact coordinates are correct** — `network.ike.platform:ike-parent:1`,
+   `network.ike.docs:ike-doc-maven-plugin:1`, etc.
+2. **`ike-doc` packaging resolves** — the `<extensions>true</extensions>`
+   plugin declaration loads at project-load time without property
+   interpolation errors.
+3. **Outputs are produced** — `target/generated-docs/html/`,
+   `target/*.jar`, etc., depending on the IT.
+4. **No unresolved property references** — the consumer POM does not
+   rely on properties defined in parent contexts that weren't
+   carried through.
+
+== Test inventory (to author)
+
+|===
+| IT | Purpose
+
+| `src/it/doc-only-ike-doc-packaging/`
+| Minimal `<packaging>ike-doc</packaging>` project. Asserts that
+  `mvn verify` renders HTML without additional plugin config.
+
+| `src/it/java-plus-docs/`
+| `<packaging>jar</packaging>` project with `src/main/java/` and
+  `src/docs/asciidoc/`. Asserts that both JAR and HTML are produced
+  in a single `mvn verify`.
+
+| `src/it/bom-import/`
+| Consumer that imports `network.ike.platform:ike-bom` via
+  `<scope>import</scope>` but does not inherit `ike-parent`.
+  Asserts the BOM's managed dependency versions flatten correctly
+  at consumer build time (the Maven 4 consumer-POM requirement
+  that motivated the BOM).
+
+| `src/it/workspace-create/`
+| Invokes `ws:create` from a scratch directory and asserts the
+  generated workspace POM references
+  `network.ike.platform:ike-parent:1` (not the legacy
+  `network.ike` groupId).
+|===
+
+== Running the ITs
+
+[source,bash]
+----
+# Full IT suite:
+mvn verify -pl its
+
+# Single IT (once authored):
+mvn verify -pl its -Dinvoker.test=doc-only-ike-doc-packaging
+----
+
+== Local vs Nexus mode
+
+By default the IT settings consult the local repository first. To
+force a pull from Nexus (simulating a clean consumer), delete the
+relevant artifacts from `~/.m2/repository/network/ike/` before
+running.

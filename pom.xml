@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IKE Example Workspace
+
+  Integration workspace for the five-repo split. Cloning this
+  repo and running `mvn ws:init` pulls down ike-docs, ike-platform,
+  doc-example, and example-project at the versions declared in
+  workspace.yaml. Running `mvn clean install` then rebuilds the
+  full cascade in dependency order.
+
+  Every subproject is inside a file-activated profile so the reactor
+  automatically includes only the repos that are physically cloned.
+
+  Usage:
+    mvn ws:init                              # Clone all repos
+    mvn ws:overview                          # Workspace overview
+    mvn clean install                        # All cloned repos
+    mvn ws:release -DdryRun=true             # Preview release cascade
+-->
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0
+                             https://maven.apache.org/xsd/maven-4.1.0.xsd"
+         root="true">
+    <modelVersion>4.1.0</modelVersion>
+
+    <groupId>local.aggregate</groupId>
+    <artifactId>ike-example-ws</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>IKE Example Workspace</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>network.ike.tooling</groupId>
+                <artifactId>ike-maven-plugin</artifactId>
+                <version>125</version>
+            </plugin>
+            <plugin>
+                <groupId>network.ike.platform</groupId>
+                <artifactId>ike-workspace-maven-plugin</artifactId>
+                <version>1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+
+        <!-- ── Infrastructure ────────────────────────────────────── -->
+
+        <profile>
+            <id>with-ike-docs</id>
+            <activation>
+                <file>
+                    <exists>${project.basedir}/ike-docs/pom.xml</exists>
+                </file>
+            </activation>
+            <subprojects>
+                <subproject>ike-docs</subproject>
+            </subprojects>
+        </profile>
+
+        <profile>
+            <id>with-ike-platform</id>
+            <activation>
+                <file>
+                    <exists>${project.basedir}/ike-platform/pom.xml</exists>
+                </file>
+            </activation>
+            <subprojects>
+                <subproject>ike-platform</subproject>
+            </subprojects>
+        </profile>
+
+        <!-- ── Examples ──────────────────────────────────────────── -->
+
+        <profile>
+            <id>with-doc-example</id>
+            <activation>
+                <file>
+                    <exists>${project.basedir}/doc-example/pom.xml</exists>
+                </file>
+            </activation>
+            <subprojects>
+                <subproject>doc-example</subproject>
+            </subprojects>
+        </profile>
+
+        <profile>
+            <id>with-example-project</id>
+            <activation>
+                <file>
+                    <exists>${project.basedir}/example-project/pom.xml</exists>
+                </file>
+            </activation>
+            <subprojects>
+                <subproject>example-project</subproject>
+            </subprojects>
+        </profile>
+
+        <!-- ── Integration tests ─────────────────────────────────── -->
+
+        <profile>
+            <id>with-its</id>
+            <activation>
+                <file>
+                    <exists>${project.basedir}/its/pom.xml</exists>
+                </file>
+            </activation>
+            <subprojects>
+                <subproject>its</subproject>
+            </subprojects>
+        </profile>
+
+    </profiles>
+
+</project>

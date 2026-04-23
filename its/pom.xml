@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IKE Example Workspace — Integration Test Suite
+  ══════════════════════════════════════════════
+
+  End-to-end smoke tests for the five-repo split. Each IT is a
+  small POM project under src/it/ that is executed by
+  maven-invoker-plugin in a clean Maven environment, exercising the
+  actual Nexus-resolved artifacts of ike-docs and ike-platform.
+
+  Run:
+    mvn verify -pl its
+-->
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0
+         http://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <groupId>network.ike.examples.its</groupId>
+    <artifactId>ike-example-ws-its</artifactId>
+    <version>1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>IKE Example Workspace — Integration Tests</name>
+    <description>
+        End-to-end smoke tests that exercise the five-repo split as
+        external consumers would. Each IT clones the intended usage
+        pattern (ike-doc packaging, Java + docs, BOM import) in a
+        fresh Maven environment and asserts that the build succeeds
+        and produces the expected artifacts.
+    </description>
+
+    <properties>
+        <!-- Pinned literals — this IT reactor does not inherit
+             from ike-parent, so Maven does not interpolate
+             properties for extension plugins here anyway. -->
+        <ike-platform.version>1</ike-platform.version>
+        <ike-docs.version>1</ike-docs.version>
+        <ike-tooling.version>125</ike-tooling.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <version>3.9.0</version>
+                <configuration>
+                    <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+                    <settingsFile>src/it/settings.xml</settingsFile>
+                    <postBuildHookScript>verify</postBuildHookScript>
+                    <streamLogs>true</streamLogs>
+                    <filterProperties>
+                        <ike-platform.version>${ike-platform.version}</ike-platform.version>
+                        <ike-docs.version>${ike-docs.version}</ike-docs.version>
+                        <ike-tooling.version>${ike-tooling.version}</ike-tooling.version>
+                    </filterProperties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-tests</id>
+                        <goals>
+                            <goal>install</goal>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

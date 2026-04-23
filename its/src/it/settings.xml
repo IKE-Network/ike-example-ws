@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Settings used by maven-invoker-plugin when running the ITs.
+  Inherits local repository from the outer build so that ike-docs
+  and ike-platform artifacts installed by a prior reactor build
+  are visible to the ITs.
+-->
+<settings xmlns="http://maven.apache.org/SETTINGS/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/2.0.0
+          https://maven.apache.org/xsd/settings-2.0.0.xsd">
+    <pluginGroups>
+        <pluginGroup>network.ike.tooling</pluginGroup>
+        <pluginGroup>network.ike.docs</pluginGroup>
+        <pluginGroup>network.ike.platform</pluginGroup>
+    </pluginGroups>
+</settings>
