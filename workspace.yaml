@@ -27,7 +27,6 @@ subprojects:
   # repo; downstream picks up the new tag via ike-tooling.version.
 
   ike-docs:
-    type: infrastructure
     description: >
       Documentation plumbing: ike-doc-maven-plugin (the extensions=true
       provider of ike-doc packaging), koncept-asciidoc-extension,
@@ -39,7 +38,6 @@ subprojects:
     depends-on: []
 
   ike-platform:
-    type: infrastructure
     description: >
       Parent POM (ike-parent), BOM (ike-bom), and workspace plugin
       (ike-workspace-maven-plugin). Consumes ike-docs via the
@@ -53,7 +51,6 @@ subprojects:
         relationship: build
 
   doc-example:
-    type: example
     description: >
       Standalone doc-only project using ike-doc packaging. Inherits
       network.ike.platform:ike-parent directly from Nexus.
@@ -68,7 +65,6 @@ subprojects:
         relationship: build
 
   example-project:
-    type: example
     description: >
       Standalone Java + docs project demonstrating a single-command
       build that compiles sources, runs tests, and renders AsciiDoc.

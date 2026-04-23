@@ -36,7 +36,7 @@
             <plugin>
                 <groupId>network.ike.tooling</groupId>
                 <artifactId>ike-maven-plugin</artifactId>
-                <version>126</version>
+                <version>127-SNAPSHOT</version>
             </plugin>
             <plugin>
                 <groupId>network.ike.platform</groupId>
