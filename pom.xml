@@ -24,6 +24,13 @@
          root="true">
     <modelVersion>4.1.0</modelVersion>
 
+    <parent>
+        <groupId>network.ike.platform</groupId>
+        <artifactId>ike-parent</artifactId>
+        <version>1</version>
+        <relativePath/>
+    </parent>
+
     <groupId>local.aggregate</groupId>
     <artifactId>ike-example-ws</artifactId>
     <version>1-SNAPSHOT</version>
