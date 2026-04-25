@@ -91,13 +91,19 @@ mvn verify -pl its
 
 ## Plugin Versions
 
-The workspace `pom.xml` pins plugin versions at literals because
-this POM doesn't inherit from ike-parent:
+The workspace `pom.xml` inherits from `ike-parent`, which manages
+the versions of `ike-maven-plugin`, `ike-workspace-maven-plugin`,
+and `ike-doc-maven-plugin`. No literal `<version>` declarations are
+needed in this POM's `<build><plugins>` (and none should be added —
+overriding the inherited versions defeats the purpose of the parent).
 
-- `network.ike.tooling:ike-maven-plugin:126`
-- `network.ike.platform:ike-workspace-maven-plugin:1-SNAPSHOT`
+`ike-doc-maven-plugin` is declared in `ike-parent`'s
+`<pluginManagement>` with `<extensions>true</extensions>` at a
+literal version (Maven resolves extension plugins before property
+interpolation), so the parent itself drives that pin.
 
-Use `ws:align-publish` to keep these in sync with the subprojects.
+Use `ws:align-publish` to keep `ike-parent`'s version in sync with
+whatever release of `ike-platform` this workspace tracks.
 
 ## `.mvn/jvm.config` constraints
 

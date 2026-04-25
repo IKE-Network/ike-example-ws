@@ -27,7 +27,7 @@
     <parent>
         <groupId>network.ike.platform</groupId>
         <artifactId>ike-parent</artifactId>
-        <version>1</version>
+        <version>5</version>
         <relativePath/>
     </parent>
 
@@ -37,21 +37,6 @@
     <packaging>pom</packaging>
 
     <name>IKE Example Workspace</name>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>network.ike.tooling</groupId>
-                <artifactId>ike-maven-plugin</artifactId>
-                <version>127-SNAPSHOT</version>
-            </plugin>
-            <plugin>
-                <groupId>network.ike.platform</groupId>
-                <artifactId>ike-workspace-maven-plugin</artifactId>
-                <version>1-SNAPSHOT</version>
-            </plugin>
-        </plugins>
-    </build>
 
     <profiles>
 
