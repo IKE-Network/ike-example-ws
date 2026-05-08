@@ -59,8 +59,6 @@ subprojects:
     version: 1-SNAPSHOT
     groupId: network.ike.examples
     depends-on:
-      - subproject: ike-platform
-        relationship: build
       - subproject: ike-docs
         relationship: build
 
@@ -73,7 +71,5 @@ subprojects:
     version: 1-SNAPSHOT
     groupId: network.ike.examples
     depends-on:
-      - subproject: ike-platform
-        relationship: build
       - subproject: ike-docs
         relationship: build
