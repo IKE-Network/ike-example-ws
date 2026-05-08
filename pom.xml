@@ -108,4 +108,29 @@
 
     </profiles>
 
+    <build>
+        <plugins>
+            <!-- Maven Site Plugin — wire asciidoctor-parser-doxia-module so
+                 src/site/asciidoc/*.adoc actually renders at site:site time.
+                 Without this, maven-site-plugin ignores .adoc files and the
+                 generated index.html is the auto-generated "About" page.
+                 Mirrors the fix #310 applied to ike-platform/ike-tooling.
+                 The plugin <version> is intentionally omitted so the
+                 inherited version from ike-parent's pluginManagement wins.
+                 Once ike-parent picks up the same wiring (followup on #310)
+                 this block can be removed. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctor-parser-doxia-module</artifactId>
+                        <version>3.2.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

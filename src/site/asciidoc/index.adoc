@@ -1,0 +1,221 @@
+= ike-example-ws
+:icons: font
+:source-highlighter: coderay
+
+A workspace aggregator that orchestrates the IKE consumer-side
+release cascade end-to-end. Cloning this repo and running
+`mvn ws:init` pulls down `ike-docs`, `ike-platform`, `doc-example`,
+and `example-project` at the versions declared in `workspace.yaml`.
+A subsequent `mvn clean install` then rebuilds the full cascade in
+dependency order from a single command. This is the canonical
+template for an *IKE workspace aggregator*.
+
+[cols="1,3", options="header"]
+|===
+| Coordinate | Value
+| Group ID    | `local.aggregate`
+| Artifact    | `ike-example-ws`
+| Packaging   | POM (workspace aggregator)
+| Parent      | `network.ike.platform:ike-parent`
+|===
+
+== Role in the IKE Ecosystem
+
+`ike-example-ws` is a *coordination layer*, not a component repo. It
+holds no production artifacts and contributes no code to releases.
+Its job is to make multi-repo operations — cross-repo feature
+branches, coordinated releases, dependency-version alignment — work
+from one command rather than four.
+
+The two component-repo templates it complements:
+
+[cols="1,3", options="header"]
+|===
+| Template | Role
+
+| link:https://ike.network/example-project/[example-project]
+| `JAR + docs` consumer template — single-repo project that ships
+  compiled Java code AND rendered AsciiDoc docs.
+
+| link:https://ike.network/doc-example/[doc-example]
+| Doc-only consumer template — single-repo project whose primary
+  deliverable is a published document.
+
+| **`ike-example-ws`** *(this site)*
+| Workspace-aggregator template — orchestrates multiple component
+  repositories into a single coordinated build/release/feature
+  cycle.
+|===
+
+== Subprojects
+
+`workspace.yaml` declares the four subprojects this workspace
+manages. They are pulled in dependency order:
+
+[cols="1,3", options="header"]
+|===
+| Subproject | Live site
+
+| `ike-docs`
+| link:https://ike.network/ike-docs/[ike.network/ike-docs/] — Doc
+  plumbing: `ike-doc-maven-plugin`, `koncept-asciidoc-extension`,
+  `minimal-fonts`, `docbook-xsl`, `ike-doc-resources`,
+  `semantic-linebreak`.
+
+| `ike-platform`
+| link:https://ike.network/ike-platform/[ike.network/ike-platform/] —
+  Consumer-facing parent: `ike-parent`, `ike-bom`,
+  `ike-workspace-maven-plugin`.
+
+| `example-project`
+| link:https://ike.network/example-project/[ike.network/example-project/] —
+  JAR + docs consumer demo.
+
+| `doc-example`
+| link:https://ike.network/doc-example/[ike.network/doc-example/] —
+  Doc-only consumer demo.
+|===
+
+`ike-tooling` is intentionally *not* a workspace subproject — it is
+the bootstrap project (the source of `ike-maven-plugin`, which every
+other subproject uses at build time) and is released independently.
+See the comment block in `workspace.yaml` for the rationale.
+
+== Release Cascade
+
+[source]
+----
+ike-tooling -> ike-docs -> ike-platform -> { example-project, doc-example } -> [ike-example-ws]
+----
+
+`ike-example-ws` is the last link in the cascade. Its role is to
+verify — through its integration tests — that releasing the full
+cascade produces consumable artifacts on Nexus before any tags are
+cut on the component repos.
+
+== Layout
+
+----
+ike-example-ws/
+├── workspace.yaml              <1>
+├── pom.xml                     <2>
+├── ike-docs/                   <3>
+├── ike-platform/               <3>
+├── example-project/            <3>
+├── doc-example/                <3>
+├── its/                        <4>
+└── src/site/                   <5>
+----
+<1> The workspace manifest. Declares each subproject's repo URL,
+    branch, version, group ID, and dependency relationships.
+<2> Workspace aggregator. Each subproject is in a file-activated
+    profile so the reactor automatically includes only repos that
+    are physically cloned.
+<3> Cloned by `mvn ws:init` from `workspace.yaml`. Empty until then.
+<4> Optional: integration test suite that exercises the full
+    cascade end-to-end (e.g., "after releasing v1, a fresh
+    `mvn verify` on doc-example succeeds against Nexus").
+<5> Maven Site Plugin source — what generates this site you're
+    reading.
+
+== Key Workspace Commands
+
+[source,bash]
+----
+# Bootstrap: clone all subproject repos from their remotes
+mvn ws:init
+
+# Status: snapshot of workspace state, alignment, dirty repos
+mvn ws:overview
+
+# Full reactor build of all cloned subprojects
+mvn clean install
+
+# Daily-driver: pull, refresh-main, push across the workspace
+mvn ws:sync
+
+# Coordinated feature branch across all subprojects
+mvn ws:feature-start-publish -Dfeature=my-feature
+mvn ws:feature-finish-squash-publish -Dfeature=my-feature
+
+# Coordinated multi-repo release
+mvn ws:release-draft       # preview
+mvn ws:release-publish     # execute
+----
+
+For the full reference of all 50 `ws:*` goals, see the
+link:https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html[ws:* Goal Reference]
+on the IKE Platform site. For first-time setup of a workspace, see
+link:https://ike.network/ike-platform/workspace-getting-started.html[Workspace Getting Started].
+
+== When to Copy This Template
+
+When creating a new IKE workspace aggregator (e.g., a workspace that
+holds a different set of subprojects, or one that adds new
+subprojects to the cascade), copy:
+
+[cols="1,3", options="header"]
+|===
+| File / Directory | Purpose
+
+| `workspace.yaml`
+| Declare your subprojects, their repo URLs, branches, and
+  dependency relationships. The `ws:*` goals consult this file as
+  source of truth.
+
+| `pom.xml`
+| Aggregator with file-activated profiles per subproject. Adjust
+  the artifact ID and the profile blocks for your subproject set.
+
+| `src/site/`
+| Maven Site Plugin source. Update `site.xml` (workspace name, repo
+  URL) and `asciidoc/index.adoc` for your project. Keep the
+  Forest-theme `site.css` and `ike-logo.svg` for visual consistency
+  with the rest of the IKE ecosystem.
+
+| `.mvn/jvm.config`
+| Single-line `--sun-misc-unsafe-memory-access=allow` to suppress
+  JFFI deprecation warnings. NEVER add `#`-prefixed comments to
+  this file — Maven parses each line as a raw JVM argument.
+|===
+
+== Discipline Rules
+
+. **Use `ws:*` goals, never raw `git` for workspace ops.** The whole
+  point of the workspace plugin is that one command stays coherent
+  across all subprojects. Reaching into one subproject with raw git
+  breaks the abstraction.
+
+. **All subprojects track the workspace's git branch.** No
+  per-subproject branch opt-out. See
+  link:https://github.com/IKE-Network/ike-issues/issues/233[ike-issues#233]
+  for the alignment model.
+
+. **Component repos commit and push direct to `main`.** No PRs in
+  the IKE-Network organization. Releases cut from `main` via
+  `ws:release-publish`.
+
+== Resources
+
+[cols="1,3", options="header"]
+|===
+| Resource | URL
+
+| Source repository
+| https://github.com/IKE-Network/ike-example-ws
+
+| Cross-project issue tracker
+| https://github.com/IKE-Network/ike-issues
+
+| IKE Network landing page
+| https://ike.network/
+
+| IKE Platform (workspace plugin lives here)
+| https://ike.network/ike-platform/
+
+| ws:* Goal Reference
+| https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html
+
+| Workspace Getting Started
+| https://ike.network/ike-platform/workspace-getting-started.html
+|===
