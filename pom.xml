@@ -28,6 +28,7 @@
         <groupId>network.ike.platform</groupId>
         <artifactId>ike-parent</artifactId>
         <version>26</version>
+        <relativePath/>
     </parent>
 
     <groupId>local.aggregate</groupId>
