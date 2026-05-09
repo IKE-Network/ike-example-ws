@@ -1,17 +1,20 @@
 # IKE Example Workspace
 
-Workspace aggregator for the IKE five-repo split: `ike-docs`,
-`ike-platform`, `doc-example`, `example-project`. Clone this repo
-and run `mvn ws:init` to pull down all component repos and build
-them as a single reactor.
+Workspace aggregator that orchestrates two consumer-side
+subprojects (`doc-example`, `example-project`) against the IKE
+foundation repos (`ike-tooling`, `ike-docs`, `ike-platform`)
+consumed from Nexus. Clone this repo and run `mvn ws:init` to pull
+down the subprojects and build the cascade as a single reactor.
 
 ## What this workspace is for
 
-- **Local development** across the whole cascade in one editor / one
-  command.
-- **Coordinated releases** via `mvn ws:release`.
-- **End-to-end integration tests** that exercise the actual external
-  consumption of `ike-doc` packaging from Nexus.
+- **Local development** of the consumer-side subprojects against
+  released foundation versions in one editor / one command.
+- **Coordinated releases** of the subprojects via `mvn ws:release-publish`.
+- **End-to-end integration tests** that exercise external Nexus
+  consumption of the post-`IKE-Network/ike-issues#321`
+  classifier-canonical doc shape (`<packaging>pom</packaging>` +
+  `<classifier>adoc</classifier>` source attachment).
 
 ## Bootstrap
 
@@ -19,19 +22,36 @@ them as a single reactor.
 git clone https://github.com/IKE-Network/ike-example-ws.git
 cd ike-example-ws
 
-mvn ws:init          # clone component repos per workspace.yaml
+mvn ws:init          # clone subprojects per workspace.yaml
 mvn ws:overview      # print the workspace dashboard
 mvn clean install    # build the full cascade
 ```
 
-## Component Repos
+## Foundation repos (consumed from Nexus, NOT workspace subprojects)
+
+These are the upstream IKE infrastructure projects this workspace
+consumes at their released versions. They are intentionally **not**
+managed by this workspace — they release on their own cadence via
+their own `ike:release-publish`. See the comment block in
+[`workspace.yaml`](workspace.yaml) for the rationale (self-bootstrap
+for `ike-tooling`, parent-cycle avoidance for `ike-platform`).
 
 | Repo | Artifact | Purpose |
 |---|---|---|
-| [ike-docs](https://github.com/IKE-Network/ike-docs) | `network.ike.docs:*` | AsciiDoc plumbing, `ike-doc-maven-plugin` |
-| [ike-platform](https://github.com/IKE-Network/ike-platform) | `network.ike.platform:*` | `ike-parent`, `ike-bom`, workspace plugin |
-| [doc-example](https://github.com/IKE-Network/doc-example) | `network.ike.examples:doc-example` | Doc-only template (`ike-doc` packaging) |
-| [example-project](https://github.com/IKE-Network/example-project) | `network.ike.examples:example-project` | Java + docs template |
+| [ike-tooling](https://github.com/IKE-Network/ike-tooling) | `network.ike.tooling:*` | Release orchestration, BOM generation, AsciiDoc utilities; source of `ike-maven-plugin` |
+| [ike-docs](https://github.com/IKE-Network/ike-docs) | `network.ike.docs:*` | AsciiDoc plumbing: `ike-doc-maven-plugin` (render goals), Koncept extension, fonts, DocBook XSL, shared resources |
+| [ike-platform](https://github.com/IKE-Network/ike-platform) | `network.ike.platform:*` | Consumer-facing parent: `ike-parent`, `ike-bom`, `ike-workspace-maven-plugin` |
+
+## Subprojects (managed by this workspace)
+
+These are the consumer-side demos the workspace orchestrates.
+`ws:init` clones them into this directory; `ws:release-publish`
+releases them in dependency order.
+
+| Repo | Artifact | Purpose |
+|---|---|---|
+| [doc-example](https://github.com/IKE-Network/doc-example) | `network.ike.examples:doc-example` | Doc-only template — `<packaging>pom</packaging>` with `adoc` source classifier |
+| [example-project](https://github.com/IKE-Network/example-project) | `network.ike.examples:example-project` | Hybrid Java+docs template — `<packaging>jar</packaging>` with optional `adoc` classifier when `src/docs/asciidoc/` exists |
 
 See [`workspace.yaml`](workspace.yaml) for version pins and dependency
 declarations.
