@@ -27,8 +27,7 @@
     <parent>
         <groupId>network.ike.platform</groupId>
         <artifactId>ike-parent</artifactId>
-        <version>25</version>
-        <relativePath/>
+        <version>26</version>
     </parent>
 
     <groupId>local.aggregate</groupId>
@@ -40,33 +39,11 @@
 
     <profiles>
 
-        <!-- ── Infrastructure ────────────────────────────────────── -->
-
-        <profile>
-            <id>with-ike-docs</id>
-            <activation>
-                <file>
-                    <exists>${project.basedir}/ike-docs/pom.xml</exists>
-                </file>
-            </activation>
-            <subprojects>
-                <subproject>ike-docs</subproject>
-            </subprojects>
-        </profile>
-
-        <profile>
-            <id>with-ike-platform</id>
-            <activation>
-                <file>
-                    <exists>${project.basedir}/ike-platform/pom.xml</exists>
-                </file>
-            </activation>
-            <subprojects>
-                <subproject>ike-platform</subproject>
-            </subprojects>
-        </profile>
-
         <!-- ── Examples ──────────────────────────────────────────── -->
+        <!-- Foundation repos (ike-tooling, ike-docs, ike-platform)    -->
+        <!-- are intentionally NOT subprojects of this workspace; see  -->
+        <!-- workspace.yaml for the rationale. They are consumed at    -->
+        <!-- their released versions from Nexus.                       -->
 
         <profile>
             <id>with-doc-example</id>
