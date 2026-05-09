@@ -49,16 +49,44 @@ The two component-repo templates it complements:
 
 == Subprojects
 
-`workspace.yaml` declares the four subprojects this workspace
-manages. They are pulled in dependency order:
+`workspace.yaml` declares two consumer-side subprojects this
+workspace manages:
 
 [cols="1,3", options="header"]
 |===
 | Subproject | Live site
 
+| `doc-example`
+| link:https://ike.network/doc-example/[ike.network/doc-example/] —
+  Doc-only consumer template. Demonstrates the canonical
+  `<packaging>pom</packaging>` + `adoc` classifier shape for a
+  module whose primary deliverable is a published document.
+
+| `example-project`
+| link:https://ike.network/example-project/[ike.network/example-project/] —
+  Hybrid Java+docs consumer template. Demonstrates a `jar`-packaged
+  module that also ships rendered AsciiDoc on the side.
+|===
+
+The foundation repos (`ike-tooling`, `ike-docs`, `ike-platform`) are
+*intentionally not* workspace subprojects — they are upstream
+infrastructure consumed at their released versions from Nexus, not
+co-developed inside this workspace. See the comment block in
+`workspace.yaml` for the rationale (self-bootstrap concerns for
+`ike-tooling`, parent-cycle concerns for `ike-platform`).
+
+[cols="1,3", options="header"]
+|===
+| Foundation repo | Live site
+
+| `ike-tooling`
+| link:https://ike.network/ike-tooling/[ike.network/ike-tooling/] —
+  Release orchestration, BOM generation, AsciiDoc utilities;
+  source of `ike-maven-plugin`.
+
 | `ike-docs`
-| link:https://ike.network/ike-docs/[ike.network/ike-docs/] — Doc
-  plumbing: `ike-doc-maven-plugin`, `koncept-asciidoc-extension`,
+| link:https://ike.network/ike-docs/[ike.network/ike-docs/] —
+  Doc plumbing: `ike-doc-maven-plugin`, `koncept-asciidoc-extension`,
   `minimal-fonts`, `docbook-xsl`, `ike-doc-resources`,
   `semantic-linebreak`.
 
@@ -66,20 +94,7 @@ manages. They are pulled in dependency order:
 | link:https://ike.network/ike-platform/[ike.network/ike-platform/] —
   Consumer-facing parent: `ike-parent`, `ike-bom`,
   `ike-workspace-maven-plugin`.
-
-| `example-project`
-| link:https://ike.network/example-project/[ike.network/example-project/] —
-  JAR + docs consumer demo.
-
-| `doc-example`
-| link:https://ike.network/doc-example/[ike.network/doc-example/] —
-  Doc-only consumer demo.
 |===
-
-`ike-tooling` is intentionally *not* a workspace subproject — it is
-the bootstrap project (the source of `ike-maven-plugin`, which every
-other subproject uses at build time) and is released independently.
-See the comment block in `workspace.yaml` for the rationale.
 
 == Release Cascade
 
