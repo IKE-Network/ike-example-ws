@@ -13,9 +13,13 @@ installed).
 
 1. **Artifact coordinates are correct** — `network.ike.platform:ike-parent:1`,
    `network.ike.docs:ike-doc-maven-plugin:1`, etc.
-2. **`ike-doc` packaging resolves** — the `<extensions>true</extensions>`
-   plugin declaration loads at project-load time without property
-   interpolation errors.
+2. **adoc-classifier attachment is produced** — for any project with
+   `src/docs/asciidoc/`, the doc-pipeline profile in `ike-parent`
+   auto-activates and `maven-assembly-plugin` attaches a
+   `<classifier>adoc</classifier><type>zip</type>` artifact.
+   (Earlier revisions tested `<extensions>true</extensions>` plugin
+   resolution for `<packaging>ike-doc</packaging>`; that machinery
+   was retired in `IKE-Network/ike-issues#321`.)
 3. **Outputs are produced** — `target/generated-docs/html/`,
    `target/*.jar`, etc., depending on the IT.
 4. **No unresolved property references** — the consumer POM does not
@@ -27,9 +31,11 @@ installed).
 |===
 | IT | Purpose
 
-| `src/it/doc-only-ike-doc-packaging/`
-| Minimal `<packaging>ike-doc</packaging>` project. Asserts that
-  `mvn verify` renders HTML without additional plugin config.
+| `src/it/doc-only/`
+| Minimal `<packaging>pom</packaging>` project with
+  `src/docs/asciidoc/`. Asserts that `mvn verify` renders HTML and
+  attaches the `adoc` source classifier without additional plugin
+  config.
 
 | `src/it/java-plus-docs/`
 | `<packaging>jar</packaging>` project with `src/main/java/` and
