@@ -62,21 +62,30 @@
             <item name="IT Suite"            href="it-suite.html"/>
         </menu>
 
-        <!-- Subprojects with absolute URLs (intentionally NO
-             ref="modules") so doxia's populateModulesMenu
-             doesn't iterate project.getModules() and append
-             relative-path Items to this menu. The earlier
-             approach of using ref="modules" caused broken
-             relative paths to leak into the sidebar (#344).
+        <!-- Suppress the auto-injected Subprojects menu from
+             doxia's default-site.xml. doxia-integration-tools
+             ships a default-site.xml with <menu ref="modules"/>
+             baked in; that menu gets merged into every site
+             descriptor and triggers DefaultSiteTool.populateModulesMenu
+             at render time, which iterates project.getModules()
+             and appends relative-path <item>s. Without
+             suppression, the sidebar renders two "Subprojects"
+             sections — the auto one and the explicit one below.
+             inheritAsRef="true" hits the early-return branch in
+             populateModulesMenu (disassembly lines 43-56), so
+             the populator skips and only the explicit menu
+             remains.
 
-             Doxia's PathTool will normalize these absolute
-             URLs to relative paths at render time
-             (e.g. https://ike.network/doc-example/ →
-             ../../../doc-example/). Post-#342 staging unwrap,
-             those relative paths resolve correctly from
-             /ike-example-ws/N/index.html: ../../../doc-example/
-             → /doc-example/ → 200 (gh-pages root of the
-             doc-example repo). -->
+             Note: doxia's URLRebaser converts the absolute hrefs
+             below to ../../../doc-example/ at site-inheritance
+             time. With #342's staging unwrap in place, those
+             relative paths resolve correctly from
+             /ike-example-ws/N/index.html to /doc-example/ — so
+             the rebasing is functionally fine. The suppression
+             here is cosmetic: one Subprojects menu instead of
+             two. (#344) -->
+        <menu ref="modules" inheritAsRef="true"/>
+
         <menu name="Subprojects">
             <item name="doc-example"
                   href="https://ike.network/doc-example/"/>
