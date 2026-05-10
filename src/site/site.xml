@@ -60,15 +60,20 @@
             <item name="Overview" href="index.html"/>
         </menu>
 
-        <menu name="Subprojects (live sites)">
+        <menu name="Subprojects">
+            <item name="doc-example"
+                  href="https://ike.network/doc-example/"/>
+            <item name="example-project"
+                  href="https://ike.network/example-project/"/>
+        </menu>
+
+        <menu name="Foundation repos (consumed via Nexus)">
+            <item name="ike-tooling"
+                  href="https://ike.network/ike-tooling/"/>
             <item name="ike-docs"
                   href="https://ike.network/ike-docs/"/>
             <item name="ike-platform"
                   href="https://ike.network/ike-platform/"/>
-            <item name="example-project"
-                  href="https://ike.network/example-project/"/>
-            <item name="doc-example"
-                  href="https://ike.network/doc-example/"/>
         </menu>
 
         <menu name="Reference">

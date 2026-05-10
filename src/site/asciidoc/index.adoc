@@ -2,13 +2,18 @@
 :icons: font
 :source-highlighter: coderay
 
-A workspace aggregator that orchestrates the IKE consumer-side
-release cascade end-to-end. Cloning this repo and running
-`mvn ws:init` pulls down `ike-docs`, `ike-platform`, `doc-example`,
-and `example-project` at the versions declared in `workspace.yaml`.
-A subsequent `mvn clean install` then rebuilds the full cascade in
-dependency order from a single command. This is the canonical
-template for an *IKE workspace aggregator*.
+A workspace aggregator that orchestrates two consumer-side
+subprojects, `doc-example` and `example-project`. Cloning this
+repo and running `mvn ws:init` pulls those two down at the
+versions declared in `workspace.yaml`. A subsequent
+`mvn clean install` rebuilds them in dependency order from a
+single command.
+
+The foundation repos `ike-tooling`, `ike-docs`, and `ike-platform`
+are *not* subprojects — they are consumed at their released
+versions from Nexus, not co-developed inside this workspace
+(see "Subprojects" below for the rationale). This is the
+canonical template for an *IKE workspace aggregator*.
 
 [cols="1,3", options="header"]
 |===
