@@ -17,6 +17,13 @@
          http://maven.apache.org/xsd/maven-4.1.0.xsd">
     <modelVersion>4.1.0</modelVersion>
 
+    <parent>
+        <groupId>network.ike.platform</groupId>
+        <artifactId>ike-parent</artifactId>
+        <version>34</version>
+        <relativePath/>
+    </parent>
+
     <groupId>network.ike.examples.its</groupId>
     <artifactId>ike-example-ws-its</artifactId>
     <version>1-SNAPSHOT</version>
@@ -32,9 +39,11 @@
     </description>
 
     <properties>
-        <!-- Pinned literals — this IT reactor does not inherit
-             from ike-parent, so Maven does not interpolate
-             properties for extension plugins here anyway. -->
+        <!-- Test-target versions for IT-case POM substitution.
+             Local declarations shadow the inherited ike-parent
+             defaults so each IT case exercises a known-stable
+             slice of the release matrix, independent of whatever
+             version is current in the surrounding workspace. -->
         <ike-platform.version>1-SNAPSHOT</ike-platform.version>
         <ike-docs.version>1-SNAPSHOT</ike-docs.version>
         <ike-tooling.version>126</ike-tooling.version>
