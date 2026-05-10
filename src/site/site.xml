@@ -57,7 +57,9 @@
         </links>
 
         <menu name="Documentation">
-            <item name="Overview" href="index.html"/>
+            <item name="Overview"            href="index.html"/>
+            <item name="workspace.yaml tour" href="workspace-yaml.html"/>
+            <item name="IT Suite"            href="it-suite.html"/>
         </menu>
 
         <menu name="Subprojects">
