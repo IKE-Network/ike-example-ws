@@ -6,15 +6,15 @@
 
 The `its/` reactor is the **executable specification** for
 cross-cascade behavior in the IKE Network release stack. It runs
-the four-repo (or five-repo, including this workspace) build chain
+the five-repo (or six-repo, including this workspace) build chain
 the way an external consumer would — pulling artifacts from Nexus,
 scaffolding a fresh project layout, and asserting that the
 documented pipeline actually works end-to-end.
 
 == Why an IT suite at this layer?
 
-The four foundation reactors (ike-tooling, ike-docs, ike-platform,
-plus this workspace's two consumers doc-example and example-project)
+The three foundation reactors (ike-tooling, ike-docs, ike-platform)
+plus this workspace's two consumers (doc-example, example-project)
 each have their own unit and integration tests inside their own
 modules. Those catch regressions inside a single reactor.
 
@@ -38,7 +38,7 @@ What they don't catch:
 
 Each of those is testable inside a fresh `maven-invoker-plugin`
 sandbox, and each represents a real regression the IKE Network has
-hit at least once during the v144→v149 cascade work.
+hit at least once during the v144→v150 cascade work.
 
 == Planned IT inventory
 
@@ -156,6 +156,11 @@ from recent cascades:
 * The version-nested staging recursion (#337) — would have been
   caught by a `release-cascade` IT exercising
   `${project.version}` substitution in `site.deploy.url`.
+* The parent-artifactId staging nesting (#342, surfaced during
+  the v150 workspace release) — would have been caught by a
+  `release-cascade` IT that verifies the published gh-pages tree
+  has its content at the expected URL, not at
+  `<parentArtifactId>/<artifactId>/`.
 
 Each "we hit this in the cascade and had to release another fix"
 moment is exactly the kind of thing this suite exists to catch

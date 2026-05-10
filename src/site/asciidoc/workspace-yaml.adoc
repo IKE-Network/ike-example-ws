@@ -117,9 +117,9 @@ repos — `ike-tooling`, `ike-docs`, `ike-platform` — are
    from Nexus rather than co-developed inside any workspace.
 
 The corollary: when the foundation repos release (e.g.,
-ike-tooling 149 → ike-docs 11 → ike-platform 33), this workspace
+ike-tooling 150 → ike-docs 12 → ike-platform 34), this workspace
 picks up the new versions by bumping `ike-parent`'s version (via
-`ws:set-parent-publish -Dparent.version=33`) and any direct
+`ws:set-parent-publish -Dparent.version=34`) and any direct
 `${ike-tooling.version}` / `${ike-docs.version}` references — but
 the foundation repos themselves are never under `ws:*` control.
 
@@ -151,9 +151,15 @@ the foundation repos themselves are never under `ws:*` control.
 
 | `ws:release-publish`
 | Whole manifest (build order, dependencies)
-| Updates each subproject's `version:` to the just-released value
-  after a successful release. Commits the workspace.yaml change at
-  the end.
+| Walks subprojects in topological order and runs
+  `ike:release-publish` on each that has source changes since its
+  last release tag. After all subprojects release, releases the
+  workspace root last when it has its own unreleased changes
+  (#326+#328). Does **not** rewrite `workspace.yaml` per-subproject
+  `version:` fields — those remain at the workspace's
+  HEAD-tracking value (typically `1-SNAPSHOT`); the durable
+  per-cycle anchor is the workspace's own release tag plus any
+  `ws:checkpoint-publish` snapshots under `checkpoints/`.
 
 | `ws:align-publish`
 | Whole manifest
