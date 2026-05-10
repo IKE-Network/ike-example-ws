@@ -40,13 +40,24 @@
 
     <properties>
         <!-- Test-target versions for IT-case POM substitution.
-             Local declarations shadow the inherited ike-parent
-             defaults so each IT case exercises a known-stable
-             slice of the release matrix, independent of whatever
-             version is current in the surrounding workspace. -->
-        <ike-platform.version>1-SNAPSHOT</ike-platform.version>
-        <ike-docs.version>1-SNAPSHOT</ike-docs.version>
-        <ike-tooling.version>126</ike-tooling.version>
+             These are namespaced under `it.*` to avoid shadowing
+             the workspace-inherited `ike-tooling.version` /
+             `ike-docs.version` / `ike-platform.version`
+             properties — those control plugin resolution for
+             this very POM (ike-parent's render-spdx-licenses,
+             render-sbom-viewer, built-with executions inherit
+             via ${ike-tooling.version}) and overriding them
+             would pin the plugin to an old version that lacks
+             those goals.
+             Each IT case exercises a known-stable slice of the
+             release matrix, independent of whatever version is
+             current in the surrounding workspace. The
+             <filterProperties> below renames them back to
+             their unqualified form for substitution into IT-case
+             POMs. -->
+        <it.ike-platform.version>1-SNAPSHOT</it.ike-platform.version>
+        <it.ike-docs.version>1-SNAPSHOT</it.ike-docs.version>
+        <it.ike-tooling.version>126</it.ike-tooling.version>
     </properties>
 
     <build>
@@ -61,9 +72,9 @@
                     <postBuildHookScript>verify</postBuildHookScript>
                     <streamLogs>true</streamLogs>
                     <filterProperties>
-                        <ike-platform.version>${ike-platform.version}</ike-platform.version>
-                        <ike-docs.version>${ike-docs.version}</ike-docs.version>
-                        <ike-tooling.version>${ike-tooling.version}</ike-tooling.version>
+                        <ike-platform.version>${it.ike-platform.version}</ike-platform.version>
+                        <ike-docs.version>${it.ike-docs.version}</ike-docs.version>
+                        <ike-tooling.version>${it.ike-tooling.version}</ike-tooling.version>
                     </filterProperties>
                 </configuration>
                 <executions>
