@@ -1,0 +1,31 @@
+# ike-example-ws
+
+> Standard parent POM for IKE Network projects. Inheriting this
+> POM provides build conventions (Java 25 compiler, test harness,
+> GPG signing, AsciiDoc documentation pipeline) from the
+> ike-platform reactor root and centralized dependency version
+> management declared inline. Declares ike-doc-maven-plugin
+> (from network.ike.docs) with extensions=true to provide the
+> ike-doc custom packaging type to external doc projects.
+
+## Documentation
+
+- [Integration Test Suite](https://ike.network/ike-platform/ike-parent/ike-example-ws/it-suite.html.md)
+- [ike-example-ws](https://ike.network/ike-platform/ike-parent/ike-example-ws/index.html.md)
+- [workspace.yaml — Annotated Tour](https://ike.network/ike-platform/ike-parent/ike-example-ws/workspace-yaml.html.md)
+
+## Other
+
+- [Dependencies (SBOM)](https://ike.network/ike-platform/ike-parent/ike-example-ws/dependencies.html.md)
+- [Licenses (SPDX)](https://ike.network/ike-platform/ike-parent/ike-example-ws/licenses.html.md)
+- [Built With](https://ike.network/ike-platform/ike-parent/ike-example-ws/built-with.html.md)
+
+## Reports
+
+- [Project Summary](https://ike.network/ike-platform/ike-parent/ike-example-ws/summary.html.md)
+- [Maven Coordinates](https://ike.network/ike-platform/ike-parent/ike-example-ws/dependency-info.html.md)
+- [Project Dependency Management](https://ike.network/ike-platform/ike-parent/ike-example-ws/dependency-management.html.md)
+- [Project Plugins](https://ike.network/ike-platform/ike-parent/ike-example-ws/plugins.html.md)
+- [Project Plugin Management](https://ike.network/ike-platform/ike-parent/ike-example-ws/plugin-management.html.md)
+- [Project Distribution Management](https://ike.network/ike-platform/ike-parent/ike-example-ws/distribution-management.html.md)
+- [Project Information](https://ike.network/ike-platform/ike-parent/ike-example-ws/project-info.html.md)
