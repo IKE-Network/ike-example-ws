@@ -35,6 +35,7 @@ Thumbs.db
 /ike-platform/
 /doc-example/
 /example-project/
+/its/
 
 # ws:* report artifacts
 checkpoints/

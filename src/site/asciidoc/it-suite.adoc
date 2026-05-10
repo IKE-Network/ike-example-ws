@@ -11,6 +11,24 @@ the way an external consumer would — pulling artifacts from Nexus,
 scaffolding a fresh project layout, and asserting that the
 documented pipeline actually works end-to-end.
 
+The IT harness lives in its own repo,
+https://github.com/IKE-Network/ike-example-its[`ike-example-its`]
+(extracted in #343), and is cloned into this workspace as an
+*optional* subproject:
+
+[source,console]
+----
+cd ike-example-ws
+mvn ws:init                  # clones doc-example, example-project, its
+mvn verify -pl its           # run the IT suite
+----
+
+When `its/` is present, the workspace's file-activated profile
+picks it up as a reactor module. When it's absent — for a leaner
+build, or because a workflow doesn't need IT runs — the workspace
+builds without it. The same harness can be checked out and run
+standalone (without a workspace) from its own repo.
+
 == Why an IT suite at this layer?
 
 The three foundation reactors (ike-tooling, ike-docs, ike-platform)
@@ -42,11 +60,11 @@ hit at least once during the v144→v150 cascade work.
 
 == Planned IT inventory
 
-The cases below are listed in the suite's `README.adoc` as the
-intended coverage. Implementations are pending — `src/it/` currently
-holds only `settings.xml`. Each case is small (a handful of files)
-and runs in seconds when the artifacts under test are present in
-the local repository.
+The cases below are listed in `ike-example-its`'s `README.adoc`
+as the intended coverage. Implementations are pending — `src/it/`
+in that repo currently holds only `settings.xml`. Each case is
+small (a handful of files) and runs in seconds when the artifacts
+under test are present in the local repository.
 
 |===
 | IT case | What it proves | Catches
@@ -126,7 +144,8 @@ the README's plan):
 [source,console]
 ----
 # From the workspace root, exercising the released artifacts
-# already in the local repository:
+# already in the local repository (requires `its/` to be cloned;
+# `mvn ws:init` does that, or `git clone .../ike-example-its.git its`):
 mvn verify -pl its
 
 # To force a clean Nexus pull (ignore local repo cache):
@@ -134,6 +153,10 @@ mvn verify -pl its -U
 
 # To run a single case:
 mvn invoker:run -pl its -Dinvoker.test=doc-only
+
+# Or standalone, from the IT harness's own checkout:
+cd ../ike-example-its
+mvn verify
 ----
 
 The reactor's `pom.xml` declares `maven-invoker-plugin` 3.9.0

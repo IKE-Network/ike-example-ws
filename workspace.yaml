@@ -76,3 +76,18 @@ subprojects:
     version: 1-SNAPSHOT
     groupId: network.ike.examples
     depends-on: []
+
+  its:
+    description: >
+      Optional integration-test harness — end-to-end smoke tests
+      that exercise the IKE Network release cascade as an external
+      consumer. Split out of this workspace in #343 so the IT
+      harness can evolve on its own cadence and a broken IT POM
+      never blocks a workspace release. The repo's directory name
+      `its` (not `ike-example-its`) keeps existing operator muscle
+      memory and the workspace pom's file-activated profile.
+    repo: https://github.com/IKE-Network/ike-example-its.git
+    branch: main
+    version: 1-SNAPSHOT
+    groupId: network.ike.examples
+    depends-on: []

@@ -71,6 +71,11 @@
         </profile>
 
         <!-- ── Integration tests ─────────────────────────────────── -->
+        <!-- The ITs live in their own repo (IKE-Network/ike-example-its,
+             extracted in #343). They're cloned into ./its/ on demand
+             via `mvn ws:init`. When present, the file-activated profile
+             below picks them up as a workspace reactor module; when
+             absent, the workspace builds without them. -->
 
         <profile>
             <id>with-its</id>
