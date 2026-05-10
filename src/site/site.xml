@@ -62,12 +62,28 @@
             <item name="IT Suite"            href="it-suite.html"/>
         </menu>
 
+        <!-- Subprojects with absolute URLs (intentionally NO
+             ref="modules") so doxia's populateModulesMenu
+             doesn't iterate project.getModules() and append
+             relative-path Items to this menu. The earlier
+             approach of using ref="modules" caused broken
+             relative paths to leak into the sidebar (#344).
+
+             Doxia's PathTool will normalize these absolute
+             URLs to relative paths at render time
+             (e.g. https://ike.network/doc-example/ →
+             ../../../doc-example/). Post-#342 staging unwrap,
+             those relative paths resolve correctly from
+             /ike-example-ws/N/index.html: ../../../doc-example/
+             → /doc-example/ → 200 (gh-pages root of the
+             doc-example repo). -->
         <menu name="Subprojects">
             <item name="doc-example"
                   href="https://ike.network/doc-example/"/>
             <item name="example-project"
                   href="https://ike.network/example-project/"/>
         </menu>
+
 
         <menu name="Foundation repos (consumed via Nexus)">
             <item name="ike-tooling"
