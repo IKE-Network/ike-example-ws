@@ -31,7 +31,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>local.aggregate</groupId>
+    <groupId>network.ike.examples</groupId>
     <artifactId>ike-example-ws</artifactId>
     <version>1-SNAPSHOT</version>
     <packaging>pom</packaging>
