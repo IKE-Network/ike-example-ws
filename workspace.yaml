@@ -42,7 +42,10 @@ subprojects:
   # released ike-parent (Nexus) and the local reactor module of
   # the same artifactId.
   #
-  # ike-docs provides ike-doc-maven-plugin via extensions=true.
+  # ike-docs provides ike-doc-maven-plugin (a regular managed plugin
+  # post-#321 — earlier revisions used extensions=true to register a
+  # custom <packaging>ike-doc</packaging> type at literal versions,
+  # retired in favor of a classifier-canonical doc shape).
   # Same architectural argument applies: it's foundation-y, lives
   # above the consumer line in the cascade, and its release happens
   # through its own ike:release-publish from its own repo.
