@@ -118,10 +118,27 @@ repos — `ike-tooling`, `ike-docs`, `ike-platform` — are
 
 The corollary: when the foundation repos release (e.g.,
 ike-tooling 150 → ike-docs 12 → ike-platform 34), this workspace
-picks up the new versions by bumping `ike-parent`'s version (via
-`ws:set-parent-publish -Dparent.version=34`) and any direct
-`${ike-tooling.version}` / `${ike-docs.version}` references — but
-the foundation repos themselves are never under `ws:*` control.
+picks up the new versions by running:
+
+[source,console]
+----
+# Today: detection only — reports parent + property drift
+mvn ike:scaffold-draft
+
+# Post-#348: detection + apply in one command
+mvn ike:scaffold-publish
+----
+
+The scaffold zip embeds the tested-together foundation versions
+at ike-tooling release time (#345). Running `scaffold-draft`
+shows what's behind; `scaffold-publish` (post-#348) applies the
+bumps. For specific-version overrides (reproducibility testing,
+partial-cycle rollback), `ws:set-parent-publish -DnewVersion=N`
+remains available — but the routine "bump to current" workflow
+collapses to a single scaffold command.
+
+Foundation repos themselves are never under `ws:*` control —
+they release independently via their own `ike:release-publish`.
 
 == How `ws:*` goals consume this file
 
