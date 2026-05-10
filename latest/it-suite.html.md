@@ -78,7 +78,7 @@ The bar for new cases is low: add one whenever you fix a bug that "should have b
 
 - The empty-staging gh-pages publish bug (#334) — would have been caught by an IT that asserts a single-module project’s `target/staging/` is correctly handled by the publish path.
 - The classifier filename mismatch in the v148 supplement delivery — would have been caught by an `src/it/built-with-classifier/` case.
-- The version-nested staging recursion (#337) — would have been caught by a `release-cascade` IT exercising `2` substitution in `site.deploy.url`.
+- The version-nested staging recursion (#337) — would have been caught by a `release-cascade` IT exercising `3` substitution in `site.deploy.url`.
 - The parent-artifactId staging nesting (#342, surfaced during the v150 workspace release) — would have been caught by a `release-cascade` IT that verifies the published gh-pages tree has its content at the expected URL, not at `<parentArtifactId>/<artifactId>/`.
 
 Each "we hit this in the cascade and had to release another fix" moment is exactly the kind of thing this suite exists to catch preemptively. File a bug + add a regression IT, in that order.

@@ -86,13 +86,13 @@
 					<div class="header-title">ike-example-ws</div>
 						<div class="header-subtitle">
 							<span class="version-prefix">Version</span>
-							<span class="version">2</span>
+							<span class="version">3</span>
 						</div>
 					</div>
 					<div class="navbar-brand header-xxs visible-xs">
 						<div class="header-title">ike-example-ws</div>
 						<div class="header-subtitle">
-							Version <strong>2</strong>
+							Version <strong>3</strong>
 						</div>
 					</div>
 					<form class="navbar-form site-search site-search-xs visible-xs" ng-show="showSearchInput">
@@ -143,6 +143,10 @@
 <li><a href="workspace-yaml.html"><i class="fas fa-file-alt"></i> workspace.yaml tour</a></li>
 <li class="active"><a href="it-suite.html" ng-click="hideSubItems = !hideSubItems"><i class="fas fa-file-alt"></i> IT Suite</a></li>
 </ul>
+		<h5 class="text-uppercase">$menu.name</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+</ul>
 		<h5 class="text-uppercase">Subprojects</h5>
 
 <ul class="nav nav-pills nav-stacked animate">
@@ -178,7 +182,7 @@
 
 					<div class="col-md-12">
 					<div class="page-header visible-print-block">
-							<h3><small>ike-example-ws</small><br/>							IKE Example Workspace 2
+							<h3><small>ike-example-ws</small><br/>							IKE Example Workspace 3
 							</h3>
 						</div>
 						<div class="parents hidden-xs">
@@ -312,7 +316,7 @@ mvn verify</code></pre>
  <ul>
   <li>The empty-staging gh-pages publish bug (#334) — would have been caught by an IT that asserts a single-module project’s <code>target/staging/</code> is correctly handled by the publish path.</li>
   <li>The classifier filename mismatch in the v148 supplement delivery — would have been caught by an <code>src/it/built-with-classifier/</code> case.</li>
-  <li>The version-nested staging recursion (#337) — would have been caught by a <code>release-cascade</code> IT exercising <code>2</code> substitution in <code>site.deploy.url</code>.</li>
+  <li>The version-nested staging recursion (#337) — would have been caught by a <code>release-cascade</code> IT exercising <code>3</code> substitution in <code>site.deploy.url</code>.</li>
   <li>The parent-artifactId staging nesting (#342, surfaced during the v150 workspace release) — would have been caught by a <code>release-cascade</code> IT that verifies the published gh-pages tree has its content at the expected URL, not at <code>&lt;parentArtifactId&gt;/&lt;artifactId&gt;/</code>.</li>
  </ul>
  <p>Each "we hit this in the cascade and had to release another fix" moment is exactly the kind of thing this suite exists to catch preemptively. File a bug + add a regression IT, in that order.</p>
@@ -345,7 +349,7 @@ mvn verify</code></pre>
 								<li>[4] https://maven.apache.org/plugins/maven-invoker-plugin/</li>
 								</ul>
 							</div>
-<div class="date">Date: <strong>2026-05-10 14:12:19 -0700</strong></div>
+<div class="date">Date: <strong>2026-05-10 16:53:51 -0700</strong></div>
 						</div>
 						</div>
 					</div>
@@ -424,7 +428,7 @@ mvn verify</code></pre>
 	<footer class="footer">
 
 		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
-			<strong>ike-example-ws 2</strong>
+			<strong>ike-example-ws 3</strong>
 			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
 			Documentation as of <strong><time datetime="2026-05-10">2026-05-10</time></strong>
 		</p>
