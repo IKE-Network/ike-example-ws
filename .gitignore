@@ -43,6 +43,14 @@ plan.yaml
 ws꞉*.md
 ike꞉*.md
 
+# Stale gh-pages-style staging artifacts that have historically
+# leaked from publishProjectSiteToGhPages into this main tree
+# during cascade bumps. Canonical published content lives on each
+# repo's gh-pages branch; never commit it here.
+/examples/
+/ike-example-its/
+/ike-example-ws/
+
 # Claude Code (regenerated from ike-build-standards artifact)
 .claude/
 # BEGIN ike-managed
