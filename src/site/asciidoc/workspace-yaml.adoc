@@ -209,7 +209,7 @@ them in sync; `ws:verify` flags drift.
 
 * link:index.html[ike-example-ws overview] — the workspace landing
   page.
-* link:it-suite.html[Integration Test Suite] — what the
+* https://ike.network/ike-example-its/[Integration Test Suite] — what the
   `its/` reactor proves about cross-workspace behavior.
 * https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html[`ws:*` Goal Reference] —
   full per-goal documentation in `ike-workspace-maven-plugin`'s site.

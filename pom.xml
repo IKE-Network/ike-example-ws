@@ -105,6 +105,21 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <!-- Keep cross-repo absolute URLs in site.xml's
+                         <links>, <menus>, and breadcrumbs as-is.
+                         Defaults to true, which relativizes any
+                         absolute link in the site descriptor
+                         against project.url. Wrong for our cross-
+                         repo links: each sibling repo publishes its
+                         own gh-pages at https://ike.network/<repo>/
+                         with no shared site-tree ancestor, so the
+                         rebaser's relative math drops path
+                         segments and produces 404s for
+                         /ike-platform/... references. Setting
+                         false keeps the URLs intact. -->
+                    <relativizeSiteLinks>false</relativizeSiteLinks>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.asciidoctor</groupId>

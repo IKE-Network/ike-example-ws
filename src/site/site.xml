@@ -59,7 +59,6 @@
         <menu name="Documentation">
             <item name="Overview"            href="index.html"/>
             <item name="workspace.yaml tour" href="workspace-yaml.html"/>
-            <item name="IT Suite"            href="it-suite.html"/>
         </menu>
 
         <!-- Suppress the auto-injected Subprojects menu from
@@ -73,24 +72,21 @@
              sections — the auto one and the explicit one below.
              inheritAsRef="true" hits the early-return branch in
              populateModulesMenu (disassembly lines 43-56), so
-             the populator skips and only the explicit menu
-             remains.
-
-             Note: doxia's URLRebaser converts the absolute hrefs
-             below to ../../../doc-example/ at site-inheritance
-             time. With #342's staging unwrap in place, those
-             relative paths resolve correctly from
-             /ike-example-ws/N/index.html to /doc-example/ — so
-             the rebasing is functionally fine. The suppression
-             here is cosmetic: one Subprojects menu instead of
-             two. (#344) -->
-        <menu ref="modules" inheritAsRef="true"/>
+             the populator skips items but the menu's header
+             frame still renders. Sentry skin renders the header
+             via $menu.name without a null guard; a missing name
+             leaks "$menu.name" as literal text. name="" gives
+             velocity an empty string to substitute (vs an
+             unresolved variable). (#344) -->
+        <menu name="" ref="modules" inheritAsRef="true"/>
 
         <menu name="Subprojects">
             <item name="doc-example"
                   href="https://ike.network/doc-example/"/>
             <item name="example-project"
                   href="https://ike.network/example-project/"/>
+            <item name="ike-example-its (IT Suite)"
+                  href="https://ike.network/ike-example-its/"/>
         </menu>
 
 
