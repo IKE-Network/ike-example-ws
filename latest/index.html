@@ -86,13 +86,13 @@
 					<div class="header-title">example-project</div>
 						<div class="header-subtitle">
 							<span class="version-prefix">Version</span>
-							<span class="version">14-SNAPSHOT</span>
+							<span class="version">15-SNAPSHOT</span>
 						</div>
 					</div>
 					<div class="navbar-brand header-xxs visible-xs">
 						<div class="header-title">example-project</div>
 						<div class="header-subtitle">
-							Version <strong>14-SNAPSHOT</strong>
+							Version <strong>15-SNAPSHOT</strong>
 						</div>
 					</div>
 					<form class="navbar-form site-search site-search-xs visible-xs" ng-show="showSearchInput">
@@ -174,7 +174,7 @@
 
 					<div class="col-md-12">
 					<div class="page-header visible-print-block">
-							<h3><small>example-project</small><br/>							IKE Example Project 14-SNAPSHOT
+							<h3><small>example-project</small><br/>							IKE Example Project 15-SNAPSHOT
 							</h3>
 						</div>
 								<div class="home-xs visible-xs">
@@ -267,7 +267,7 @@
  <div class="source">
   <pre class="prettyprint" copy-to-clipboard=""><code>ike-tooling -&gt; ike-docs -&gt; ike-platform -&gt; [example-project, doc-example] -&gt; ike-example-ws</code></pre>
  </div>
- <p><code>example-project</code> releases after <code>ike-platform</code> (whose <code>ike-parent</code> this project consumes) and after <code>ike-docs</code> (whose <code>ike-doc-maven-plugin</code> is declared as a regular managed plugin in <code>ike-parent</code> via <code>15</code>; the documentation pipeline activates through a profile when <code>src/docs/asciidoc/</code> exists). Earlier revisions used the <code>&lt;extensions&gt;true&lt;/extensions&gt;</code> mechanism to register a custom <code>&lt;packaging&gt;ike-doc&lt;/packaging&gt;</code> type at literal versions; that machinery was retired in <a href="https://github.com/IKE-Network/ike-issues/issues/321" class="externalLink">ike-issues#321</a><sup class="visible-print-inline">[3]</sup> in favor of a classifier-canonical doc shape (<code>&lt;classifier&gt;adoc&lt;/classifier&gt;&lt;type&gt;zip&lt;/type&gt;</code>).</p>
+ <p><code>example-project</code> releases after <code>ike-platform</code> (whose <code>ike-parent</code> this project consumes) and after <code>ike-docs</code> (whose <code>ike-doc-maven-plugin</code> is declared as a regular managed plugin in <code>ike-parent</code> via <code>16</code>; the documentation pipeline activates through a profile when <code>src/docs/asciidoc/</code> exists). Earlier revisions used the <code>&lt;extensions&gt;true&lt;/extensions&gt;</code> mechanism to register a custom <code>&lt;packaging&gt;ike-doc&lt;/packaging&gt;</code> type at literal versions; that machinery was retired in <a href="https://github.com/IKE-Network/ike-issues/issues/321" class="externalLink">ike-issues#321</a><sup class="visible-print-inline">[3]</sup> in favor of a classifier-canonical doc shape (<code>&lt;classifier&gt;adoc&lt;/classifier&gt;&lt;type&gt;zip&lt;/type&gt;</code>).</p>
 </div>
 <div>
  <h2 id="project-structure"><a href="#project-structure"></a><a id="project-structure"></a>Project Structure</h2>
@@ -331,7 +331,7 @@ mvn site</code></pre>
     <span class="tag">&lt;version&gt;</span>6<span class="tag">&lt;/version&gt;</span>
 <span class="tag">&lt;/parent&gt;</span></code></pre>
  </div>
- <p>After inheriting, the project gets — for free — Java 25 compilation, GPG signing via Bouncy Castle, JaCoCo coverage, the AsciiDoc documentation pipeline, and dependency-version management for the IKE ecosystem. <code>ike-maven-plugin</code> and <code>ike-doc-maven-plugin</code> are declared as ordinary managed plugins (no <code>extensions=true</code>, post-#321) and resolve via property indirection (<code>153</code>, <code>15</code>).</p>
+ <p>After inheriting, the project gets — for free — Java 25 compilation, GPG signing via Bouncy Castle, JaCoCo coverage, the AsciiDoc documentation pipeline, and dependency-version management for the IKE ecosystem. <code>ike-maven-plugin</code> and <code>ike-doc-maven-plugin</code> are declared as ordinary managed plugins (no <code>extensions=true</code>, post-#321) and resolve via property indirection (<code>154</code>, <code>16</code>).</p>
  <p>The doc pipeline activates automatically when <code>src/docs/asciidoc/</code> exists. No <code>&lt;plugins&gt;</code> block in this project’s POM is needed for documentation — the parent profile handles it.</p>
 </div>
 <div>
@@ -428,7 +428,7 @@ mvn site</code></pre>
 								<li>[7] https://ike.network/ike-platform/</li>
 								</ul>
 							</div>
-<div class="date">Date: <strong>2026-05-10 20:59:09 -0700</strong></div>
+<div class="date">Date: <strong>2026-05-10 21:55:12 -0700</strong></div>
 						</div>
 						</div>
 					</div>
@@ -507,7 +507,7 @@ mvn site</code></pre>
 	<footer class="footer">
 
 		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
-			<strong>example-project 14-SNAPSHOT</strong>
+			<strong>example-project 15-SNAPSHOT</strong>
 			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
 			Documentation as of <strong><time datetime="2026-05-11">2026-05-11</time></strong>
 		</p>

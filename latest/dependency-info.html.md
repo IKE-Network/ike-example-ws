@@ -12,14 +12,14 @@ canonical_url: https://github.com/IKE-Network/example-project/dependency-info.ht
 <dependency>
   <groupId>network.ike.examples</groupId>
   <artifactId>example-project</artifactId>
-  <version>14-SNAPSHOT</version>
+  <version>15-SNAPSHOT</version>
 </dependency>
 ```
 
 ## [Apache Ivy](#apache-ivy)
 
 ```
-<dependency org="network.ike.examples" name="example-project" rev="14-SNAPSHOT">
+<dependency org="network.ike.examples" name="example-project" rev="15-SNAPSHOT">
   <artifact name="example-project" type="jar" />
 </dependency>
 ```
@@ -28,24 +28,24 @@ canonical_url: https://github.com/IKE-Network/example-project/dependency-info.ht
 
 ```
 @Grapes(
-@Grab(group='network.ike.examples', module='example-project', version='14-SNAPSHOT')
+@Grab(group='network.ike.examples', module='example-project', version='15-SNAPSHOT')
 )
 ```
 
 ## [Gradle/Grails](#gradle-grails)
 
 ```
-implementation 'network.ike.examples:example-project:14-SNAPSHOT'
+implementation 'network.ike.examples:example-project:15-SNAPSHOT'
 ```
 
 ## [Scala SBT](#scala-sbt)
 
 ```
-libraryDependencies += "network.ike.examples" % "example-project" % "14-SNAPSHOT"
+libraryDependencies += "network.ike.examples" % "example-project" % "15-SNAPSHOT"
 ```
 
 ## [Leiningen](#leiningen)
 
 ```
-[network.ike.examples/example-project "14-SNAPSHOT"]
+[network.ike.examples/example-project "15-SNAPSHOT"]
 ```

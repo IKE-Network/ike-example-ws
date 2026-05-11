@@ -1,0 +1,25 @@
+# example-project
+
+> Example Java project demonstrating IKE documentation pipeline
+> integration with Java source, tests, and Koncept macros.
+
+## Documentation
+
+- [example-project](https://github.com/IKE-Network/example-project/index.html.md)
+
+## Other
+
+- [Dependencies (SBOM)](https://github.com/IKE-Network/example-project/dependencies.html.md)
+- [Licenses (SPDX)](https://github.com/IKE-Network/example-project/licenses.html.md)
+- [Built With](https://github.com/IKE-Network/example-project/built-with.html.md)
+
+## Reports
+
+- [Project Summary](https://github.com/IKE-Network/example-project/summary.html.md)
+- [Maven Coordinates](https://github.com/IKE-Network/example-project/dependency-info.html.md)
+- [Project Dependency Management](https://github.com/IKE-Network/example-project/dependency-management.html.md)
+- [Project Plugins](https://github.com/IKE-Network/example-project/plugins.html.md)
+- [Project Plugin Management](https://github.com/IKE-Network/example-project/plugin-management.html.md)
+- [Project Distribution Management](https://github.com/IKE-Network/example-project/distribution-management.html.md)
+- [Project Information](https://github.com/IKE-Network/example-project/project-info.html.md)
+- [Generated Reports](https://github.com/IKE-Network/example-project/project-reports.html.md)
