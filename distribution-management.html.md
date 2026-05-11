@@ -1,7 +1,7 @@
 ---
-date_published: 2026-05-10
-date_modified: 2026-05-10
-canonical_url: https://github.com/IKE-Network/example-project/distribution-management.html
+date_published: 2026-05-09
+date_modified: 2026-05-09
+canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/distribution-management.html
 ---
 
 # Overview
@@ -18,4 +18,4 @@ The following is the distribution management information used by this project.
 
 ## [Site - ike-site](#site---ike-site)
 
-scpexe://proxy/srv/ike-site/examples/example-project
+scpexe://proxy/srv/ike-site/ike-platform/36/ike-parent/ike-example-ws
