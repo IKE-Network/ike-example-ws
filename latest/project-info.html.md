@@ -1,7 +1,7 @@
 ---
-date_published: 2026-05-09
-date_modified: 2026-05-09
-canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/project-info.html
+date_published: 2026-05-10
+date_modified: 2026-05-10
+canonical_url: https://github.com/IKE-Network/example-project/project-info.html
 ---
 
 # Project Information
@@ -12,7 +12,7 @@ This document provides an overview of the various documents and links that are p
 
 | Document | Description |
 | --- | --- |
-| [About](index.html)[2] | Standard parent POM for IKE Network projects. Inheriting this POM provides build conventions (Java 25 compiler, test harness, GPG signing, AsciiDoc documentation pipeline) from the ike-platform reactor root and centralized dependency version management declared inline. Declares ike-doc-maven-plugin (from network.ike.docs) with extensions=true to provide the ike-doc custom packaging type to external doc projects. |
+| [About](index.html)[2] | Example Java project demonstrating IKE documentation pipeline integration with Java source, tests, and Koncept macros. |
 | [Summary](summary.html)[3] | This document lists other related information of this project |
 | [Maven Coordinates](dependency-info.html)[4] | This document describes how to include this project as a dependency using various dependency management tools. |
 | [Dependency Management](dependency-management.html)[5] | This document lists the dependencies that are defined through dependencyManagement. |

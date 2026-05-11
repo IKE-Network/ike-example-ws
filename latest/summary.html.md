@@ -1,7 +1,7 @@
 ---
-date_published: 2026-05-09
-date_modified: 2026-05-09
-canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/summary.html
+date_published: 2026-05-10
+date_modified: 2026-05-10
+canonical_url: https://github.com/IKE-Network/example-project/summary.html
 ---
 
 # Project Summary
@@ -10,9 +10,9 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/summar
 
 | Field | Value |
 | --- | --- |
-| Name | IKE Example Workspace |
-| Description | Standard parent POM for IKE Network projects. Inheriting this POM provides build conventions (Java 25 compiler, test harness, GPG signing, AsciiDoc documentation pipeline) from the ike-platform reactor root and centralized dependency version management declared inline. Declares ike-doc-maven-plugin (from network.ike.docs) with extensions=true to provide the ike-doc custom packaging type to external doc projects. |
-| Homepage | [https://ike.network/ike-platform/ike-parent/ike-example-ws/](https://ike.network/ike-platform/ike-parent/ike-example-ws/)[1] |
+| Name | IKE Example Project |
+| Description | Example Java project demonstrating IKE documentation pipeline integration with Java source, tests, and Koncept macros. |
+| Homepage | [https://github.com/IKE-Network/example-project](https://github.com/IKE-Network/example-project)[1] |
 
 ## [Project Organization](#project-organization)
 
@@ -26,6 +26,7 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/summar
 | Field | Value |
 | --- | --- |
 | GroupId | network.ike.examples |
-| ArtifactId | ike-example-ws |
-| Version | 3 |
-| Type | pom |
+| ArtifactId | example-project |
+| Version | 14-SNAPSHOT |
+| Type | jar |
+| Java Version | 25 |

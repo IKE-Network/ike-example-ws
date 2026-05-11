@@ -1,12 +1,12 @@
 ---
-date_published: 2026-05-09
-date_modified: 2026-05-09
-canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/built-with.html
+date_published: 2026-05-10
+date_modified: 2026-05-10
+canonical_url: https://github.com/IKE-Network/example-project/built-with.html
 ---
 
 # Built With
 
-Open-source software that `ike-example-ws` 3 depends on, links against, ships within, or invokes at runtime.
+Open-source software that `example-project` 14-SNAPSHOT depends on, links against, ships within, or invokes at runtime.
 
 Three layers of attribution ship with each release:
 
@@ -87,8 +87,10 @@ Direct dependencies of this module, grouped by SPDX expression. Generated from `
 
 | SPDX Expression | Components |
 | --- | --- |
-| `Apache-2.0` | 5 |
-| **Total** | **5** |
+| `Apache-2.0` | 7 |
+| `Apache-2.0 OR MIT License (DocBook XSL Stylesheets)` | 1 |
+| `OFL-1.1` | 1 |
+| **Total** | **9** |
 
 For full per-component detail (group, artifact, version, hashes, transitive deps), see [bom.json](bom.json)[1] or [licenses.html](licenses.html)[2].
 
