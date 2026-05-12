@@ -6,7 +6,7 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/licens
 
 # Licenses (SPDX)
 
-Licenses for declared dependencies of `ike-example-ws` 9, grouped by SPDX expression. Rendered from `[bom.json](bom.json)[1]` (CycloneDX) at `pre-site` phase by `ike:render-spdx-licenses` (ike-issues#335).
+Licenses for declared dependencies of `ike-example-ws` 10, grouped by SPDX expression. Rendered from `[bom.json](bom.json)[1]` (CycloneDX) at `pre-site` phase by `ike:render-spdx-licenses` (ike-issues#335).
 
 ## [#summary](#summary)Summary
 
