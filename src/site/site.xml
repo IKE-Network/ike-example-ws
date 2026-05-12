@@ -36,7 +36,7 @@
                    integration test, IKE Network</keywords>
     </custom>
 
-    <bannerLeft name="ike-example-ws" href="index.html">
+    <bannerLeft name="ike-example-ws" href="https://ike.network/">
         <image src="images/ike-logo.svg" alt="IKE"/>
     </bannerLeft>
 
@@ -57,8 +57,9 @@
         </links>
 
         <menu name="Documentation">
-            <item name="Overview"            href="index.html"/>
-            <item name="workspace.yaml tour" href="workspace-yaml.html"/>
+            <item name="Overview"                   href="index.html"/>
+            <item name="workspace.yaml tour"        href="workspace-yaml.html"/>
+            <item name="Software Bill of Materials" href="dependencies.html"/>
         </menu>
 
         <!-- Suppress the auto-injected Subprojects menu from
