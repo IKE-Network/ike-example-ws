@@ -12,10 +12,10 @@
 
 - [ike-example-ws](https://ike.network/ike-platform/ike-parent/ike-example-ws/index.html.md)
 - [workspace.yaml — Annotated Tour](https://ike.network/ike-platform/ike-parent/ike-example-ws/workspace-yaml.html.md)
+- [Dependencies (SBOM)](https://ike.network/ike-platform/ike-parent/ike-example-ws/dependencies.html.md)
 
 ## Other
 
-- [Dependencies (SBOM)](https://ike.network/ike-platform/ike-parent/ike-example-ws/dependencies.html.md)
 - [Licenses (SPDX)](https://ike.network/ike-platform/ike-parent/ike-example-ws/licenses.html.md)
 - [Built With](https://ike.network/ike-platform/ike-parent/ike-example-ws/built-with.html.md)
 
