@@ -1,21 +1,19 @@
 ---
 date_published: 2026-05-10
 date_modified: 2026-05-10
-canonical_url: https://github.com/IKE-Network/example-project/licenses.html
+canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/licenses.html
 ---
 
 # Licenses (SPDX)
 
-Licenses for declared dependencies of `example-project` 17-SNAPSHOT, grouped by SPDX expression. Rendered from `[bom.json](bom.json)[1]` (CycloneDX) at `pre-site` phase by `ike:render-spdx-licenses` (ike-issues#335).
+Licenses for declared dependencies of `ike-example-ws` 8, grouped by SPDX expression. Rendered from `[bom.json](bom.json)[1]` (CycloneDX) at `pre-site` phase by `ike:render-spdx-licenses` (ike-issues#335).
 
 ## [#summary](#summary)Summary
 
 | SPDX Expression | Components |
 | --- | --- |
-| `Apache-2.0` | 7 |
-| `Apache-2.0 OR MIT License (DocBook XSL Stylesheets)` | 1 |
-| `OFL-1.1` | 1 |
-| **Total** | **9** |
+| `Apache-2.0` | 5 |
+| **Total** | **5** |
 
 ## [#apache-2-0](#apache-2-0)Apache-2.0
 
@@ -23,30 +21,14 @@ Reference: [Apache-2.0 on spdx.org](https://spdx.org/licenses/Apache-2.0.html)[2
 
 | Group | Artifact | Version |
 | --- | --- | --- |
-| `network.ike.docs` | `ike-doc-resources` | `18` |
-| `network.ike.tooling` | `ike-build-standards` | `156` |
-| `network.ike.tooling` | `ike-build-standards` | `156` |
-| `network.ike.tooling` | `ike-build-standards` | `156` |
-| `network.ike.tooling` | `ike-build-standards` | `156` |
-| `network.ike.tooling` | `ike-build-standards` | `156` |
-| `network.ike.tooling` | `ike-build-standards` | `156` |
-
-## [#apache-2-0-or-mit-license-docbook-xsl-stylesheets](#apache-2-0-or-mit-license-docbook-xsl-stylesheets)Apache-2.0 OR MIT License (DocBook XSL Stylesheets)
-
-| Group | Artifact | Version |
-| --- | --- | --- |
-| `network.ike.docs` | `docbook-xsl` | `18` |
-
-## [#ofl-1-1](#ofl-1-1)OFL-1.1
-
-Reference: [OFL-1.1 on spdx.org](https://spdx.org/licenses/OFL-1.1.html)[3]
-
-| Group | Artifact | Version |
-| --- | --- | --- |
-| `network.ike.docs` | `minimal-fonts` | `18` |
+| `network.ike.tooling` | `ike-build-standards` | `157` |
+| `network.ike.tooling` | `ike-build-standards` | `157` |
+| `network.ike.tooling` | `ike-build-standards` | `157` |
+| `network.ike.tooling` | `ike-build-standards` | `157` |
+| `network.ike.tooling` | `ike-build-standards` | `157` |
 
 ## [#see-also](#see-also)See also
 
 - [Software Bill of Materials (CycloneDX)](bom.json)[1] — the canonical machine-readable inventory this page is derived from.
-- [Third-Party Notices](THIRD_PARTY_NOTICES.html)[4] — curated companion that covers components mechanical reports can’t see (Maven Site skin, external services, fonts inside artifacts).
-- [Dependency Info](dependency-info.html)[5] — consumption snippet for this module.
+- [Third-Party Notices](THIRD_PARTY_NOTICES.html)[3] — curated companion that covers components mechanical reports can’t see (Maven Site skin, external services, fonts inside artifacts).
+- [Dependency Info](dependency-info.html)[4] — consumption snippet for this module.
