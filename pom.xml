@@ -33,7 +33,7 @@
 
     <groupId>network.ike.examples</groupId>
     <artifactId>ike-example-ws</artifactId>
-    <version>10-SNAPSHOT</version>
+    <version>10</version>
     <packaging>pom</packaging>
 
     <name>IKE Example Workspace</name>
