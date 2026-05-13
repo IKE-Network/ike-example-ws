@@ -4,11 +4,12 @@
 [![Documentation](https://img.shields.io/badge/docs-ike.network%2Fike--example--ws-blue)](https://ike.network/ike-example-ws/)
 [![IKE Network](https://img.shields.io/badge/IKE-Network-green)](https://ike.network/)
 
-Workspace aggregator that orchestrates two consumer-side
-subprojects (`doc-example`, `example-project`) against the IKE
-foundation repos (`ike-tooling`, `ike-docs`, `ike-platform`)
-consumed from Nexus. Clone this repo and run `mvn ws:init` to pull
-down the subprojects and build the cascade as a single reactor.
+Workspace aggregator that orchestrates three consumer-side
+subprojects (`doc-example`, `example-project`, `its`/`ike-example-its`)
+against the IKE foundation repos (`ike-tooling`, `ike-docs`,
+`ike-platform`) consumed from Nexus. Clone this repo and run
+`mvn ws:init` to pull down the subprojects and build the cascade
+as a single reactor.
 
 ## What this workspace is for
 
@@ -56,6 +57,7 @@ releases them in dependency order.
 |---|---|---|
 | [doc-example](https://github.com/IKE-Network/doc-example) | `network.ike.examples:doc-example` | Doc-only template — `<packaging>pom</packaging>` with `adoc` source classifier |
 | [example-project](https://github.com/IKE-Network/example-project) | `network.ike.examples:example-project` | Hybrid Java+docs template — `<packaging>jar</packaging>` with optional `adoc` classifier when `src/docs/asciidoc/` exists |
+| [ike-example-its](https://github.com/IKE-Network/ike-example-its) | `network.ike.examples:ike-example-its` | Optional integration-test harness clones into `./its/`; a file-activated profile picks it up when present. Split from this workspace in [`#343`](https://github.com/IKE-Network/ike-issues/issues/343) so the IT harness can evolve on its own cadence. |
 
 See [`workspace.yaml`](workspace.yaml) for version pins and dependency
 declarations.
@@ -63,12 +65,16 @@ declarations.
 ## Release Cascade
 
 ```
-ike-tooling → ike-docs → ike-platform → { doc-example, example-project } → [this workspace's ITs]
+ike-tooling → ike-docs → ike-platform → [ workspace: { doc-example, example-project, ike-example-its } → ike-example-ws ]
 ```
 
 `ike-tooling` is bootstrapped out-of-band (it releases itself using
-the plugin it produces). Everything else is orchestrated through
-`mvn ws:release`.
+the plugin it produces). The foundation tier is then orchestrated
+by `cascade-foundation-publish` (in `ike-platform`'s
+`ike-workspace-maven-plugin`), which walks `ike-tooling → ike-docs →
+ike-platform` and then invokes the workspace's own
+`ws:release-publish` to release the three subprojects in dependency
+order, finishing with the workspace root.
 
 ## Integration Tests
 
