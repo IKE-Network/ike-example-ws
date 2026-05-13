@@ -1,5 +1,9 @@
 # IKE Example Workspace
 
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Documentation](https://img.shields.io/badge/docs-ike.network%2Fike--example--ws-blue)](https://ike.network/ike-example-ws/)
+[![IKE Network](https://img.shields.io/badge/IKE-Network-green)](https://ike.network/)
+
 Workspace aggregator that orchestrates two consumer-side
 subprojects (`doc-example`, `example-project`) against the IKE
 foundation repos (`ike-tooling`, `ike-docs`, `ike-platform`)
@@ -68,8 +72,22 @@ the plugin it produces). Everything else is orchestrated through
 
 ## Integration Tests
 
-See [`its/README.adoc`](its/README.adoc) for the IT suite layout
+See [`its/README.md`](its/README.md) for the IT suite layout
 and how to add new end-to-end tests.
+
+## Links
+
+- **Documentation:** [`https://ike.network/ike-example-ws/`](https://ike.network/ike-example-ws/)
+- **Subproject sites** (each publishes its own top-level gh-pages):
+  - [`doc-example`](https://ike.network/doc-example/) — documentation-only example
+  - [`example-project`](https://ike.network/example-project/) — Java + docs example
+  - [`ike-example-its`](https://ike.network/ike-example-its/) — integration test harness
+- **Foundation repos** (consumed from Nexus, not workspace subprojects):
+  [`ike-tooling`](https://ike.network/ike-tooling/) ·
+  [`ike-docs`](https://ike.network/ike-docs/) ·
+  [`ike-platform`](https://ike.network/ike-platform/)
+- **Issues:** [`IKE-Network/ike-issues`](https://github.com/IKE-Network/ike-issues) (cross-project tracker)
+- **Source:** [`IKE-Network/ike-example-ws`](https://github.com/IKE-Network/ike-example-ws)
 
 ## History
 
