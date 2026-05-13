@@ -1,0 +1,444 @@
+{
+  "bomFormat" : "CycloneDX",
+  "specVersion" : "1.6",
+  "serialNumber" : "urn:uuid:3f524a07-8833-37d8-8dc4-6e812082a581",
+  "version" : 1,
+  "metadata" : {
+    "lifecycles" : [
+      {
+        "phase" : "build"
+      }
+    ],
+    "tools" : {
+      "components" : [
+        {
+          "type" : "library",
+          "author" : "OWASP Foundation",
+          "group" : "org.cyclonedx",
+          "name" : "cyclonedx-maven-plugin",
+          "version" : "2.9.0",
+          "description" : "CycloneDX Maven plugin",
+          "hashes" : [
+            {
+              "alg" : "MD5",
+              "content" : "dfaeab7ec837ce07874e2ee66fdc57d3"
+            },
+            {
+              "alg" : "SHA-1",
+              "content" : "8bab47bafc8183d0a5f37790ff55ed05ead1ae2d"
+            },
+            {
+              "alg" : "SHA-256",
+              "content" : "67117e03eae4a03ca8bab3add044995f4899aa21798a2510b8265ef8101e90ac"
+            },
+            {
+              "alg" : "SHA-512",
+              "content" : "ae6b706516bb76da806b7854aef9e348fa593f5159ae9d693ad38942165c0ebc0846d977a477f6029612d43468fd2cd73a5aa253c228a94fb8d184e0acefc3d2"
+            },
+            {
+              "alg" : "SHA-384",
+              "content" : "ee872354d8b0dcd6f9835a913b3aaba70d9365a46043be78020183282a1e9fca812e969246cbe31d642541591b46648b"
+            },
+            {
+              "alg" : "SHA3-384",
+              "content" : "e5167f9e7ceba3b7b4d1900c404543907868745334bedc69cdf79c271727148413033a3b1426b733b7549e612e44adee"
+            },
+            {
+              "alg" : "SHA3-256",
+              "content" : "41fc0bc2275f354e2c7da01041ce73ce677364799cba53920a180aa5d4571c63"
+            },
+            {
+              "alg" : "SHA3-512",
+              "content" : "ed7f97900b09b818dbc0b8a23c00a2843e1bc34e2e8eb5b6df52533af0a15b721de6f7d5c2fd9352b8d4fde768e080053b40a16f0f9f04c336fe9b44abe83fc0"
+            }
+          ]
+        }
+      ]
+    },
+    "component" : {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.examples/ike-example-ws@11?type=pom",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.examples",
+      "name" : "ike-example-ws",
+      "version" : "11",
+      "description" : "Standard parent POM for IKE Network projects. Inheriting this POM provides build conventions (Java 25 compiler, test harness, GPG signing, AsciiDoc documentation pipeline) from the ike-platform reactor root and centralized dependency version management declared inline. Declares ike-doc-maven-plugin (from network.ike.docs) with extensions=true to provide the ike-doc custom packaging type to external doc projects.",
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.examples/ike-example-ws@11?type=pom",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-platform/ike-parent/ike-example-ws/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        }
+      ]
+    },
+    "properties" : [
+      {
+        "name" : "maven.goal",
+        "value" : "makeBom"
+      },
+      {
+        "name" : "maven.scopes",
+        "value" : "compile,provided,runtime,system"
+      },
+      {
+        "name" : "cdx:reproducible",
+        "value" : "enabled"
+      }
+    ]
+  },
+  "components" : [
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=claude&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "166",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "1c9e964593e7b9044e15cfee00849547"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "54b0330a8c89e1f22925a812c43a0ef47c3466c4"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "167d5b5f6ebf2aa8d71d0c4f92163040de3a1fedeeac906317813b139a58ed5f"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "4ebea17557af076859d19e9b46825c0d994720c91892819051f31cacf5e4ec7c56c74a2f7013bbc15b4589e2ce24bf15d85d101876ddf96260c0ae1094374f72"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "d30ed7257e2ee53435a0794dbc26dcc1951c500d4d63d4f8455e1328c3b28b4688953427b73035c3e3817e282237e03b"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "cf528de10f095647f34722823fb7f4450d7168c8f582295745b61c0f40c9caccd6afe3adf4a955f7aecb2a40b57856a0"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "54c8cb169a561170106374beb67dda54dbb79aeba67f2235e19306061fe25f12"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "b2c313e85d01711f1f7b9cacc1148343c571b4836359d150bb4984457428cc0b39124c6560f990ae672874a49e9751ba9e9a3e016e9bd0bb0be5845c724b085c"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=claude&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=config&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "166",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "66bf6df80b954ece65425c32b3ed8e74"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "4c03ec4ea19108c1f8017a2045020540d7ccf381"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "ed1f581ba2039b95a8c5f66a25041cdd369e0e10fc47fffaea6eb6147c04fa70"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "5a0cdc7807a092f8f9ceec248cd583de23f373cc6a978874af6500daed3ad70acfe070d46d11cb93bd3f6de27d1d7395eb0ee7ff315c86514e3b658466b664c7"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "709eb9b7c3789ac73352f361eeb0c707073cec2e8cca177c92e962066e036b460619f5772a2324d516b58e5f47569dbc"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "57c97134c32c65c9ca0ab503bb859772176e04609dcebc944a4dcd1386d682ed9348df05afd64cac65e0c7668ecf0e79"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "5913b4bd3150a198835cfd050c439606c0a4bea9936d644ea4e3e49b09cc7085"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "509790b2d6eb1a72fa52487864da4dee4fb253d5ba0e18be595783f53153675b9dccf339e252c25aef1cc2f50cfb9e65adaf895bbd97956c17a9c65d8b3f76a1"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=config&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=scaffold&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "166",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "443ee7e1bbf9ade76c3da16dde2327b7"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "be0fd8f5c1a44aa3cb463d9eb939f24ae27e8be0"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "51c8482e1ea82e6db9adacff01827c66081ca3de9c3fc32b0a813e55c67408c8"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "551b3da27b500299a530201a7f607aae7d465c182d30ffe724db36d84184270a25ea6cf87adbe93a21a465c788e5efe68843a158562cbda3eac3aef06d684c69"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "d5e6086cc65498589304eb74c7f2168f8213e5081243a82278581083148a9c763d0181a03897f3241eda6d5b8e36a1d7"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "2efe8567029f3b63d9baa1d4d704aa888bb18681994418eb9644120271fb75830961b92a0b456bcc356cfe2da1cd3414"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "dee7ba08fe9db4c3067b6d7bafce15aba370952fb38bf046b80fde7659b66362"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "519669eee8ce9429070a9f1ab5a05561fca7da0bcc843fcdd42ca7b728354b3c2e875d555ebd7ce90fc5811b1798e7f7102ec9aaeb5fa99a775a732c9f1bdb2f"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=scaffold&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=site-theme&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "166",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "f1449dcdbb5c9aeef1ff4dadc6190652"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "f4013312bd5aa36e9a1e5cb00a0b8fe12f42033f"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "c329157ab9d5bae1acf2c5fb2a236669b97baecc03753b56793e888858b31e6b"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "05ac205ce871d65b5bc364e94a9e4540138b6da242c2dc4333b1927e620e18c55eb66ca5a62dfc5b8a5d511b820dc121ee9fa6a8cb42284fc155e816cefaa4d3"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "9ffb5782cd99f78a7ba5aae2cea296e879410df47657abf5f934f65d7863d94afc2c30ee0a61691df826e93f5f45033c"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "215ef4a81f21b5963b807aa43c058b198f35fb4119d150e7548675cc10db726e9b19654228ab1cedca8942afaec7062d"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "ef6c98a7e36878e76c2a0e60b6f75a8018488fe87a52213501faf2f6133c5e61"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "342bb779716fd3ac376e8583ead72e89405fa51ad4c0b3dc99aa6950827f209ef8c53089c52b5c3b026869094cf2200835b2463e1528b4e25bdbc1012b3085c0"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=site-theme&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        }
+      ]
+    },
+    {
+      "type" : "library",
+      "bom-ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=built-with&type=zip",
+      "publisher" : "IKE Network",
+      "group" : "network.ike.tooling",
+      "name" : "ike-build-standards",
+      "version" : "166",
+      "description" : "Versioned Claude instruction files for IKE projects. Modular standards (Maven, Java, IKE-specific) distributed as a classified Maven artifact.",
+      "scope" : "required",
+      "hashes" : [
+        {
+          "alg" : "MD5",
+          "content" : "08e0f8d005a17c38c94037d3954290a0"
+        },
+        {
+          "alg" : "SHA-1",
+          "content" : "85c25e779e83f59f60d52d4ba585debea7815f88"
+        },
+        {
+          "alg" : "SHA-256",
+          "content" : "c79a02abafa84a388c7784b2616d0d44cd94680af429c099199ae29cde1cb7d3"
+        },
+        {
+          "alg" : "SHA-512",
+          "content" : "ea35c5c7166649f2741f24fc929d3d2cfa073120757057ec58704a6ba25e5cc3b778d13d8d26bd8707f3717d292b07ae35e56650e52042945deff05d87de4617"
+        },
+        {
+          "alg" : "SHA-384",
+          "content" : "d9d4b6c138e0a45a9a6c60f8c6c302a6d05b5f6a44637a6e90716db9924b45bdbb361e33a64ca05405cd98a2ec286e63"
+        },
+        {
+          "alg" : "SHA3-384",
+          "content" : "b2732ad5c9ba2c5ff47586aa2c382ae58a1b91651c6dac65147505725d3c67db6bc8176cb13b8457bc6d20f200e5ab84"
+        },
+        {
+          "alg" : "SHA3-256",
+          "content" : "928b2e3ccadc482f3677b5e98fcda1910ee0e40843504396d9691d36eefe7e24"
+        },
+        {
+          "alg" : "SHA3-512",
+          "content" : "98e0d5a1773f909afc1bb7bff8b5b17ecf87c7eac43847824369d4107e7d098d7962be13beb2647c8054a47115e47391782b70c2eb8a86cb0c767f28ad54ab6a"
+        }
+      ],
+      "licenses" : [
+        {
+          "license" : {
+            "id" : "Apache-2.0"
+          }
+        }
+      ],
+      "purl" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=built-with&type=zip",
+      "externalReferences" : [
+        {
+          "type" : "website",
+          "url" : "https://ike.network/ike-tooling/ike-build-standards/"
+        },
+        {
+          "type" : "distribution-intake",
+          "url" : "https://nexus.tinkar.org/repository/ike-staging/"
+        }
+      ]
+    }
+  ],
+  "dependencies" : [
+    {
+      "ref" : "pkg:maven/network.ike.examples/ike-example-ws@11?type=pom",
+      "dependsOn" : [
+        "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=claude&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=config&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=scaffold&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=site-theme&type=zip",
+        "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=built-with&type=zip"
+      ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=claude&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=config&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=scaffold&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=site-theme&type=zip",
+      "dependsOn" : [ ]
+    },
+    {
+      "ref" : "pkg:maven/network.ike.tooling/ike-build-standards@166?classifier=built-with&type=zip",
+      "dependsOn" : [ ]
+    }
+  ]
+}
