@@ -27,5 +27,5 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/summar
 | --- | --- |
 | GroupId | network.ike.examples |
 | ArtifactId | ike-example-ws |
-| Version | 14 |
+| Version | 15 |
 | Type | pom |
