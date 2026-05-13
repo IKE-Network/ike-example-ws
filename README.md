@@ -81,6 +81,25 @@ order, finishing with the workspace root.
 See [`its/README.md`](its/README.md) for the IT suite layout
 and how to add new end-to-end tests.
 
+## Doc as Code + LLM-Friendly
+
+This workspace follows the IKE Network's doc-as-code philosophy:
+build conventions, documentation standards, and AI-assistant
+guidance live as versioned Markdown files in
+[`ike-build-standards`](https://github.com/IKE-Network/ike-tooling/tree/main/ike-build-standards#readme)
+and are unpacked into every consumer's `.claude/standards/` at
+the `validate` phase. When a developer — or Claude itself —
+opens any IKE project, the agent reads those standards and
+applies them automatically; contributors don't have to memorize
+the conventions.
+
+The standards most directly relevant to a workspace consumer are
+[`IKE-WORKSPACE.md`](https://github.com/IKE-Network/ike-tooling/blob/main/ike-build-standards/src/main/standards/IKE-WORKSPACE.md)
+(workspace.yaml layout, `ws:*` goals) and
+[`IKE-RELEASE.md`](https://github.com/IKE-Network/ike-tooling/blob/main/ike-build-standards/src/main/standards/IKE-RELEASE.md)
+(cascade procedure). See the
+[full inventory](https://github.com/IKE-Network/ike-tooling/tree/main/ike-build-standards#readme).
+
 ## Links
 
 - **Documentation:** [`https://ike.network/ike-example-ws/`](https://ike.network/ike-example-ws/)
@@ -92,6 +111,7 @@ and how to add new end-to-end tests.
   [`ike-tooling`](https://ike.network/ike-tooling/) ·
   [`ike-docs`](https://ike.network/ike-docs/) ·
   [`ike-platform`](https://ike.network/ike-platform/)
+- **Build standards:** [`ike-build-standards`](https://ike.network/ike-tooling/ike-build-standards/)
 - **Issues:** [`IKE-Network/ike-issues`](https://github.com/IKE-Network/ike-issues) (cross-project tracker)
 - **Source:** [`IKE-Network/ike-example-ws`](https://github.com/IKE-Network/ike-example-ws)
 
