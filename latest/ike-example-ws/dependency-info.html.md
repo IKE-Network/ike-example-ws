@@ -1,6 +1,6 @@
 ---
-date_published: 2026-05-11
-date_modified: 2026-05-11
+date_published: 2026-05-12
+date_modified: 2026-05-12
 canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/dependency-info.html
 ---
 
@@ -12,7 +12,7 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/depend
 <dependency>
   <groupId>network.ike.examples</groupId>
   <artifactId>ike-example-ws</artifactId>
-  <version>11</version>
+  <version>12</version>
   <type>pom</type>
 </dependency>
 ```
@@ -20,7 +20,7 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/depend
 ## [Apache Ivy](#apache-ivy)
 
 ```
-<dependency org="network.ike.examples" name="ike-example-ws" rev="11">
+<dependency org="network.ike.examples" name="ike-example-ws" rev="12">
   <artifact name="ike-example-ws" type="pom" />
 </dependency>
 ```
@@ -29,24 +29,24 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/depend
 
 ```
 @Grapes(
-@Grab(group='network.ike.examples', module='ike-example-ws', version='11')
+@Grab(group='network.ike.examples', module='ike-example-ws', version='12')
 )
 ```
 
 ## [Gradle/Grails](#gradle-grails)
 
 ```
-implementation 'network.ike.examples:ike-example-ws:11'
+implementation 'network.ike.examples:ike-example-ws:12'
 ```
 
 ## [Scala SBT](#scala-sbt)
 
 ```
-libraryDependencies += "network.ike.examples" % "ike-example-ws" % "11"
+libraryDependencies += "network.ike.examples" % "ike-example-ws" % "12"
 ```
 
 ## [Leiningen](#leiningen)
 
 ```
-[network.ike.examples/ike-example-ws "11"]
+[network.ike.examples/ike-example-ws "12"]
 ```
