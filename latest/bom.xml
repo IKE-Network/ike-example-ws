@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bom serialNumber="urn:uuid:94e94cf6-ec21-35a6-b6b3-9a3ccca76ad6" version="1" xmlns="http://cyclonedx.org/schema/bom/1.6">
+<bom serialNumber="urn:uuid:e6933132-0620-3a6b-9577-dd919b58eaa1" version="1" xmlns="http://cyclonedx.org/schema/bom/1.6">
   <metadata>
     <lifecycles>
       <lifecycle>
@@ -27,11 +27,11 @@
         </component>
       </components>
     </tools>
-    <component type="library" bom-ref="pkg:maven/network.ike.examples/ike-example-ws@13?type=pom">
+    <component type="library" bom-ref="pkg:maven/network.ike.examples/ike-example-ws@14?type=pom">
       <publisher>IKE Network</publisher>
       <group>network.ike.examples</group>
       <name>ike-example-ws</name>
-      <version>13</version>
+      <version>14</version>
       <description>Standard parent POM for IKE Network projects. Inheriting this
         POM provides build conventions (Java 25 compiler, test harness,
         GPG signing, AsciiDoc documentation pipeline) from the
@@ -44,7 +44,7 @@
           <id>Apache-2.0</id>
         </license>
       </licenses>
-      <purl>pkg:maven/network.ike.examples/ike-example-ws@13?type=pom</purl>
+      <purl>pkg:maven/network.ike.examples/ike-example-ws@14?type=pom</purl>
       <externalReferences>
         <reference type="website">
           <url>https://ike.network/ike-platform/ike-parent/ike-example-ws/</url>
@@ -233,7 +233,7 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="pkg:maven/network.ike.examples/ike-example-ws@13?type=pom">
+    <dependency ref="pkg:maven/network.ike.examples/ike-example-ws@14?type=pom">
       <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@167?classifier=claude&amp;type=zip"/>
       <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@167?classifier=config&amp;type=zip"/>
       <dependency ref="pkg:maven/network.ike.tooling/ike-build-standards@167?classifier=scaffold&amp;type=zip"/>

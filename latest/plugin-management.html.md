@@ -9,7 +9,7 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/plugin
 | GroupId | ArtifactId | Version |
 | --- | --- | --- |
 | network.ike.docs | [semantic-linebreak](https://github.com/IKE-Network/ike-docs)[1] | 25 |
-| network.ike.platform | [ike-workspace-maven-plugin](https://ike.network/ike-platform/ike-workspace-maven-plugin/)[2] | 50 |
+| network.ike.platform | [ike-workspace-maven-plugin](https://ike.network/ike-platform/ike-workspace-maven-plugin/)[2] | 51 |
 | network.ike.tooling | [ike-maven-plugin](https://ike.network/ike-tooling/ike-maven-plugin/)[3] | 167 |
 | org.apache.maven.plugins | [maven-artifact-plugin](https://maven.apache.org/plugins/maven-artifact-plugin/)[4] | 3.5.2 |
 | org.apache.maven.plugins | [maven-assembly-plugin](https://maven.apache.org/plugins/maven-assembly-plugin/)[5] | 3.7.1 |
