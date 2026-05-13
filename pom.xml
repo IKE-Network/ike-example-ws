@@ -38,6 +38,19 @@
 
     <name>IKE Example Workspace</name>
 
+    <distributionManagement>
+        <!-- Explicit <site> URL — declares the gh-pages publish location
+             so site:stage relative-path computation matches reality.
+             Previously inherited from ike-parent (whose URL template
+             was tuned for external consumers); ike-issues#380 realigned
+             ike-parent's template to in-reactor location, so external
+             consumers like this workspace root must now declare their own. -->
+        <site>
+            <id>ike-site</id>
+            <url>https://ike.network/${project.artifactId}/</url>
+        </site>
+    </distributionManagement>
+
     <profiles>
 
         <!-- ── Examples ──────────────────────────────────────────── -->
