@@ -63,7 +63,7 @@ subprojects:
       network.ike.platform:ike-parent directly from Nexus.
     repo: https://github.com/IKE-Network/doc-example.git
     branch: main
-    version: 1-SNAPSHOT
+    version: 21-SNAPSHOT
     groupId: network.ike.examples
     depends-on: []
 
@@ -73,7 +73,7 @@ subprojects:
       build that compiles sources, runs tests, and renders AsciiDoc.
     repo: https://github.com/IKE-Network/example-project.git
     branch: main
-    version: 1-SNAPSHOT
+    version: 21-SNAPSHOT
     groupId: network.ike.examples
     depends-on: []
 
@@ -88,6 +88,6 @@ subprojects:
       memory and the workspace pom's file-activated profile.
     repo: https://github.com/IKE-Network/ike-example-its.git
     branch: main
-    version: 1-SNAPSHOT
+    version: 13-SNAPSHOT
     groupId: network.ike.examples
     depends-on: []
