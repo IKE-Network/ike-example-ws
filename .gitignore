@@ -61,3 +61,26 @@ ike꞉*.md
 # the *-draft goal and consumed by the matching *-publish goal)
 versions-upgrade-plan.yaml
 # END ike-managed
+
+# ── Whitelist workspace-level files ──────────────────────────────
+!.gitignore
+!.gitattributes
+!pom.xml
+!workspace.yaml
+
+# ── Whitelist workspace-owned directories ────────────────────────
+!.mvn/
+!.mvn/**
+!checkpoints/
+!checkpoints/**
+
+# ── IntelliJ project config (curated slice) ──────────────────────
+# Small, stable project-wide settings shared across collaborators.
+# compiler.xml and vcs.xml are excluded — they regenerate per
+# Maven reload or per workspace membership.
+!.idea/
+!.idea/.gitignore
+!.idea/misc.xml
+!.idea/kotlinc.xml
+!.idea/encodings.xml
+!.idea/jarRepositories.xml

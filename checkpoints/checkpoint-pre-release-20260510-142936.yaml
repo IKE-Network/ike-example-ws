@@ -1,0 +1,15 @@
+# Workspace checkpoint: pre-release-20260510-142936
+# Generated: 2026-05-10T14:29:36Z
+checkpoint: pre-release-20260510-142936
+timestamp: 2026-05-10T14:29:36Z
+subprojects:
+  doc-example:
+    branch: main
+    sha: 099423d
+    version: 32
+    modified: false
+  example-project:
+    branch: main
+    sha: 4bc68fd
+    version: 32
+    modified: false
