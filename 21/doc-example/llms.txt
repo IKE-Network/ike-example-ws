@@ -1,0 +1,25 @@
+# doc-example
+
+> Documentation-only project demonstrating the IKE AsciiDoc pipeline.
+> Exercises all diagram types, Koncept macros, typography, and layout
+> features across all 6 PDF renderers.
+
+## Documentation
+
+- [doc-example](https://github.com/IKE-Network/doc-example/index.html.md)
+- [Dependencies (SBOM)](https://github.com/IKE-Network/doc-example/dependencies.html.md)
+
+## Other
+
+- [Licenses (SPDX)](https://github.com/IKE-Network/doc-example/licenses.html.md)
+- [Built With](https://github.com/IKE-Network/doc-example/built-with.html.md)
+
+## Reports
+
+- [Project Summary](https://github.com/IKE-Network/doc-example/summary.html.md)
+- [Maven Coordinates](https://github.com/IKE-Network/doc-example/dependency-info.html.md)
+- [Project Dependency Management](https://github.com/IKE-Network/doc-example/dependency-management.html.md)
+- [Project Plugins](https://github.com/IKE-Network/doc-example/plugins.html.md)
+- [Project Plugin Management](https://github.com/IKE-Network/doc-example/plugin-management.html.md)
+- [Project Distribution Management](https://github.com/IKE-Network/doc-example/distribution-management.html.md)
+- [Project Information](https://github.com/IKE-Network/doc-example/project-info.html.md)

@@ -86,13 +86,13 @@
 					<div class="header-title">ike-example-ws</div>
 						<div class="header-subtitle">
 							<span class="version-prefix">Version</span>
-							<span class="version">21</span>
+							<span class="version">22-SNAPSHOT</span>
 						</div>
 					</div>
 					<div class="navbar-brand header-xxs visible-xs">
 						<div class="header-title">ike-example-ws</div>
 						<div class="header-subtitle">
-							Version <strong>21</strong>
+							Version <strong>22-SNAPSHOT</strong>
 						</div>
 					</div>
 					<form class="navbar-form site-search site-search-xs visible-xs" ng-show="showSearchInput">
@@ -183,7 +183,7 @@
 
 					<div class="col-md-12">
 					<div class="page-header visible-print-block">
-							<h3><small>ike-example-ws</small><br/>							IKE Example Workspace 21
+							<h3><small>ike-example-ws</small><br/>							IKE Example Workspace 22-SNAPSHOT
 							</h3>
 						</div>
 						<div class="parents hidden-xs">
@@ -243,28 +243,28 @@
  </div>
  <div>
   <h3 id="generated"><a href="#generated"></a><a id="generated"></a><code>generated</code></h3>
-  <p>Date stamp of the last <code>ws:create</code> or <code>ws:align-publish</code> rewrite. Informational; does not affect goal behavior.</p>
+  <p>Date stamp of the last <code>ws:scaffold-init</code> or <code>ws:align-publish</code> rewrite. Informational; does not affect goal behavior.</p>
  </div>
  <div>
   <h3 id="defaults"><a href="#defaults"></a><a id="defaults"></a><code>defaults</code></h3>
   <p>Default values applied to every subproject that doesn’t override them. Two fields supported:</p>
   <ul>
    <li><code>branch</code> — the git branch each subproject tracks. The workspace-branch-coherence rule (<a href="https://github.com/IKE-Network/ike-issues" class="externalLink">ike-issues</a><sup class="visible-print-inline">[1]</sup> — see <code>feedback_workspace_branch_coherence</code>) requires every subproject to track the same branch as the workspace root, so this is typically <code>main</code>.</li>
-   <li><code>maven-version</code> — the Maven Wrapper version each subproject resolves on <code>ws:init</code> and on <code>mvn -N</code> invocations. Pinned to a Maven 4 RC (<code>4.0.0-rc-5</code>) for the IKE Network’s modelVersion 4.1.0 POMs.</li>
+   <li><code>maven-version</code> — the Maven Wrapper version each subproject resolves on <code>ws:scaffold-init</code> and on <code>mvn -N</code> invocations. Pinned to a Maven 4 RC (<code>4.0.0-rc-5</code>) for the IKE Network’s modelVersion 4.1.0 POMs.</li>
   </ul>
  </div>
  <div>
   <h3 id="subprojects"><a href="#subprojects"></a><a id="subprojects"></a><code>subprojects</code></h3>
   <p>The map of subprojects under workspace orchestration. Each entry’s key is the subproject name (typically matching the artifact ID and the directory name under the workspace root). Per-entry fields:</p>
   <ul>
-   <li><code>repo</code> — git URL the subproject is cloned from on <code>ws:init</code>.</li>
-   <li><code>version</code> — release version pin (tag) or <code>&lt;n&gt;-SNAPSHOT</code> for HEAD tracking. <code>ws:set-parent-publish</code> writes this when the workspace releases the subproject; <code>ws:init</code> checks out the corresponding commit on a fresh clone.</li>
+   <li><code>repo</code> — git URL the subproject is cloned from on <code>ws:scaffold-init</code>.</li>
+   <li><code>version</code> — release version pin (tag) or <code>&lt;n&gt;-SNAPSHOT</code> for HEAD tracking. <code>ws:scaffold-publish</code> writes this when the workspace releases the subproject; <code>ws:scaffold-init</code> checks out the corresponding commit on a fresh clone.</li>
   </ul>
   <p>Optional per-subproject fields not exercised in <code>ike-example-ws</code>:</p>
   <ul>
    <li><code>branch</code> — override the default branch.</li>
-   <li><code>parent</code> — an explicit subproject-name reference for the Maven parent POM, used by <code>ws:verify</code> and <code>ws:align-publish</code> to enforce parent version alignment across the workspace.</li>
-   <li><code>sha</code> — pin a specific git commit SHA (typically written by <code>ws:checkpoint-publish</code>). When present, overrides <code>version</code> for <code>ws:init</code> purposes.</li>
+   <li><code>parent</code> — an explicit subproject-name reference for the Maven parent POM, used by <code>ws:scaffold-draft</code> and <code>ws:align-publish</code> to enforce parent version alignment across the workspace.</li>
+   <li><code>sha</code> — pin a specific git commit SHA (typically written by <code>ws:checkpoint-publish</code>). When present, overrides <code>version</code> for <code>ws:scaffold-init</code> purposes.</li>
   </ul>
  </div>
 </div>
@@ -284,7 +284,7 @@ mvn ike:scaffold-draft
 # Post-#348: detection + apply in one command
 mvn ike:scaffold-publish</code></pre>
  </div>
- <p>The scaffold zip embeds the tested-together foundation versions at ike-tooling release time (#345). Running <code>scaffold-draft</code> shows what’s behind; <code>scaffold-publish</code> (post-#348) applies the bumps. For specific-version overrides (reproducibility testing, partial-cycle rollback), <code>ws:set-parent-publish -DnewVersion=N</code> remains available — but the routine "bump to current" workflow collapses to a single scaffold command.</p>
+ <p>The scaffold zip embeds the tested-together foundation versions at ike-tooling release time (#345). Running <code>scaffold-draft</code> shows what’s behind; <code>scaffold-publish</code> (post-#348) applies the bumps. For specific-version overrides (reproducibility testing, partial-cycle rollback), <code>ws:scaffold-publish -DparentVersion=N</code> remains available — but the routine "bump to current" workflow collapses to a single scaffold command.</p>
  <p>Foundation repos themselves are never under <code>ws:*</code> control — they release independently via their own <code>ike:release-publish</code>.</p>
 </div>
 <div>
@@ -299,7 +299,7 @@ mvn ike:scaffold-publish</code></pre>
   </thead>
   <tbody>
    <tr class="b">
-    <td style="text-align: left;"><code>ws:init</code></td>
+    <td style="text-align: left;"><code>ws:scaffold-init</code></td>
     <td><code>repo</code>, <code>branch</code>, <code>version</code>, <code>sha</code> for each subproject</td>
     <td>Nothing — this is read-only.</td>
    </tr>
@@ -314,7 +314,7 @@ mvn ike:scaffold-publish</code></pre>
     <td>Updates the on-disk repo state to match the manifest (or vice versa, depending on <code>-Dfrom=…​</code>).</td>
    </tr>
    <tr class="a">
-    <td style="text-align: left;"><code>ws:set-parent-publish</code></td>
+    <td style="text-align: left;"><code>ws:scaffold-publish</code></td>
     <td>Reads the parent declaration in each subproject’s POM (not workspace.yaml directly)</td>
     <td>Updates each subproject’s <code>&lt;parent&gt;</code> block in its <code>pom.xml</code> to the requested version. Commits per subproject. Does not touch workspace.yaml itself.</td>
    </tr>
@@ -329,7 +329,7 @@ mvn ike:scaffold-publish</code></pre>
     <td>Migrates legacy schema (<code>components:</code> → <code>subprojects:</code> for the pre-#150 schema, etc.). Writes back the migrated form.</td>
    </tr>
    <tr class="b">
-    <td style="text-align: left;"><code>ws:verify</code></td>
+    <td style="text-align: left;"><code>ws:scaffold-draft</code></td>
     <td>Whole manifest</td>
     <td>Nothing — runs read-only checks (parent-version alignment, branch coherence, working-tree cleanliness, etc.).</td>
    </tr>
@@ -343,7 +343,7 @@ mvn ike:scaffold-publish</code></pre>
   <li><code>workspace.yaml</code> is the <strong>manifest</strong> — declarative, IKE-specific, consumed by <code>ws:*</code> goals.</li>
   <li><code>pom.xml</code> is a <strong>standard Maven aggregator</strong> — declares <code>&lt;subprojects&gt;</code> for normal Maven reactor operations (<code>mvn clean install</code> walks the reactor in topological order).</li>
  </ul>
- <p>The two stay synchronized: each entry in <code>workspace.yaml.subprojects</code> has a matching <code>&lt;subproject&gt;name&lt;/subproject&gt;</code> in <code>pom.xml</code>. The <code>ws:create</code> and <code>ws:add</code> goals write both files atomically to keep them in sync; <code>ws:verify</code> flags drift.</p>
+ <p>The two stay synchronized: each entry in <code>workspace.yaml.subprojects</code> has a matching <code>&lt;subproject&gt;name&lt;/subproject&gt;</code> in <code>pom.xml</code>. The <code>ws:scaffold-init</code> and <code>ws:add</code> goals write both files atomically to keep them in sync; <code>ws:scaffold-draft</code> flags drift.</p>
 </div>
 <div>
  <h2 id="see-also"><a href="#see-also"></a><a id="see-also"></a>See also</h2>
@@ -373,7 +373,7 @@ mvn ike:scaffold-publish</code></pre>
 								<li>[4] https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html</li>
 								</ul>
 							</div>
-<div class="date">Date: <strong>2026-05-17 15:24:33 -0700</strong></div>
+<div class="date">Date: <strong>2026-05-19 12:25:23 -0700</strong></div>
 						</div>
 						</div>
 					</div>
@@ -452,7 +452,7 @@ mvn ike:scaffold-publish</code></pre>
 	<footer class="footer">
 
 		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
-			<strong>ike-example-ws 21</strong>
+			<strong>ike-example-ws 22-SNAPSHOT</strong>
 			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
 			Documentation as of <strong><time datetime="2026-05-17">2026-05-17</time></strong>
 		</p>

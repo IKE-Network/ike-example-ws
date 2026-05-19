@@ -45,27 +45,27 @@ Identifies the manifest format. Bumped when the schema gains breaking changes; `
 
 ### [#generated](#generated)`generated`
 
-Date stamp of the last `ws:create` or `ws:align-publish` rewrite. Informational; does not affect goal behavior.
+Date stamp of the last `ws:scaffold-init` or `ws:align-publish` rewrite. Informational; does not affect goal behavior.
 
 ### [#defaults](#defaults)`defaults`
 
 Default values applied to every subproject that doesn’t override them. Two fields supported:
 
 - `branch` — the git branch each subproject tracks. The workspace-branch-coherence rule ([ike-issues](https://github.com/IKE-Network/ike-issues)[1] — see `feedback_workspace_branch_coherence`) requires every subproject to track the same branch as the workspace root, so this is typically `main`.
-- `maven-version` — the Maven Wrapper version each subproject resolves on `ws:init` and on `mvn -N` invocations. Pinned to a Maven 4 RC (`4.0.0-rc-5`) for the IKE Network’s modelVersion 4.1.0 POMs.
+- `maven-version` — the Maven Wrapper version each subproject resolves on `ws:scaffold-init` and on `mvn -N` invocations. Pinned to a Maven 4 RC (`4.0.0-rc-5`) for the IKE Network’s modelVersion 4.1.0 POMs.
 
 ### [#subprojects](#subprojects)`subprojects`
 
 The map of subprojects under workspace orchestration. Each entry’s key is the subproject name (typically matching the artifact ID and the directory name under the workspace root). Per-entry fields:
 
-- `repo` — git URL the subproject is cloned from on `ws:init`.
-- `version` — release version pin (tag) or `<n>-SNAPSHOT` for HEAD tracking. `ws:set-parent-publish` writes this when the workspace releases the subproject; `ws:init` checks out the corresponding commit on a fresh clone.
+- `repo` — git URL the subproject is cloned from on `ws:scaffold-init`.
+- `version` — release version pin (tag) or `<n>-SNAPSHOT` for HEAD tracking. `ws:scaffold-publish` writes this when the workspace releases the subproject; `ws:scaffold-init` checks out the corresponding commit on a fresh clone.
 
 Optional per-subproject fields not exercised in `ike-example-ws`:
 
 - `branch` — override the default branch.
-- `parent` — an explicit subproject-name reference for the Maven parent POM, used by `ws:verify` and `ws:align-publish` to enforce parent version alignment across the workspace.
-- `sha` — pin a specific git commit SHA (typically written by `ws:checkpoint-publish`). When present, overrides `version` for `ws:init` purposes.
+- `parent` — an explicit subproject-name reference for the Maven parent POM, used by `ws:scaffold-draft` and `ws:align-publish` to enforce parent version alignment across the workspace.
+- `sha` — pin a specific git commit SHA (typically written by `ws:checkpoint-publish`). When present, overrides `version` for `ws:scaffold-init` purposes.
 
 ## [#why-ike-tooling-ike-docs-ike-platform-are-not-subp](#why-ike-tooling-ike-docs-ike-platform-are-not-subp)Why `ike-tooling`, `ike-docs`, `ike-platform` are NOT subprojects
 
@@ -85,7 +85,7 @@ mvn ike:scaffold-draft
 mvn ike:scaffold-publish
 ```
 
-The scaffold zip embeds the tested-together foundation versions at ike-tooling release time (#345). Running `scaffold-draft` shows what’s behind; `scaffold-publish` (post-#348) applies the bumps. For specific-version overrides (reproducibility testing, partial-cycle rollback), `ws:set-parent-publish -DnewVersion=N` remains available — but the routine "bump to current" workflow collapses to a single scaffold command.
+The scaffold zip embeds the tested-together foundation versions at ike-tooling release time (#345). Running `scaffold-draft` shows what’s behind; `scaffold-publish` (post-#348) applies the bumps. For specific-version overrides (reproducibility testing, partial-cycle rollback), `ws:scaffold-publish -DparentVersion=N` remains available — but the routine "bump to current" workflow collapses to a single scaffold command.
 
 Foundation repos themselves are never under `ws:*` control — they release independently via their own `ike:release-publish`.
 
@@ -93,13 +93,13 @@ Foundation repos themselves are never under `ws:*` control — they release inde
 
 | Goal | What it reads from workspace.yaml | What it writes back |
 | --- | --- | --- |
-| `ws:init` | `repo`, `branch`, `version`, `sha` for each subproject | Nothing — this is read-only. |
+| `ws:scaffold-init` | `repo`, `branch`, `version`, `sha` for each subproject | Nothing — this is read-only. |
 | `ws:overview` | Whole manifest | Nothing — produces the `ws꞉overview.md` report at the workspace root. |
 | `ws:sync` | `branch`, `version` per subproject | Updates the on-disk repo state to match the manifest (or vice versa, depending on `-Dfrom=…​`). |
-| `ws:set-parent-publish` | Reads the parent declaration in each subproject’s POM (not workspace.yaml directly) | Updates each subproject’s `<parent>` block in its `pom.xml` to the requested version. Commits per subproject. Does not touch workspace.yaml itself. |
+| `ws:scaffold-publish` | Reads the parent declaration in each subproject’s POM (not workspace.yaml directly) | Updates each subproject’s `<parent>` block in its `pom.xml` to the requested version. Commits per subproject. Does not touch workspace.yaml itself. |
 | `ws:release-publish` | Whole manifest (build order, dependencies) | Walks subprojects in topological order and runs `ike:release-publish` on each that has source changes since its last release tag. After all subprojects release, releases the workspace root last when it has its own unreleased changes (#326+#328). Does **not** rewrite `workspace.yaml` per-subproject `version:` fields — those remain at the workspace’s HEAD-tracking value (typically `1-SNAPSHOT`); the durable per-cycle anchor is the workspace’s own release tag plus any `ws:checkpoint-publish` snapshots under `checkpoints/`. |
 | `ws:align-publish` | Whole manifest | Migrates legacy schema (`components:` → `subprojects:` for the pre-#150 schema, etc.). Writes back the migrated form. |
-| `ws:verify` | Whole manifest | Nothing — runs read-only checks (parent-version alignment, branch coherence, working-tree cleanliness, etc.). |
+| `ws:scaffold-draft` | Whole manifest | Nothing — runs read-only checks (parent-version alignment, branch coherence, working-tree cleanliness, etc.). |
 
 ## [#relationship-to-the-workspace-pom-xml](#relationship-to-the-workspace-pom-xml)Relationship to the workspace `pom.xml`
 
@@ -108,7 +108,7 @@ The workspace root has both `workspace.yaml` and `pom.xml`. They serve different
 - `workspace.yaml` is the **manifest** — declarative, IKE-specific, consumed by `ws:*` goals.
 - `pom.xml` is a **standard Maven aggregator** — declares `<subprojects>` for normal Maven reactor operations (`mvn clean install` walks the reactor in topological order).
 
-The two stay synchronized: each entry in `workspace.yaml.subprojects` has a matching `<subproject>name</subproject>` in `pom.xml`. The `ws:create` and `ws:add` goals write both files atomically to keep them in sync; `ws:verify` flags drift.
+The two stay synchronized: each entry in `workspace.yaml.subprojects` has a matching `<subproject>name</subproject>` in `pom.xml`. The `ws:scaffold-init` and `ws:add` goals write both files atomically to keep them in sync; `ws:scaffold-draft` flags drift.
 
 ## [#see-also](#see-also)See also
 

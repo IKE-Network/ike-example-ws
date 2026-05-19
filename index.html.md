@@ -6,7 +6,7 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/index.
 
 # ike-example-ws
 
-A workspace aggregator that orchestrates two consumer-side subprojects, `doc-example` and `example-project`. Cloning this repo and running `mvn ws:init` pulls those two down at the versions declared in `workspace.yaml`. A subsequent `mvn clean install` rebuilds them in dependency order from a single command.
+A workspace aggregator that orchestrates two consumer-side subprojects, `doc-example` and `example-project`. Cloning this repo and running `mvn ws:scaffold-init` pulls those two down at the versions declared in `workspace.yaml`. A subsequent `mvn clean install` rebuilds them in dependency order from a single command.
 
 The foundation repos `ike-tooling`, `ike-docs`, and `ike-platform` are **not** subprojects — they are consumed at their released versions from Nexus, not co-developed inside this workspace (see "Subprojects" below for the rationale). This is the canonical template for an **IKE workspace aggregator**.
 
@@ -68,13 +68,13 @@ ike-example-ws/
 └── src/site/                   (5)
 ```
 
-The workspace manifest. Declares each subproject’s repo URL, branch, version, group ID, and dependency relationships. Workspace aggregator. Each subproject is in a file-activated profile so the reactor automatically includes only repos that are physically cloned. Cloned by `mvn ws:init` from `workspace.yaml`. Empty until then. Optional: integration test suite that exercises the full cascade end-to-end (e.g., "after releasing v1, a fresh `mvn verify` on doc-example succeeds against Nexus"). Maven Site Plugin source — what generates this site you’re reading.  
+The workspace manifest. Declares each subproject’s repo URL, branch, version, group ID, and dependency relationships. Workspace aggregator. Each subproject is in a file-activated profile so the reactor automatically includes only repos that are physically cloned. Cloned by `mvn ws:scaffold-init` from `workspace.yaml`. Empty until then. Optional: integration test suite that exercises the full cascade end-to-end (e.g., "after releasing v1, a fresh `mvn verify` on doc-example succeeds against Nexus"). Maven Site Plugin source — what generates this site you’re reading.  
 
 ## [#key-workspace-commands](#key-workspace-commands)Key Workspace Commands
 
 ```
 # Bootstrap: clone all subproject repos from their remotes
-mvn ws:init
+mvn ws:scaffold-init
 
 # Status: snapshot of workspace state, alignment, dirty repos
 mvn ws:overview
@@ -113,13 +113,17 @@ When creating a new IKE workspace aggregator (e.g., a workspace that holds a dif
 2. **All subprojects track the workspace’s git branch.** No per-subproject branch opt-out. See [ike-issues#233](https://github.com/IKE-Network/ike-issues/issues/233)[8] for the alignment model.
 3. **Component repos commit and push direct to `main`.** No PRs in the IKE-Network organization. Releases cut from `main` via `ws:release-publish`.
 
+## [#not-published-to-maven-central](#not-published-to-maven-central)Not published to Maven Central
+
+`ike-example-ws` is a reference template for an IKE workspace aggregator, not a library. It holds no production artifacts and is deliberately **not** published to Maven Central — nothing should ever declare a dependency on it. You consume it by copying its `workspace.yaml`, aggregator `pom.xml`, and `src/site/` into a workspace of your own. The IKE foundation (`ike-base-parent`, `ike-tooling`, `ike-docs`, `ike-platform`) is the part published to Central and meant to be inherited; see [the IKE Network landing page](https://ike.network/)[9] for the foundation/examples split.
+
 ## [#resources](#resources)Resources
 
 | Resource | URL |
 | --- | --- |
-| Source repository | [https://github.com/IKE-Network/ike-example-ws](https://github.com/IKE-Network/ike-example-ws)[9] |
-| Cross-project issue tracker | [https://github.com/IKE-Network/ike-issues](https://github.com/IKE-Network/ike-issues)[10] |
-| IKE Network landing page | [https://ike.network/](https://ike.network/)[11] |
+| Source repository | [https://github.com/IKE-Network/ike-example-ws](https://github.com/IKE-Network/ike-example-ws)[10] |
+| Cross-project issue tracker | [https://github.com/IKE-Network/ike-issues](https://github.com/IKE-Network/ike-issues)[11] |
+| IKE Network landing page | [https://ike.network/](https://ike.network/)[9] |
 | IKE Platform (workspace plugin lives here) | [https://ike.network/ike-platform/](https://ike.network/ike-platform/)[5] |
 | ws:* Goal Reference | [https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html](https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html)[6] |
 | Workspace Getting Started | [https://ike.network/ike-platform/workspace-getting-started.html](https://ike.network/ike-platform/workspace-getting-started.html)[7] |
