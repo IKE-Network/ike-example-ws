@@ -8,7 +8,7 @@ Workspace aggregator that orchestrates three consumer-side
 subprojects (`doc-example`, `example-project`, `its`/`ike-example-its`)
 against the IKE foundation repos (`ike-tooling`, `ike-docs`,
 `ike-platform`) consumed from Nexus. Clone this repo and run
-`mvn ws:init` to pull down the subprojects and build the cascade
+`mvn ws:scaffold-init` to pull down the subprojects and build the cascade
 as a single reactor.
 
 ## What this workspace is for
@@ -27,7 +27,7 @@ as a single reactor.
 git clone https://github.com/IKE-Network/ike-example-ws.git
 cd ike-example-ws
 
-mvn ws:init          # clone subprojects per workspace.yaml
+mvn ws:scaffold-init # clone subprojects per workspace.yaml
 mvn ws:overview      # print the workspace dashboard
 mvn clean install    # build the full cascade
 ```
@@ -50,7 +50,7 @@ for `ike-tooling`, parent-cycle avoidance for `ike-platform`).
 ## Subprojects (managed by this workspace)
 
 These are the consumer-side demos the workspace orchestrates.
-`ws:init` clones them into this directory; `ws:release-publish`
+`ws:scaffold-init` clones them into this directory; `ws:release-publish`
 releases them in dependency order.
 
 | Repo | Artifact | Purpose |

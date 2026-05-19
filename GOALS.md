@@ -7,14 +7,10 @@ under **Plugins > ws** and **Plugins > ike**.
 
 | Goal | Description |
 |------|-------------|
-| `ws:create` | Create a new workspace (scaffold + git init) |
+| `ws:scaffold-init` | Create a new workspace / clone-initialize all subprojects |
 | `ws:add` | Add a subproject repo (prompts for URL) |
-| `ws:init` | Clone/initialize all subprojects |
-| `ws:fix` | Sync workspace.yaml versions from actual POMs |
 | `ws:graph` | Print dependency graph (text or DOT format) |
 | `ws:stignore` | Generate Syncthing ignore rules |
-| `ws:scaffold-upgrade-draft` | Preview workspace scaffold upgrades |
-| `ws:scaffold-upgrade-publish` | Apply scaffold upgrades |
 | `ws:remove` | Remove a subproject (prompts for name) |
 | `ws:help` | List all ws: goals with descriptions |
 
@@ -22,7 +18,6 @@ under **Plugins > ws** and **Plugins > ike**.
 
 | Goal | Description |
 |------|-------------|
-| `ws:verify` | Check manifest, parents, BOM cascade, VCS state |
 | `ws:verify-convergence` | Full verify + transitive dependency convergence (slow) |
 | `ws:overview` | Workspace overview (manifest, graph, status, cascade) |
 
@@ -66,7 +61,7 @@ under **Plugins > ws** and **Plugins > ike**.
 | Goal | Description |
 |------|-------------|
 | `ws:sync` | Reconcile state after machine switch |
-| `ws:commit` | Commit across repos (`-DaddAll=true -Dpush=true`) |
+| `ws:commit-publish` | Commit across repos (`-Dpush=true`) |
 | `ws:push` | Push all subprojects (warns about uncommitted changes) |
 
 ## Branch Cleanup

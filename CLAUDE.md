@@ -2,7 +2,7 @@
 
 ## First Steps
 
-Run `mvn ws:init` to clone components, then `mvn validate` to unpack
+Run `mvn ws:scaffold-init` to clone components, then `mvn validate` to unpack
 full build standards into `.claude/standards/`.
 
 ## Build

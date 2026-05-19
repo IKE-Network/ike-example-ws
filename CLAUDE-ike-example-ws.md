@@ -29,7 +29,7 @@ IKE five-repo split. It is not a component repo; it's a coordination
 layer that orchestrates multi-repo releases and end-to-end integration
 testing.
 
-Clone this repo and run `mvn ws:init` to pull down all the component
+Clone this repo and run `mvn ws:scaffold-init` to pull down all the component
 repos declared in `workspace.yaml`. After the initial clone, the
 top-level reactor automatically includes every repo whose `pom.xml`
 exists on disk (file-activated profiles).
@@ -40,10 +40,10 @@ exists on disk (file-activated profiles).
 ike-example-ws/
 ├── workspace.yaml              ← the manifest
 ├── pom.xml                     ← workspace aggregator
-├── ike-docs/                   ← cloned by ws:init
-├── ike-platform/               ← cloned by ws:init
-├── doc-example/                ← cloned by ws:init
-├── example-project/            ← cloned by ws:init
+├── ike-docs/                   ← cloned by ws:scaffold-init
+├── ike-platform/               ← cloned by ws:scaffold-init
+├── doc-example/                ← cloned by ws:scaffold-init
+├── example-project/            ← cloned by ws:scaffold-init
 └── its/                        ← integration test suite (optional)
 ```
 
@@ -60,7 +60,7 @@ bootstrapped separately (see workspace.yaml comment for why).
 
 ```bash
 # Bootstrap: clone all component repos from their remotes
-mvn ws:init
+mvn ws:scaffold-init
 
 # Status
 mvn ws:overview
@@ -69,16 +69,16 @@ mvn ws:overview
 mvn clean install
 
 # Preview a coordinated release
-mvn ws:release -DdryRun=true
+mvn ws:release-draft
 
 # Execute a coordinated release (pushes when ready)
-mvn ws:release -Dpush=true
+mvn ws:release-publish -Dpush=true
 
 # Align inter-component dependency versions after a version change
 mvn ws:align-publish
 
 # Start a cross-repo feature branch
-mvn ws:feature-start -Dfeature=my-feature
+mvn ws:feature-start-publish -Dfeature=my-feature
 ```
 
 Never invoke raw `git` across these repos — always use the `ws:*`
@@ -134,6 +134,6 @@ Also do NOT set `-Denv.PATH` or PATH-related options here or in
 Toolbox) cause the JVM launcher to bail with the same
 "Could not find or load main class" error for an unrelated reason.
 
-`ws:create` seeds this file correctly; `ws:init` seeds the same
+`ws:scaffold-init` seeds this file correctly and seeds the same
 content in each cloned subproject (never overwriting an existing
 file).
