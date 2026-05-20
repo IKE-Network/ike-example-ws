@@ -30,4 +30,13 @@
         <artifactId>wagon-ssh-external</artifactId>
         <version>3.5.3</version>
     </extension>
+
+    <!-- ── managed by ws:scaffold-publish (ike-issues#460) ── -->
+    <extension>
+        <groupId>network.ike.tooling</groupId>
+        <artifactId>ike-workspace-extension</artifactId>
+        <version>2</version>
+    </extension>
+    <!-- ── /managed ── -->
+
 </extensions>

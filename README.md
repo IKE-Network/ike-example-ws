@@ -120,3 +120,12 @@ The standards most directly relevant to a workspace consumer are
 Split from the archived `ike-pipeline` repo to resolve a Maven
 extension-plugin reactor-load cycle. See
 [`IKE-Network/ike-issues#216`](https://github.com/IKE-Network/ike-issues/issues/216).
+<!-- BEGIN ike-managed: developer-setup -->
+
+## Developer Setup
+
+New to IKE development? The
+[Developer Environment guide](https://ike.network/ike-tooling/ike-build-standards/developer-environment.html)
+covers IDE configuration, JDK 25 setup, and the tooling conventions
+every IKE workspace expects — start there before your first build.
+<!-- END ike-managed: developer-setup -->

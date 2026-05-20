@@ -1,6 +1,6 @@
 schema: 1
-standards-version: '178'
-applied: '2026-05-17T22:16:45.555418Z'
+standards-version: '185'
+applied: '2026-05-20T05:13:30.049262Z'
 files:
   .gitignore:
     tier: tracked-block
@@ -18,3 +18,7 @@ files:
     tier: tracked
     template-sha: sha256:07b12d4dc9aa7a23aee5e8412d9f7813572f7eb1521f57cbc8e47ac198c8adfc
     applied-sha: sha256:07b12d4dc9aa7a23aee5e8412d9f7813572f7eb1521f57cbc8e47ac198c8adfc
+  README.md:
+    tier: tracked-block
+    template-sha: sha256:f35d94f35bcaf8ccad88be7b48866bf54a44b9fc2f40eaeab0b466b67b1a0ff7
+    applied-sha: sha256:f35d94f35bcaf8ccad88be7b48866bf54a44b9fc2f40eaeab0b466b67b1a0ff7
