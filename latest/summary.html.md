@@ -1,6 +1,6 @@
 ---
-date_published: 2026-05-16
-date_modified: 2026-05-16
+date_published: 2026-05-19
+date_modified: 2026-05-19
 canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/summary.html
 ---
 
@@ -27,5 +27,5 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/summar
 | --- | --- |
 | GroupId | network.ike.examples |
 | ArtifactId | ike-example-ws |
-| Version | 22-SNAPSHOT |
+| Version | 22 |
 | Type | pom |
