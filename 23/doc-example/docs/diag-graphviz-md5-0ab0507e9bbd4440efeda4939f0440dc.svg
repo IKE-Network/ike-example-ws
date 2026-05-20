@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='414pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 529.50 414.00' width='530pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 410)'>
+<title>ConceptHierarchy</title>
+<polygon fill='white' points='-4,4 -4,-410 525.5,-410 525.5,4 -4,4' stroke='none'/>
+
+<g class='node' id='node1'>
+<title>SNOMEDCT</title>
+<path d='M373.88,-406C373.88,-406 251.38,-406 251.38,-406 245.38,-406 239.38,-400 239.38,-394 239.38,-394 239.38,-382 239.38,-382 239.38,-376 245.38,-370 251.38,-370 251.38,-370 373.88,-370 373.88,-370 379.88,-370 385.88,-376 385.88,-382 385.88,-382 385.88,-394 385.88,-394 385.88,-400 379.88,-406 373.88,-406' fill='#e1f5ff' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='312.62' y='-383.32'>SNOMED CT Root</text>
+</g>
+
+<g class='node' id='node2'>
+<title>ClinicalFinding</title>
+<path d='M237.88,-316.75C237.88,-316.75 133.38,-316.75 133.38,-316.75 127.38,-316.75 121.38,-310.75 121.38,-304.75 121.38,-304.75 121.38,-292.75 121.38,-292.75 121.38,-286.75 127.38,-280.75 133.38,-280.75 133.38,-280.75 237.88,-280.75 237.88,-280.75 243.88,-280.75 249.88,-286.75 249.88,-292.75 249.88,-292.75 249.88,-304.75 249.88,-304.75 249.88,-310.75 243.88,-316.75 237.88,-316.75' fill='#fff4e1' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='185.62' y='-294.07'>Clinical Finding</text>
+</g>
+
+<g class='edge' id='edge1'>
+<title>SNOMEDCT&#45;&gt;ClinicalFinding</title>
+<path d='M287.23,-369.55C268.02,-356.36 241.43,-338.09 220.27,-323.55' fill='none' stroke='black'/>
+<polygon fill='black' points='222.45,-320.8 212.22,-318.02 218.48,-326.57 222.45,-320.8' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='273' y='-338.7'>is&#45;a</text>
+</g>
+
+<g class='node' id='node3'>
+<title>Procedure</title>
+<path d='M345.38,-316.75C345.38,-316.75 279.88,-316.75 279.88,-316.75 273.88,-316.75 267.88,-310.75 267.88,-304.75 267.88,-304.75 267.88,-292.75 267.88,-292.75 267.88,-286.75 273.88,-280.75 279.88,-280.75 279.88,-280.75 345.38,-280.75 345.38,-280.75 351.38,-280.75 357.38,-286.75 357.38,-292.75 357.38,-292.75 357.38,-304.75 357.38,-304.75 357.38,-310.75 351.38,-316.75 345.38,-316.75' fill='#fff4e1' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='312.62' y='-294.07'>Procedure</text>
+</g>
+
+<g class='edge' id='edge2'>
+<title>SNOMEDCT&#45;&gt;Procedure</title>
+<path d='M312.62,-369.76C312.62,-357.93 312.62,-341.95 312.62,-328.25' fill='none' stroke='black'/>
+<polygon fill='black' points='316.13,-328.47 312.63,-318.47 309.13,-328.47 316.13,-328.47' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='325' y='-338.7'>is&#45;a</text>
+</g>
+
+<g class='node' id='node4'>
+<title>Observable</title>
+<path d='M509.5,-316.75C509.5,-316.75 387.75,-316.75 387.75,-316.75 381.75,-316.75 375.75,-310.75 375.75,-304.75 375.75,-304.75 375.75,-292.75 375.75,-292.75 375.75,-286.75 381.75,-280.75 387.75,-280.75 387.75,-280.75 509.5,-280.75 509.5,-280.75 515.5,-280.75 521.5,-286.75 521.5,-292.75 521.5,-292.75 521.5,-304.75 521.5,-304.75 521.5,-310.75 515.5,-316.75 509.5,-316.75' fill='#fff4e1' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='448.62' y='-294.07'>Observable Entity</text>
+</g>
+
+<g class='edge' id='edge3'>
+<title>SNOMEDCT&#45;&gt;Observable</title>
+<path d='M339.82,-369.55C360.48,-356.3 389.12,-337.92 411.83,-323.36' fill='none' stroke='black'/>
+<polygon fill='black' points='413.68,-326.33 420.2,-317.98 409.9,-320.44 413.68,-326.33' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='406' y='-338.7'>is&#45;a</text>
+</g>
+
+<g class='node' id='node5'>
+<title>Disease</title>
+<path d='M161.38,-227.5C161.38,-227.5 113.88,-227.5 113.88,-227.5 107.88,-227.5 101.88,-221.5 101.88,-215.5 101.88,-215.5 101.88,-203.5 101.88,-203.5 101.88,-197.5 107.88,-191.5 113.88,-191.5 113.88,-191.5 161.38,-191.5 161.38,-191.5 167.38,-191.5 173.38,-197.5 173.38,-203.5 173.38,-203.5 173.38,-215.5 173.38,-215.5 173.38,-221.5 167.38,-227.5 161.38,-227.5' fill='#ffe6cc' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='137.62' y='-204.82'>Disease</text>
+</g>
+
+<g class='edge' id='edge4'>
+<title>ClinicalFinding&#45;&gt;Disease</title>
+<path d='M176.14,-280.51C169.44,-268.32 160.31,-251.73 152.62,-237.76' fill='none' stroke='black'/>
+<polygon fill='black' points='155.7,-236.1 147.82,-229.03 149.57,-239.48 155.7,-236.1' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='179' y='-249.45'>is&#45;a</text>
+</g>
+
+<g class='node' id='node6'>
+<title>Symptom</title>
+<path d='M263.75,-227.5C263.75,-227.5 203.5,-227.5 203.5,-227.5 197.5,-227.5 191.5,-221.5 191.5,-215.5 191.5,-215.5 191.5,-203.5 191.5,-203.5 191.5,-197.5 197.5,-191.5 203.5,-191.5 203.5,-191.5 263.75,-191.5 263.75,-191.5 269.75,-191.5 275.75,-197.5 275.75,-203.5 275.75,-203.5 275.75,-215.5 275.75,-215.5 275.75,-221.5 269.75,-227.5 263.75,-227.5' fill='#ffe6cc' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='233.62' y='-204.82'>Symptom</text>
+</g>
+
+<g class='edge' id='edge5'>
+<title>ClinicalFinding&#45;&gt;Symptom</title>
+<path d='M195.11,-280.51C201.81,-268.32 210.94,-251.73 218.63,-237.76' fill='none' stroke='black'/>
+<polygon fill='black' points='221.68,-239.48 223.43,-229.03 215.55,-236.1 221.68,-239.48' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='227' y='-249.45'>is&#45;a</text>
+</g>
+
+<g class='node' id='node7'>
+<title>Diabetes</title>
+<path d='M196.25,-138.25C196.25,-138.25 79,-138.25 79,-138.25 73,-138.25 67,-132.25 67,-126.25 67,-126.25 67,-107.75 67,-107.75 67,-101.75 73,-95.75 79,-95.75 79,-95.75 196.25,-95.75 196.25,-95.75 202.25,-95.75 208.25,-101.75 208.25,-107.75 208.25,-107.75 208.25,-126.25 208.25,-126.25 208.25,-132.25 202.25,-138.25 196.25,-138.25' fill='#ffcccc' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='137.62' y='-120.95'>Diabetes mellitus</text>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='137.62' y='-103.7'>(73211009)</text>
+</g>
+
+<g class='edge' id='edge6'>
+<title>Disease&#45;&gt;Diabetes</title>
+<path d='M137.62,-191.05C137.62,-179.33 137.62,-163.56 137.62,-149.66' fill='none' stroke='black'/>
+<polygon fill='black' points='141.13,-150.08 137.63,-140.08 134.13,-150.08 141.13,-150.08' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='150' y='-160.2'>is&#45;a</text>
+</g>
+
+<g class='node' id='node8'>
+<title>Type1DM</title>
+<path d='M117.25,-42.5C117.25,-42.5 12,-42.5 12,-42.5 6,-42.5 0,-36.5 0,-30.5 0,-30.5 0,-12 0,-12 0,-6 6,0 12,0 12,0 117.25,0 117.25,0 123.25,0 129.25,-6 129.25,-12 129.25,-12 129.25,-30.5 129.25,-30.5 129.25,-36.5 123.25,-42.5 117.25,-42.5' fill='#ffcccc' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='64.62' y='-25.2'>Type 1 diabetes</text>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='64.62' y='-7.95'>(46635009)</text>
+</g>
+
+<g class='edge' id='edge7'>
+<title>Diabetes&#45;&gt;Type1DM</title>
+<path d='M121.79,-95.66C111.81,-82.85 98.76,-66.09 87.65,-51.83' fill='none' stroke='black'/>
+<polygon fill='black' points='90.52,-49.81 81.62,-44.07 85,-54.11 90.52,-49.81' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='121' y='-64.45'>is&#45;a</text>
+</g>
+
+<g class='node' id='node9'>
+<title>Type2DM</title>
+<path d='M264.25,-42.5C264.25,-42.5 159,-42.5 159,-42.5 153,-42.5 147,-36.5 147,-30.5 147,-30.5 147,-12 147,-12 147,-6 153,0 159,0 159,0 264.25,0 264.25,0 270.25,0 276.25,-6 276.25,-12 276.25,-12 276.25,-30.5 276.25,-30.5 276.25,-36.5 270.25,-42.5 264.25,-42.5' fill='#ffcccc' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='211.62' y='-25.2'>Type 2 diabetes</text>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='211.62' y='-7.95'>(44054006)</text>
+</g>
+
+<g class='edge' id='edge8'>
+<title>Diabetes&#45;&gt;Type2DM</title>
+<path d='M153.68,-95.66C163.79,-82.85 177.02,-66.09 188.28,-51.83' fill='none' stroke='black'/>
+<polygon fill='black' points='190.96,-54.08 194.41,-44.06 185.46,-49.75 190.96,-54.08' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='194' y='-64.45'>is&#45;a</text>
+</g>
+</g>
+</svg>

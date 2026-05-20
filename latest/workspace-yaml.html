@@ -222,8 +222,13 @@
 <div>
  <h2 id="schema"><a href="#schema"></a><a id="schema"></a>Schema</h2>
  <div class="source">
-  <pre class="prettyprint" copy-to-clipboard=""><code><span class="key">schema-version</span>: <span class="string"><span class="delimiter">"</span><span class="content">1.0</span><span class="delimiter">"</span></span>
-<span class="key">generated</span>: <span class="string"><span class="content">2026-04-23</span></span>
+  <pre class="prettyprint" copy-to-clipboard=""><code><span class="key">schema-version</span>: <span class="string"><span class="delimiter">"</span><span class="content">1.1</span><span class="delimiter">"</span></span>
+<span class="key">generated</span>: <span class="string"><span class="content">2026-05-20</span></span>
+
+<span class="key">workspace-root</span>:
+  <span class="key">groupId</span>: <span class="string"><span class="content">network.ike.examples</span></span>
+  <span class="key">artifactId</span>: <span class="string"><span class="content">ike-example-ws</span></span>
+  <span class="key">version</span>: <span class="string"><span class="content">23-SNAPSHOT</span></span>
 
 <span class="key">defaults</span>:
   <span class="key">branch</span>: <span class="string"><span class="content">main</span></span>
@@ -232,14 +237,30 @@
 <span class="key">subprojects</span>:
   <span class="key">doc-example</span>:
     <span class="key">repo</span>: <span class="string"><span class="content">https://github.com/IKE-Network/doc-example.git</span></span>
-    <span class="key">version</span>: <span class="string"><span class="content">1-SNAPSHOT</span></span>
+    <span class="key">version</span>: <span class="string"><span class="content">32-SNAPSHOT</span></span>
+    <span class="key">groupId</span>: <span class="string"><span class="content">network.ike.examples</span></span>
   <span class="key">example-project</span>:
     <span class="key">repo</span>: <span class="string"><span class="content">https://github.com/IKE-Network/example-project.git</span></span>
-    <span class="key">version</span>: <span class="string"><span class="content">1-SNAPSHOT</span></span></code></pre>
+    <span class="key">version</span>: <span class="string"><span class="content">32-SNAPSHOT</span></span>
+    <span class="key">groupId</span>: <span class="string"><span class="content">network.ike.examples</span></span>
+  <span class="key">its</span>:
+    <span class="key">repo</span>: <span class="string"><span class="content">https://github.com/IKE-Network/ike-example-its.git</span></span>
+    <span class="key">version</span>: <span class="string"><span class="content">24-SNAPSHOT</span></span>
+    <span class="key">groupId</span>: <span class="string"><span class="content">network.ike.examples</span></span></code></pre>
  </div>
  <div>
   <h3 id="schema-version"><a href="#schema-version"></a><a id="schema-version"></a><code>schema-version</code></h3>
-  <p>Identifies the manifest format. Bumped when the schema gains breaking changes; <code>ws:align-publish</code> migrates legacy schemas in place. Current value is <code>"1.0"</code>.</p>
+  <p>Identifies the manifest format. Bumped when the schema gains breaking changes; <code>ws:align-publish</code> migrates legacy schemas in place. Current value is <code>"1.1"</code> (added the typed <code>workspace-root:</code> block in IKE-Network/ike-issues#183 so <code>ws:release-publish</code> and <code>ws:align-publish</code> have real Maven coordinates to address). Legacy <code>"1.0"</code> manifests still parse — the workspace root falls back to defaults.</p>
+ </div>
+ <div>
+  <h3 id="workspace-root"><a href="#workspace-root"></a><a id="workspace-root"></a><code>workspace-root</code></h3>
+  <p>Maven coordinates of the workspace root POM itself, as a typed block (schema 1.1+). Three fields, all required when present:</p>
+  <ul>
+   <li><code>groupId</code> — the workspace POM’s <code>&lt;groupId&gt;</code>.</li>
+   <li><code>artifactId</code> — typically the workspace name.</li>
+   <li><code>version</code> — the workspace’s own version, tracked separately from any subproject’s version.</li>
+  </ul>
+  <p><code>ws:release-publish</code> reads this block to know what tag and Maven artifact to mint when the workspace root itself has unreleased changes; <code>ws:align-publish</code> uses it for site-deploy URL templating.</p>
  </div>
  <div>
   <h3 id="generated"><a href="#generated"></a><a id="generated"></a><code>generated</code></h3>
@@ -259,32 +280,36 @@
   <ul>
    <li><code>repo</code> — git URL the subproject is cloned from on <code>ws:scaffold-init</code>.</li>
    <li><code>version</code> — release version pin (tag) or <code>&lt;n&gt;-SNAPSHOT</code> for HEAD tracking. <code>ws:scaffold-publish</code> writes this when the workspace releases the subproject; <code>ws:scaffold-init</code> checks out the corresponding commit on a fresh clone.</li>
+   <li><code>groupId</code> — the subproject’s Maven <code>&lt;groupId&gt;</code>. Denormalized from the POM; <code>ws:scaffold-publish</code> keeps it in sync via the <code>FieldNormalizationReconciler</code> (#393).</li>
   </ul>
-  <p>Optional per-subproject fields not exercised in <code>ike-example-ws</code>:</p>
+  <p>Optional per-subproject fields:</p>
   <ul>
    <li><code>branch</code> — override the default branch.</li>
-   <li><code>parent</code> — an explicit subproject-name reference for the Maven parent POM, used by <code>ws:scaffold-draft</code> and <code>ws:align-publish</code> to enforce parent version alignment across the workspace.</li>
+   <li><code>description</code> — human-readable purpose, surfaced in <code>ws:overview</code>.</li>
+   <li><code>depends-on</code> — inter-subproject build edges. Each entry names a sibling subproject and the relationship kind (<code>build</code>, <code>runtime</code>, <code>test</code>). <code>ws:scaffold-publish</code> (via <code>YamlDepsSync</code>) derives this from POM contents and rewrites the manifest when the graph drifts.</li>
    <li><code>sha</code> — pin a specific git commit SHA (typically written by <code>ws:checkpoint-publish</code>). When present, overrides <code>version</code> for <code>ws:scaffold-init</code> purposes.</li>
+   <li><code>state</code> / <code>tag</code> / <code>kind</code> — alignment fields from IKE-Network/ike-issues#233. The default <code>state: snapshot</code> means the subproject is in the workspace, tracked as a SNAPSHOT, and released by <code>ws:release-publish</code>. Other states (<code>tag-aligned</code>, <code>external-consumer</code>, <code>unrelated</code>) are transitions on the workspace-alignment lattice and are driven by <code>ws:attach-*</code>, <code>ws:promote</code>, <code>ws:demote</code>, <code>ws:detach</code>.</li>
+   <li><code>maven-version</code> — override <code>defaults.maven-version</code> for this subproject’s Maven wrapper.</li>
   </ul>
  </div>
 </div>
 <div>
- <h2 id="why-ike-tooling-ike-docs-ike-platform-are-not-subp"><a href="#why-ike-tooling-ike-docs-ike-platform-are-not-subp"></a><a id="why-ike-tooling-ike-docs-ike-platform-are-not-subprojects"></a>Why <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code> are NOT subprojects</h2>
- <p><code>ike-example-ws/workspace.yaml</code> lists exactly two subprojects: <code>doc-example</code> and <code>example-project</code>. The IKE Network foundation repos — <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code> — are <strong>intentionally not</strong> under workspace orchestration. Three reasons:</p>
+ <h2 id="why-ike-tooling-ike-docs-ike-platform-and-ike-work"><a href="#why-ike-tooling-ike-docs-ike-platform-and-ike-work"></a><a id="why-ike-tooling-ike-docs-ike-platform-and-ike-workspace-extension-are-not-subprojects"></a>Why <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code>, and <code>ike-workspace-extension</code> are NOT subprojects</h2>
+ <p><code>ike-example-ws/workspace.yaml</code> lists three subprojects: <code>doc-example</code>, <code>example-project</code>, and <code>its</code> (the <code>ike-example-its</code> integration-test harness). The IKE Network foundation repos — <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code>, <code>ike-base-parent</code>, and <code>ike-workspace-extension</code> — are <strong>intentionally not</strong> under workspace orchestration. Three reasons:</p>
  <ol style="list-style-type: decimal;">
   <li><strong><code>ike-tooling</code> is the bootstrap.</strong> It produces <code>ike-maven-plugin</code>, which the workspace plugin itself depends on. Putting <code>ike-tooling</code> inside a workspace creates a chicken-and-egg problem: the workspace can’t bootstrap before the plugin it needs is installed.</li>
   <li><strong><code>ike-platform</code> contains <code>ike-workspace-maven-plugin</code> AND <code>ike-parent</code>.</strong> The first defines the <code>ws:*</code> goals; the second is the release-tracked parent POM the workspace itself inherits. That self-reference triggers a Maven 4 reactor parent-cycle bug (<code>ike-parent:N → workspace pom.xml → ike-parent:N</code>).</li>
   <li><strong><code>ike-docs</code> provides <code>ike-doc-maven-plugin</code>.</strong> Same release-cadence argument as the others: it lives above the consumer line in the cascade, releases independently via its own <code>ike:release-publish</code>, and is consumed at released versions from Nexus rather than co-developed inside any workspace.</li>
  </ol>
- <p>The corollary: when the foundation repos release (e.g., ike-tooling 150 → ike-docs 12 → ike-platform 34), this workspace picks up the new versions by running:</p>
+ <p>The corollary: when the foundation repos release (e.g., a fresh <code>ike-tooling → ike-docs → ike-platform</code> cascade), this workspace picks up the new versions by running:</p>
  <div class="source">
-  <pre class="prettyprint" copy-to-clipboard=""><code># Today: detection only — reports parent + property drift
-mvn ike:scaffold-draft
+  <pre class="prettyprint" copy-to-clipboard=""><code># Detection only — reports parent + property drift
+mvn ws:scaffold-draft
 
-# Post-#348: detection + apply in one command
-mvn ike:scaffold-publish</code></pre>
+# Detection + apply in one command
+mvn ws:scaffold-publish</code></pre>
  </div>
- <p>The scaffold zip embeds the tested-together foundation versions at ike-tooling release time (#345). Running <code>scaffold-draft</code> shows what’s behind; <code>scaffold-publish</code> (post-#348) applies the bumps. For specific-version overrides (reproducibility testing, partial-cycle rollback), <code>ws:scaffold-publish -DparentVersion=N</code> remains available — but the routine "bump to current" workflow collapses to a single scaffold command.</p>
+ <p>The scaffold zip embeds the tested-together foundation versions at ike-tooling release time. Running <code>ws:scaffold-draft</code> shows what’s behind; <code>ws:scaffold-publish</code> applies the bumps via the convergence-pattern <code>ReconcilerRegistry</code> (IKE-Network/ike-issues#393 — single goal replaces the retired <code>ws:fix</code>, <code>ws:verify</code>, <code>ws:set-parent</code>, <code>ws:scaffold-upgrade-*</code>). For specific-version overrides (reproducibility testing, partial-cycle rollback), <code>ws:scaffold-publish -DparentVersion=N</code> remains available — but the routine "bump to current" workflow collapses to a single scaffold command.</p>
  <p>Foundation repos themselves are never under <code>ws:*</code> control — they release independently via their own <code>ike:release-publish</code>.</p>
 </div>
 <div>
@@ -343,14 +368,15 @@ mvn ike:scaffold-publish</code></pre>
   <li><code>workspace.yaml</code> is the <strong>manifest</strong> — declarative, IKE-specific, consumed by <code>ws:*</code> goals.</li>
   <li><code>pom.xml</code> is a <strong>standard Maven aggregator</strong> — declares <code>&lt;subprojects&gt;</code> for normal Maven reactor operations (<code>mvn clean install</code> walks the reactor in topological order).</li>
  </ul>
- <p>The two stay synchronized: each entry in <code>workspace.yaml.subprojects</code> has a matching <code>&lt;subproject&gt;name&lt;/subproject&gt;</code> in <code>pom.xml</code>. The <code>ws:scaffold-init</code> and <code>ws:add</code> goals write both files atomically to keep them in sync; <code>ws:scaffold-draft</code> flags drift.</p>
+ <p>The two stay synchronized: each entry in <code>workspace.yaml.subprojects</code> has a matching <code>&lt;subproject&gt;name&lt;/subproject&gt;</code> in <code>pom.xml</code>. The <code>ws:scaffold-init</code> and <code>ws:add</code> goals write both files atomically; <code>ws:scaffold-draft</code> flags drift.</p>
+ <p>The <code>pom.xml</code> declares <code>&lt;subprojects&gt;</code> <strong>unconditionally</strong> at the top level — every entry is listed even when its directory is not yet cloned. The Maven 4 build extension <a href="https://ike.network/ike-workspace-extension/"><code>network.ike.tooling:ike-workspace-extension</code></a><sup class="visible-print-inline">[2]</sup> (registered in <code>.mvn/extensions.xml</code>) hooks <code>ModelTransformer.transformFileModel</code> and <strong>prunes</strong> <code>&lt;subprojects&gt;</code> entries whose directory is missing before Maven’s validator runs. That’s what makes the fresh-clone bootstrap path work — a <code>git clone</code> of this repo + <code>mvn ws:scaffold-init</code> succeeds with no subprojects on disk, the extension strips them all, scaffold-init clones them, and subsequent builds see the full reactor. See IKE-Network/ike-issues#460 for the design.</p>
 </div>
 <div>
  <h2 id="see-also"><a href="#see-also"></a><a id="see-also"></a>See also</h2>
  <ul>
-  <li><a href="index.html">ike-example-ws overview</a><sup class="visible-print-inline">[2]</sup> — the workspace landing page.</li>
-  <li><a href="https://ike.network/ike-example-its/">Integration Test Suite</a><sup class="visible-print-inline">[3]</sup> — what the <code>its/</code> reactor proves about cross-workspace behavior.</li>
-  <li><a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html"><code>ws:*</code> Goal Reference</a><sup class="visible-print-inline">[4]</sup> — full per-goal documentation in `ike-workspace-maven-plugin’s site.</li>
+  <li><a href="index.html">ike-example-ws overview</a><sup class="visible-print-inline">[3]</sup> — the workspace landing page.</li>
+  <li><a href="https://ike.network/ike-example-its/">Integration Test Suite</a><sup class="visible-print-inline">[4]</sup> — what the <code>its/</code> reactor proves about cross-workspace behavior.</li>
+  <li><a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html"><code>ws:*</code> Goal Reference</a><sup class="visible-print-inline">[5]</sup> — full per-goal documentation in `ike-workspace-maven-plugin’s site.</li>
  </ul>
 </div>
 
@@ -368,12 +394,13 @@ mvn ike:scaffold-publish</code></pre>
 								Links:
 								<ul class="list-unstyled">
 								<li>[1] https://github.com/IKE-Network/ike-issues</li>
-								<li>[2] index.html</li>
-								<li>[3] https://ike.network/ike-example-its/</li>
-								<li>[4] https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html</li>
+								<li>[2] https://ike.network/ike-workspace-extension/</li>
+								<li>[3] index.html</li>
+								<li>[4] https://ike.network/ike-example-its/</li>
+								<li>[5] https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html</li>
 								</ul>
 							</div>
-<div class="date">Date: <strong>2026-05-20 07:19:23 -0700</strong></div>
+<div class="date">Date: <strong>2026-05-20 07:45:30 -0700</strong></div>
 						</div>
 						</div>
 					</div>
