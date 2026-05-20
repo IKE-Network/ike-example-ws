@@ -1,0 +1,28 @@
+# ike-example-its
+
+> End-to-end smoke tests that exercise the IKE Network release
+> cascade as external consumers would. Each IT case clones the
+> intended usage pattern (doc-only project, java + docs, BOM
+> import, ws:create scaffold) in a fresh Maven environment and
+> asserts that the build succeeds and produces the expected
+> artifacts.
+
+## Documentation
+
+- [IKE Example Integration Test Suite](https://ike.network/ike-example-its/index.html.md)
+- [Dependencies (SBOM)](https://ike.network/ike-example-its/dependencies.html.md)
+
+## Other
+
+- [Licenses (SPDX)](https://ike.network/ike-example-its/licenses.html.md)
+- [Built With](https://ike.network/ike-example-its/built-with.html.md)
+
+## Reports
+
+- [Project Summary](https://ike.network/ike-example-its/summary.html.md)
+- [Maven Coordinates](https://ike.network/ike-example-its/dependency-info.html.md)
+- [Project Dependency Management](https://ike.network/ike-example-its/dependency-management.html.md)
+- [Project Plugins](https://ike.network/ike-example-its/plugins.html.md)
+- [Project Plugin Management](https://ike.network/ike-example-its/plugin-management.html.md)
+- [Project Distribution Management](https://ike.network/ike-example-its/distribution-management.html.md)
+- [Project Information](https://ike.network/ike-example-its/project-info.html.md)

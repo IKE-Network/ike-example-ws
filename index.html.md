@@ -60,15 +60,14 @@ ike-tooling -> ike-docs -> ike-platform -> { example-project, doc-example } -> [
 ike-example-ws/
 ├── workspace.yaml              (1)
 ├── pom.xml                     (2)
-├── ike-docs/                   (3)
-├── ike-platform/               (3)
-├── example-project/            (3)
-├── doc-example/                (3)
-├── its/                        (4)
-└── src/site/                   (5)
+├── .mvn/extensions.xml         (3)
+├── doc-example/                (4)
+├── example-project/            (4)
+├── its/                        (5)
+└── src/site/                   (6)
 ```
 
-The workspace manifest. Declares each subproject’s repo URL, branch, version, group ID, and dependency relationships. Workspace aggregator. Each subproject is in a file-activated profile so the reactor automatically includes only repos that are physically cloned. Cloned by `mvn ws:scaffold-init` from `workspace.yaml`. Empty until then. Optional: integration test suite that exercises the full cascade end-to-end (e.g., "after releasing v1, a fresh `mvn verify` on doc-example succeeds against Nexus"). Maven Site Plugin source — what generates this site you’re reading.  
+The workspace manifest. Declares each subproject’s repo URL, branch, version, group ID, and dependency relationships. Workspace aggregator. Declares `<subprojects>` directly at top level — the `ike-workspace-extension` (registered in `.mvn/extensions.xml`) prunes entries whose directory is not yet on disk so a fresh clone can bootstrap via `mvn ws:scaffold-init` before any subproject is cloned. See IKE-Network/ike-issues#460. Registers `network.ike.tooling:ike-workspace-extension` so Maven loads the extension on every build. The version literal is managed by `ws:scaffold-publish`. Worked example subprojects — cloned by `ws:scaffold-init` from `workspace.yaml`. The foundation (`ike-tooling`, `ike-docs`, `ike-platform`, `ike-workspace-extension`, `ike-base-parent`) is intentionally **not** a subproject — it’s consumed at its released versions from Maven Central. Optional: the IT harness (`ike-example-its`) that exercises the full release cascade end-to-end (e.g., "after releasing `doc-example` v1, a fresh `mvn verify` succeeds against Nexus"). Lives in its own repo (#343), cloned in here on demand. Maven Site Plugin source — what generates this site you’re reading.  
 
 ## [#key-workspace-commands](#key-workspace-commands)Key Workspace Commands
 
