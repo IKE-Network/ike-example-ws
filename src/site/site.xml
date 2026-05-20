@@ -18,7 +18,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0
       https://maven.apache.org/xsd/site-2.0.0.xsd"
-      name="ike-example-ws">
+      name="workspace-example">
 
     <skin>
         <groupId>org.sentrysoftware.maven</groupId>
@@ -36,23 +36,23 @@
                    integration test, IKE Network</keywords>
     </custom>
 
-    <bannerLeft name="ike-example-ws" href="https://ike.network/">
+    <bannerLeft name="workspace-example" href="https://ike.network/">
         <image src="images/ike-logo.svg" alt="IKE"/>
     </bannerLeft>
 
     <bannerRight name="GitHub &lt;i class='fa-brands fa-github'&gt;&lt;/i&gt;"
-        href="https://github.com/IKE-Network/ike-example-ws"/>
+        href="https://github.com/IKE-Network/workspace-example"/>
 
     <publishDate format="yyyy-MM-dd"/>
 
     <body>
         <breadcrumbs>
             <item name="IKE" href="https://ike.network/"/>
-            <item name="ike-example-ws" href="index.html"/>
+            <item name="workspace-example" href="index.html"/>
         </breadcrumbs>
 
         <links>
-            <item name="GitHub" href="https://github.com/IKE-Network/ike-example-ws"/>
+            <item name="GitHub" href="https://github.com/IKE-Network/workspace-example"/>
             <item name="Issues" href="https://github.com/IKE-Network/ike-issues"/>
         </links>
 
@@ -84,10 +84,10 @@
         <menu name="Subprojects">
             <item name="doc-example"
                   href="https://ike.network/doc-example/"/>
-            <item name="example-project"
-                  href="https://ike.network/example-project/"/>
-            <item name="ike-example-its (IT Suite)"
-                  href="https://ike.network/ike-example-its/"/>
+            <item name="project-example"
+                  href="https://ike.network/project-example/"/>
+            <item name="integration-tests-example (IT Suite)"
+                  href="https://ike.network/integration-tests-example/"/>
         </menu>
 
 

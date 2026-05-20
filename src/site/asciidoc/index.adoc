@@ -1,14 +1,21 @@
-= ike-example-ws
+= workspace-example
 :icons: font
 :source-highlighter: coderay
 
 A workspace aggregator that orchestrates three consumer-side
-subprojects: `doc-example`, `example-project`, and `its` (the
-`ike-example-its` integration-test harness). Cloning this repo
-and running `mvn ws:scaffold-init` pulls all three down at the
-versions declared in `workspace.yaml`. A subsequent
-`mvn clean install` rebuilds them in dependency order from a
-single command.
+subprojects: `doc-example`, `project-example`, and
+`integration-tests-example`. Cloning this repo and running
+`mvn ws:scaffold-init` pulls all three down at the versions
+declared in `workspace.yaml`. A subsequent `mvn clean install`
+rebuilds them in dependency order from a single command.
+
+Previously named `ike-example-ws` (with subprojects
+`example-project` and `its`); renamed to `workspace-example` on
+2026-05-20 under the canonical naming policy
+(link:https://github.com/IKE-Network/ike-issues/issues/467[ike-issues#467]):
+artifact ID, git repo name, on-disk directory, and workspace.yaml
+subproject key must all match. GitHub redirects keep old clone
+URLs working.
 
 The foundation repos `ike-tooling`, `ike-docs`, and `ike-platform`
 are *not* subprojects — they are consumed at their released
@@ -19,15 +26,15 @@ canonical template for an *IKE workspace aggregator*.
 [cols="1,3", options="header"]
 |===
 | Coordinate | Value
-| Group ID    | `local.aggregate`
-| Artifact    | `ike-example-ws`
+| Group ID    | `network.ike.examples`
+| Artifact    | `workspace-example`
 | Packaging   | POM (workspace aggregator)
 | Parent      | `network.ike.platform:ike-parent`
 |===
 
 == Role in the IKE Ecosystem
 
-`ike-example-ws` is a *coordination layer*, not a component repo. It
+`workspace-example` is a *coordination layer*, not a component repo. It
 holds no production artifacts and contributes no code to releases.
 Its job is to make multi-repo operations — cross-repo feature
 branches, coordinated releases, dependency-version alignment — work
@@ -39,7 +46,7 @@ The two component-repo templates it complements:
 |===
 | Template | Role
 
-| link:https://ike.network/example-project/[example-project]
+| link:https://ike.network/project-example/[project-example]
 | `JAR + docs` consumer template — single-repo project that ships
   compiled Java code AND rendered AsciiDoc docs.
 
@@ -47,7 +54,7 @@ The two component-repo templates it complements:
 | Doc-only consumer template — single-repo project whose primary
   deliverable is a published document.
 
-| **`ike-example-ws`** *(this site)*
+| **`workspace-example`** *(this site)*
 | Workspace-aggregator template — orchestrates multiple component
   repositories into a single coordinated build/release/feature
   cycle.
@@ -68,13 +75,13 @@ workspace manages:
   `<packaging>pom</packaging>` + `adoc` classifier shape for a
   module whose primary deliverable is a published document.
 
-| `example-project`
-| link:https://ike.network/example-project/[ike.network/example-project/] —
+| `project-example`
+| link:https://ike.network/project-example/[ike.network/project-example/] —
   Hybrid Java+docs consumer template. Demonstrates a `jar`-packaged
   module that also ships rendered AsciiDoc on the side.
 
-| `its` (`ike-example-its`)
-| link:https://ike.network/ike-example-its/[ike.network/ike-example-its/] —
+| `integration-tests-example`
+| link:https://ike.network/integration-tests-example/[ike.network/integration-tests-example/] —
   Integration-test harness. Exercises the full release cascade
   end-to-end against published Nexus artifacts (e.g., "after
   releasing `doc-example` v1, a fresh `mvn verify` against Nexus
@@ -115,10 +122,10 @@ co-developed inside this workspace. See the comment block in
 
 [source]
 ----
-ike-tooling -> ike-docs -> ike-platform -> { example-project, doc-example } -> [ike-example-ws]
+ike-tooling -> ike-docs -> ike-platform -> { doc-example, project-example, integration-tests-example } -> [workspace-example]
 ----
 
-`ike-example-ws` is the last link in the cascade. Its role is to
+`workspace-example` is the last link in the cascade. Its role is to
 verify — through its integration tests — that releasing the full
 cascade produces consumable artifacts on Nexus before any tags are
 cut on the component repos.
@@ -126,13 +133,13 @@ cut on the component repos.
 == Layout
 
 ----
-ike-example-ws/
+workspace-example/
 ├── workspace.yaml              <1>
 ├── pom.xml                     <2>
 ├── .mvn/extensions.xml         <3>
 ├── doc-example/                <4>
-├── example-project/            <4>
-├── its/                        <5>
+├── project-example/            <4>
+├── integration-tests-example/  <5>
 └── src/site/                   <6>
 ----
 <1> The workspace manifest. Declares each subproject's repo URL,
@@ -151,11 +158,11 @@ ike-example-ws/
     `ike-docs`, `ike-platform`, `ike-workspace-extension`,
     `ike-base-parent`) is intentionally *not* a subproject —
     it's consumed at its released versions from Maven Central.
-<5> Optional: the IT harness (`ike-example-its`) that exercises
-    the full release cascade end-to-end (e.g., "after releasing
-    `doc-example` v1, a fresh `mvn verify` succeeds against
-    Nexus"). Lives in its own repo (#343), cloned in here on
-    demand.
+<5> Optional: the IT harness (`integration-tests-example`) that
+    exercises the full release cascade end-to-end (e.g., "after
+    releasing `doc-example` v1, a fresh `mvn verify` succeeds
+    against Nexus"). Lives in its own repo (#343), cloned in here
+    on demand.
 <6> Maven Site Plugin source — what generates this site you're
     reading.
 
@@ -238,7 +245,7 @@ subprojects to the cascade), copy:
 
 == Not published to Maven Central
 
-`ike-example-ws` is a reference template for an IKE workspace
+`workspace-example` is a reference template for an IKE workspace
 aggregator, not a library. It holds no production artifacts and is
 deliberately *not* published to Maven Central — nothing should ever
 declare a dependency on it. You consume it by copying its
@@ -255,7 +262,7 @@ Network landing page] for the foundation/examples split.
 | Resource | URL
 
 | Source repository
-| https://github.com/IKE-Network/ike-example-ws
+| https://github.com/IKE-Network/workspace-example
 
 | Cross-project issue tracker
 | https://github.com/IKE-Network/ike-issues

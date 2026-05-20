@@ -1,10 +1,10 @@
-# ike-example-ws — Project Notes
+# workspace-example — Project Notes
 
 <!-- Migrated from CLAUDE.md by ws:init.
      This file is for hand-authored, project-specific information.
      Commit this file to git. -->
 
-# IKE Example Workspace — Claude Standards
+# IKE Workspace Example — Claude Standards
 
 ## Initial Setup — ALWAYS DO THIS FIRST
 
@@ -24,10 +24,10 @@ After validate completes, read and follow these files in `.claude/standards/`:
 
 ## Project Overview
 
-This is **IKE Example Workspace** — a workspace aggregator for the
-IKE five-repo split. It is not a component repo; it's a coordination
-layer that orchestrates multi-repo releases and end-to-end integration
-testing.
+This is **IKE Workspace Example** (formerly `ike-example-ws`) — a
+workspace aggregator for the IKE example template set. It is not
+a component repo; it's a coordination layer that orchestrates
+multi-repo releases and end-to-end integration testing.
 
 Clone this repo and run `mvn ws:scaffold-init` to pull down all the component
 repos declared in `workspace.yaml`. After the initial clone, the
@@ -37,24 +37,25 @@ exists on disk (file-activated profiles).
 ### Component Layout
 
 ```
-ike-example-ws/
-├── workspace.yaml              ← the manifest
-├── pom.xml                     ← workspace aggregator
-├── ike-docs/                   ← cloned by ws:scaffold-init
-├── ike-platform/               ← cloned by ws:scaffold-init
-├── doc-example/                ← cloned by ws:scaffold-init
-├── example-project/            ← cloned by ws:scaffold-init
-└── its/                        ← integration test suite (optional)
+workspace-example/
+├── workspace.yaml                  ← the manifest
+├── pom.xml                         ← workspace aggregator
+├── .mvn/extensions.xml             ← ike-workspace-extension registration
+├── doc-example/                    ← cloned by ws:scaffold-init
+├── project-example/                ← cloned by ws:scaffold-init
+└── integration-tests-example/      ← integration test suite (optional)
 ```
 
 ### Release Cascade
 
 ```
-ike-tooling → [ike-docs → ike-platform → { doc-example, example-project }] → ike-example-ws
+ike-tooling → ike-docs → ike-platform → { doc-example, project-example, integration-tests-example } → workspace-example
 ```
 
-This workspace covers the bracketed portion. `ike-tooling` is
-bootstrapped separately (see workspace.yaml comment for why).
+This workspace covers the consumer-side portion; the foundation
+(ike-tooling, ike-docs, ike-platform, ike-workspace-extension,
+ike-base-parent) is intentionally NOT under workspace orchestration
+— see `workspace.yaml` comments for the rationale.
 
 ## Key Workspace Commands
 
@@ -84,15 +85,15 @@ mvn ws:feature-start-publish -Dfeature=my-feature
 Never invoke raw `git` across these repos — always use the `ws:*`
 goals so that all component repos stay coordinated.
 
-## Integration Tests (`its/`)
+## Integration Tests (`integration-tests-example/`)
 
-The `its/` directory (when populated) holds end-to-end smoke tests
-that verify the full cascade produces consumable artifacts — e.g.,
-"after releasing v1, a fresh `mvn verify` on doc-example succeeds
-against Nexus." Run with:
+The `integration-tests-example/` directory (when populated) holds
+end-to-end smoke tests that verify the full cascade produces
+consumable artifacts — e.g., "after releasing v1, a fresh
+`mvn verify` on doc-example succeeds against Nexus." Run with:
 
 ```bash
-mvn verify -pl its
+mvn verify -pl integration-tests-example
 ```
 
 ## Plugin Versions

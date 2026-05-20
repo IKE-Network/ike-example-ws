@@ -1,10 +1,10 @@
-# workspace.yaml — IKE Example Workspace Manifest
+# workspace.yaml — IKE Workspace Example Manifest
 # ══════════════════════════════════════════════════
 #
 # Consumer-side integration workspace. Orchestrates the example
-# downstream projects — doc-example, example-project — that consume
-# the released foundation artifacts (ike-tooling, ike-docs, ike-platform)
-# from Nexus.
+# downstream projects — doc-example, project-example,
+# integration-tests-example — that consume the released foundation
+# artifacts (ike-tooling, ike-docs, ike-platform) from Nexus.
 #
 # Foundation repos (ike-tooling, ike-docs, ike-platform) are
 # intentionally NOT workspace subprojects — see the discussion below
@@ -12,11 +12,16 @@
 # at ~/ike-dev/<repo>/ and release independently via their own
 # ike:release-publish goal.
 #
-# Convention: workspace repos use the `-ws` suffix.
-# See IKE-MAVEN.md naming conventions for the full standard.
+# Naming policy (IKE-Network/ike-issues#467): for every subproject
+# the artifact ID, the git repo name, the on-disk directory, and the
+# workspace.yaml subproject key must all match — exactly. No
+# transformations, no aliases. Example templates use the
+# `<role>-example` pattern. This workspace was previously named
+# `ike-example-ws` with subprojects `example-project` and `its`;
+# all three were renamed under that policy on 2026-05-20.
 
 schema-version: "1.0"
-generated: 2026-04-23
+generated: 2026-05-20
 
 defaults:
   branch: main
@@ -67,26 +72,24 @@ subprojects:
     groupId: network.ike.examples
     depends-on: []
 
-  example-project:
+  project-example:
     description: >
       Standalone Java + docs project demonstrating a single-command
       build that compiles sources, runs tests, and renders AsciiDoc.
-    repo: https://github.com/IKE-Network/example-project.git
+    repo: https://github.com/IKE-Network/project-example.git
     branch: main
     version: 32-SNAPSHOT
     groupId: network.ike.examples
     depends-on: []
 
-  its:
+  integration-tests-example:
     description: >
       Optional integration-test harness — end-to-end smoke tests
       that exercise the IKE Network release cascade as an external
       consumer. Split out of this workspace in #343 so the IT
       harness can evolve on its own cadence and a broken IT POM
-      never blocks a workspace release. The repo's directory name
-      `its` (not `ike-example-its`) keeps existing operator muscle
-      memory and the workspace pom's file-activated profile.
-    repo: https://github.com/IKE-Network/ike-example-its.git
+      never blocks a workspace release.
+    repo: https://github.com/IKE-Network/integration-tests-example.git
     branch: main
     version: 24-SNAPSHOT
     groupId: network.ike.examples

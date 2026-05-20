@@ -1,4 +1,7 @@
-# ike-example-ws
+# workspace-example
+
+(Formerly `ike-example-ws`; renamed under
+IKE-Network/ike-issues#467.)
 
 ## First Steps
 
@@ -34,5 +37,5 @@ after building.
 ## Project-Specific Notes
 
 See `WS-REFERENCE.md` for complete workspace goal documentation.
-See `CLAUDE-ike-example-ws.md` for workspace-specific information.
+See `CLAUDE-workspace-example.md` for workspace-specific information.
 See `.claude/standards/` (after `mvn validate`) for full build standards.

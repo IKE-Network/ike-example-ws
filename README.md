@@ -1,15 +1,23 @@
-# IKE Example Workspace
+# IKE Workspace Example
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Documentation](https://img.shields.io/badge/docs-ike.network%2Fike--example--ws-blue)](https://ike.network/ike-example-ws/)
+[![Documentation](https://img.shields.io/badge/docs-ike.network%2Fworkspace--example-blue)](https://ike.network/workspace-example/)
 [![IKE Network](https://img.shields.io/badge/IKE-Network-green)](https://ike.network/)
 
+> **Note (2026-05-20):** This workspace was previously named
+> `ike-example-ws`, with subprojects `example-project` and `its`
+> (the `ike-example-its` repo). All four were renamed under the
+> canonical naming policy in IKE-Network/ike-issues#467 so the
+> artifact ID, git repo name, on-disk directory, and
+> workspace.yaml subproject key all match. GitHub redirects keep
+> old clone URLs working.
+
 Workspace aggregator that orchestrates three consumer-side
-subprojects (`doc-example`, `example-project`, `its`/`ike-example-its`)
-against the IKE foundation repos (`ike-tooling`, `ike-docs`,
-`ike-platform`) consumed from Nexus. Clone this repo and run
-`mvn ws:scaffold-init` to pull down the subprojects and build the cascade
-as a single reactor.
+subprojects (`doc-example`, `project-example`,
+`integration-tests-example`) against the IKE foundation repos
+(`ike-tooling`, `ike-docs`, `ike-platform`) consumed from Nexus.
+Clone this repo and run `mvn ws:scaffold-init` to pull down the
+subprojects and build the cascade as a single reactor.
 
 ## What this workspace is for
 
@@ -24,8 +32,8 @@ as a single reactor.
 ## Bootstrap
 
 ```bash
-git clone https://github.com/IKE-Network/ike-example-ws.git
-cd ike-example-ws
+git clone https://github.com/IKE-Network/workspace-example.git
+cd workspace-example
 
 mvn ws:scaffold-init # clone subprojects per workspace.yaml
 mvn ws:overview      # print the workspace dashboard
@@ -56,8 +64,8 @@ releases them in dependency order.
 | Repo | Artifact | Purpose |
 |---|---|---|
 | [doc-example](https://github.com/IKE-Network/doc-example) | `network.ike.examples:doc-example` | Doc-only template — `<packaging>pom</packaging>` with `adoc` source classifier |
-| [example-project](https://github.com/IKE-Network/example-project) | `network.ike.examples:example-project` | Hybrid Java+docs template — `<packaging>jar</packaging>` with optional `adoc` classifier when `src/docs/asciidoc/` exists |
-| [ike-example-its](https://github.com/IKE-Network/ike-example-its) | `network.ike.examples:ike-example-its` | Optional integration-test harness clones into `./its/`; a file-activated profile picks it up when present. Split from this workspace in [`#343`](https://github.com/IKE-Network/ike-issues/issues/343) so the IT harness can evolve on its own cadence. |
+| [project-example](https://github.com/IKE-Network/project-example) | `network.ike.examples:project-example` | Hybrid Java+docs template — `<packaging>jar</packaging>` with optional `adoc` classifier when `src/docs/asciidoc/` exists |
+| [integration-tests-example](https://github.com/IKE-Network/integration-tests-example) | `network.ike.examples:integration-tests-example` | Optional integration-test harness; a file-activated profile picks it up when present. Split from this workspace in [`#343`](https://github.com/IKE-Network/ike-issues/issues/343) so the IT harness can evolve on its own cadence. |
 
 See [`workspace.yaml`](workspace.yaml) for version pins and dependency
 declarations.
@@ -65,7 +73,7 @@ declarations.
 ## Release Cascade
 
 ```
-ike-tooling → ike-docs → ike-platform → [ workspace: { doc-example, example-project, ike-example-its } → ike-example-ws ]
+ike-tooling → ike-docs → ike-platform → [ workspace: { doc-example, project-example, integration-tests-example } → workspace-example ]
 ```
 
 `ike-tooling` is bootstrapped out-of-band (it releases itself using
@@ -78,8 +86,8 @@ order, finishing with the workspace root.
 
 ## Integration Tests
 
-See [`its/README.md`](its/README.md) for the IT suite layout
-and how to add new end-to-end tests.
+See [`integration-tests-example/README.md`](integration-tests-example/README.md)
+for the IT suite layout and how to add new end-to-end tests.
 
 ## Doc as Code + LLM-Friendly
 
@@ -102,18 +110,18 @@ The standards most directly relevant to a workspace consumer are
 
 ## Links
 
-- **Documentation:** [`https://ike.network/ike-example-ws/`](https://ike.network/ike-example-ws/)
+- **Documentation:** [`https://ike.network/workspace-example/`](https://ike.network/workspace-example/)
 - **Subproject sites** (each publishes its own top-level gh-pages):
   - [`doc-example`](https://ike.network/doc-example/) — documentation-only example
-  - [`example-project`](https://ike.network/example-project/) — Java + docs example
-  - [`ike-example-its`](https://ike.network/ike-example-its/) — integration test harness
+  - [`project-example`](https://ike.network/project-example/) — Java + docs example
+  - [`integration-tests-example`](https://ike.network/integration-tests-example/) — integration test harness
 - **Foundation repos** (consumed from Nexus, not workspace subprojects):
   [`ike-tooling`](https://ike.network/ike-tooling/) ·
   [`ike-docs`](https://ike.network/ike-docs/) ·
   [`ike-platform`](https://ike.network/ike-platform/)
 - **Build standards:** [`ike-build-standards`](https://ike.network/ike-tooling/ike-build-standards/)
 - **Issues:** [`IKE-Network/ike-issues`](https://github.com/IKE-Network/ike-issues) (cross-project tracker)
-- **Source:** [`IKE-Network/ike-example-ws`](https://github.com/IKE-Network/ike-example-ws)
+- **Source:** [`IKE-Network/workspace-example`](https://github.com/IKE-Network/workspace-example)
 
 ## History
 

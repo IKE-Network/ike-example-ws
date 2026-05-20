@@ -9,7 +9,7 @@ source of truth for which subprojects this workspace orchestrates,
 where they live in Git, what branch they track, and the dependency
 relationships that drive `ws:*` goal ordering.
 
-This page walks through `ike-example-ws/workspace.yaml` field by
+This page walks through `workspace-example/workspace.yaml` field by
 field. Use it as a template when authoring a new workspace.
 
 == File location
@@ -33,7 +33,7 @@ generated: 2026-05-20
 
 workspace-root:
   groupId: network.ike.examples
-  artifactId: ike-example-ws
+  artifactId: workspace-example
   version: 23-SNAPSHOT
 
 defaults:
@@ -45,12 +45,12 @@ subprojects:
     repo: https://github.com/IKE-Network/doc-example.git
     version: 32-SNAPSHOT
     groupId: network.ike.examples
-  example-project:
-    repo: https://github.com/IKE-Network/example-project.git
+  project-example:
+    repo: https://github.com/IKE-Network/project-example.git
     version: 32-SNAPSHOT
     groupId: network.ike.examples
-  its:
-    repo: https://github.com/IKE-Network/ike-example-its.git
+  integration-tests-example:
+    repo: https://github.com/IKE-Network/integration-tests-example.git
     version: 24-SNAPSHOT
     groupId: network.ike.examples
 ----
@@ -136,9 +136,9 @@ Optional per-subproject fields:
 
 == Why `ike-tooling`, `ike-docs`, `ike-platform`, and `ike-workspace-extension` are NOT subprojects
 
-`ike-example-ws/workspace.yaml` lists three subprojects:
-`doc-example`, `example-project`, and `its` (the
-`ike-example-its` integration-test harness). The IKE Network
+`workspace-example/workspace.yaml` lists three subprojects:
+`doc-example`, `project-example`, and `integration-tests-example`.
+The IKE Network
 foundation repos — `ike-tooling`, `ike-docs`, `ike-platform`,
 `ike-base-parent`, and `ike-workspace-extension` — are
 *intentionally not* under workspace orchestration. Three reasons:
@@ -266,9 +266,10 @@ IKE-Network/ike-issues#460 for the design.
 
 == See also
 
-* link:index.html[ike-example-ws overview] — the workspace landing
+* link:index.html[workspace-example overview] — the workspace landing
   page.
-* https://ike.network/ike-example-its/[Integration Test Suite] — what the
-  `its/` reactor proves about cross-workspace behavior.
+* https://ike.network/integration-tests-example/[Integration Test Suite] —
+  what the `integration-tests-example/` reactor proves about
+  cross-workspace behavior.
 * https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html[`ws:*` Goal Reference] —
   full per-goal documentation in `ike-workspace-maven-plugin`'s site.

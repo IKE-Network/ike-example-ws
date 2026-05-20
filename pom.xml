@@ -32,19 +32,19 @@
     </parent>
 
     <groupId>network.ike.examples</groupId>
-    <artifactId>ike-example-ws</artifactId>
+    <artifactId>workspace-example</artifactId>
     <version>23-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>IKE Example Workspace</name>
+    <name>IKE Workspace Example</name>
 
     <properties>
         <!-- This is a worked example workspace, not a library.
              Override the Tier 0 default so ike:release-publish ships
              internally only (tag + Nexus + GitHub Release + gh-pages
              site) without publishing to Maven Central. Matches the
-             three example subprojects (doc-example, example-project,
-             ike-example-its). Documented in ike-network-site
+             three example subprojects (doc-example, project-example,
+             integration-tests-example). Documented in ike-network-site
              index.adoc § Examples. -->
         <ike.publishToCentral>false</ike.publishToCentral>
     </properties>
@@ -83,33 +83,34 @@
         </profile>
 
         <profile>
-            <id>with-example-project</id>
+            <id>with-project-example</id>
             <activation>
                 <file>
-                    <exists>${project.basedir}/example-project/pom.xml</exists>
+                    <exists>${project.basedir}/project-example/pom.xml</exists>
                 </file>
             </activation>
             <subprojects>
-                <subproject>example-project</subproject>
+                <subproject>project-example</subproject>
             </subprojects>
         </profile>
 
         <!-- ── Integration tests ─────────────────────────────────── -->
-        <!-- The ITs live in their own repo (IKE-Network/ike-example-its,
-             extracted in #343). They're cloned into ./its/ on demand
-             via `mvn ws:init`. When present, the file-activated profile
-             below picks them up as a workspace reactor module; when
-             absent, the workspace builds without them. -->
+        <!-- The ITs live in their own repo
+             (IKE-Network/integration-tests-example, extracted in #343).
+             Cloned into ./integration-tests-example/ on demand via
+             `mvn ws:scaffold-init`. When present, the file-activated
+             profile below picks them up as a workspace reactor module;
+             when absent, the workspace builds without them. -->
 
         <profile>
-            <id>with-its</id>
+            <id>with-integration-tests-example</id>
             <activation>
                 <file>
-                    <exists>${project.basedir}/its/pom.xml</exists>
+                    <exists>${project.basedir}/integration-tests-example/pom.xml</exists>
                 </file>
             </activation>
             <subprojects>
-                <subproject>its</subproject>
+                <subproject>integration-tests-example</subproject>
             </subprojects>
         </profile>
 
