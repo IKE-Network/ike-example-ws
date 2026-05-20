@@ -42,6 +42,9 @@ subprojects:
   example-project:
     repo: https://github.com/IKE-Network/example-project.git
     version: 1-SNAPSHOT
+  its:
+    repo: https://github.com/IKE-Network/ike-example-its.git
+    version: 1-SNAPSHOT
 ----
 
 === `schema-version`
@@ -93,11 +96,13 @@ Optional per-subproject fields not exercised in `ike-example-ws`:
   `ws:checkpoint-publish`). When present, overrides `version` for
   `ws:scaffold-init` purposes.
 
-== Why `ike-tooling`, `ike-docs`, `ike-platform` are NOT subprojects
+== Why `ike-tooling`, `ike-docs`, `ike-platform`, and `ike-workspace-extension` are NOT subprojects
 
-`ike-example-ws/workspace.yaml` lists exactly two subprojects:
-`doc-example` and `example-project`. The IKE Network foundation
-repos — `ike-tooling`, `ike-docs`, `ike-platform` — are
+`ike-example-ws/workspace.yaml` lists three subprojects:
+`doc-example`, `example-project`, and `its` (the
+`ike-example-its` integration-test harness). The IKE Network
+foundation repos — `ike-tooling`, `ike-docs`, `ike-platform`,
+`ike-base-parent`, and `ike-workspace-extension` — are
 *intentionally not* under workspace orchestration. Three reasons:
 
 1. **`ike-tooling` is the bootstrap.** It produces
