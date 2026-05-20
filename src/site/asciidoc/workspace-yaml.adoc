@@ -28,8 +28,13 @@ that contains both `workspace.yaml` and `pom.xml`.
 
 [source,yaml]
 ----
-schema-version: "1.0"
-generated: 2026-04-23
+schema-version: "1.1"
+generated: 2026-05-20
+
+workspace-root:
+  groupId: network.ike.examples
+  artifactId: ike-example-ws
+  version: 23-SNAPSHOT
 
 defaults:
   branch: main
@@ -38,20 +43,40 @@ defaults:
 subprojects:
   doc-example:
     repo: https://github.com/IKE-Network/doc-example.git
-    version: 1-SNAPSHOT
+    version: 32-SNAPSHOT
+    groupId: network.ike.examples
   example-project:
     repo: https://github.com/IKE-Network/example-project.git
-    version: 1-SNAPSHOT
+    version: 32-SNAPSHOT
+    groupId: network.ike.examples
   its:
     repo: https://github.com/IKE-Network/ike-example-its.git
-    version: 1-SNAPSHOT
+    version: 24-SNAPSHOT
+    groupId: network.ike.examples
 ----
 
 === `schema-version`
 
 Identifies the manifest format. Bumped when the schema gains breaking
 changes; `ws:align-publish` migrates legacy schemas in place. Current
-value is `"1.0"`.
+value is `"1.1"` (added the typed `workspace-root:` block in
+IKE-Network/ike-issues#183 so `ws:release-publish` and `ws:align-publish`
+have real Maven coordinates to address). Legacy `"1.0"` manifests
+still parse — the workspace root falls back to defaults.
+
+=== `workspace-root`
+
+Maven coordinates of the workspace root POM itself, as a typed block
+(schema 1.1+). Three fields, all required when present:
+
+* `groupId` — the workspace POM's `<groupId>`.
+* `artifactId` — typically the workspace name.
+* `version` — the workspace's own version, tracked separately from
+  any subproject's version.
+
+`ws:release-publish` reads this block to know what tag and Maven
+artifact to mint when the workspace root itself has unreleased
+changes; `ws:align-publish` uses it for site-deploy URL templating.
 
 === `generated`
 
@@ -85,16 +110,29 @@ the directory name under the workspace root). Per-entry fields:
   tracking. `ws:scaffold-publish` writes this when the workspace
   releases the subproject; `ws:scaffold-init` checks out the corresponding
   commit on a fresh clone.
+* `groupId` — the subproject's Maven `<groupId>`. Denormalized from the
+  POM; `ws:scaffold-publish` keeps it in sync via the
+  `FieldNormalizationReconciler` (#393).
 
-Optional per-subproject fields not exercised in `ike-example-ws`:
+Optional per-subproject fields:
 
 * `branch` — override the default branch.
-* `parent` — an explicit subproject-name reference for the Maven
-  parent POM, used by `ws:scaffold-draft` and `ws:align-publish` to enforce
-  parent version alignment across the workspace.
+* `description` — human-readable purpose, surfaced in `ws:overview`.
+* `depends-on` — inter-subproject build edges. Each entry names a
+  sibling subproject and the relationship kind (`build`, `runtime`,
+  `test`). `ws:scaffold-publish` (via `YamlDepsSync`) derives this
+  from POM contents and rewrites the manifest when the graph drifts.
 * `sha` — pin a specific git commit SHA (typically written by
   `ws:checkpoint-publish`). When present, overrides `version` for
   `ws:scaffold-init` purposes.
+* `state` / `tag` / `kind` — alignment fields from IKE-Network/ike-issues#233.
+  The default `state: snapshot` means the subproject is in the workspace,
+  tracked as a SNAPSHOT, and released by `ws:release-publish`. Other states
+  (`tag-aligned`, `external-consumer`, `unrelated`) are transitions on
+  the workspace-alignment lattice and are driven by `ws:attach-*`,
+  `ws:promote`, `ws:demote`, `ws:detach`.
+* `maven-version` — override `defaults.maven-version` for this
+  subproject's Maven wrapper.
 
 == Why `ike-tooling`, `ike-docs`, `ike-platform`, and `ike-workspace-extension` are NOT subprojects
 
@@ -121,23 +159,26 @@ foundation repos — `ike-tooling`, `ike-docs`, `ike-platform`,
    `ike:release-publish`, and is consumed at released versions
    from Nexus rather than co-developed inside any workspace.
 
-The corollary: when the foundation repos release (e.g.,
-ike-tooling 150 → ike-docs 12 → ike-platform 34), this workspace
+The corollary: when the foundation repos release (e.g., a fresh
+`ike-tooling → ike-docs → ike-platform` cascade), this workspace
 picks up the new versions by running:
 
 [source,console]
 ----
-# Today: detection only — reports parent + property drift
-mvn ike:scaffold-draft
+# Detection only — reports parent + property drift
+mvn ws:scaffold-draft
 
-# Post-#348: detection + apply in one command
-mvn ike:scaffold-publish
+# Detection + apply in one command
+mvn ws:scaffold-publish
 ----
 
 The scaffold zip embeds the tested-together foundation versions
-at ike-tooling release time (#345). Running `scaffold-draft`
-shows what's behind; `scaffold-publish` (post-#348) applies the
-bumps. For specific-version overrides (reproducibility testing,
+at ike-tooling release time. Running `ws:scaffold-draft`
+shows what's behind; `ws:scaffold-publish` applies the
+bumps via the convergence-pattern `ReconcilerRegistry`
+(IKE-Network/ike-issues#393 — single goal replaces the retired
+`ws:fix`, `ws:verify`, `ws:set-parent`, `ws:scaffold-upgrade-*`).
+For specific-version overrides (reproducibility testing,
 partial-cycle rollback), `ws:scaffold-publish -DparentVersion=N`
 remains available — but the routine "bump to current" workflow
 collapses to a single scaffold command.
@@ -207,8 +248,21 @@ serve different purposes:
 
 The two stay synchronized: each entry in `workspace.yaml.subprojects`
 has a matching `<subproject>name</subproject>` in `pom.xml`. The
-`ws:scaffold-init` and `ws:add` goals write both files atomically to keep
-them in sync; `ws:scaffold-draft` flags drift.
+`ws:scaffold-init` and `ws:add` goals write both files atomically;
+`ws:scaffold-draft` flags drift.
+
+The `pom.xml` declares `<subprojects>` *unconditionally* at the
+top level — every entry is listed even when its directory is not
+yet cloned. The Maven 4 build extension
+link:https://ike.network/ike-workspace-extension/[`network.ike.tooling:ike-workspace-extension`]
+(registered in `.mvn/extensions.xml`) hooks
+`ModelTransformer.transformFileModel` and *prunes* `<subprojects>`
+entries whose directory is missing before Maven's validator runs.
+That's what makes the fresh-clone bootstrap path work — a `git
+clone` of this repo + `mvn ws:scaffold-init` succeeds with no
+subprojects on disk, the extension strips them all, scaffold-init
+clones them, and subsequent builds see the full reactor. See
+IKE-Network/ike-issues#460 for the design.
 
 == See also
 
