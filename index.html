@@ -247,7 +247,7 @@
 									</ul>
 								</div>
 <h1 id="ike-example-ws">ike-example-ws</h1>
-<p>A workspace aggregator that orchestrates two consumer-side subprojects, <code>doc-example</code> and <code>example-project</code>. Cloning this repo and running <code>mvn ws:scaffold-init</code> pulls those two down at the versions declared in <code>workspace.yaml</code>. A subsequent <code>mvn clean install</code> rebuilds them in dependency order from a single command.</p>
+<p>A workspace aggregator that orchestrates three consumer-side subprojects: <code>doc-example</code>, <code>example-project</code>, and <code>its</code> (the <code>ike-example-its</code> integration-test harness). Cloning this repo and running <code>mvn ws:scaffold-init</code> pulls all three down at the versions declared in <code>workspace.yaml</code>. A subsequent <code>mvn clean install</code> rebuilds them in dependency order from a single command.</p>
 <p>The foundation repos <code>ike-tooling</code>, <code>ike-docs</code>, and <code>ike-platform</code> are <strong>not</strong> subprojects — they are consumed at their released versions from Nexus, not co-developed inside this workspace (see "Subprojects" below for the rationale). This is the canonical template for an <strong>IKE workspace aggregator</strong>.</p>
 <table class="bodyTable table table-striped table-hover" style="background: #FFFFFF">
  <thead>
@@ -304,7 +304,7 @@
 </div>
 <div>
  <h2 id="subprojects"><a href="#subprojects"></a><a id="subprojects"></a>Subprojects</h2>
- <p><code>workspace.yaml</code> declares two consumer-side subprojects this workspace manages:</p>
+ <p><code>workspace.yaml</code> declares three consumer-side subprojects this workspace manages:</p>
  <table class="bodyTable table table-striped table-hover" style="background: #FFFFFF">
   <thead>
    <tr class="a">
@@ -321,6 +321,10 @@
     <td style="text-align: left;"><code>example-project</code></td>
     <td><a href="https://ike.network/example-project/">ike.network/example-project/</a><sup class="visible-print-inline">[1]</sup> — Hybrid Java+docs consumer template. Demonstrates a <code>jar</code>-packaged module that also ships rendered AsciiDoc on the side.</td>
    </tr>
+   <tr class="b">
+    <td style="text-align: left;"><code>its</code> (<code>ike-example-its</code>)</td>
+    <td><a href="https://ike.network/ike-example-its/">ike.network/ike-example-its/</a><sup class="visible-print-inline">[3]</sup> — Integration-test harness. Exercises the full release cascade end-to-end against published Nexus artifacts (e.g., "after releasing <code>doc-example</code> v1, a fresh <code>mvn verify</code> against Nexus succeeds"). Lives in its own repo so it can iterate independently of the templates it tests (IKE-Network/ike-issues#343); cloned in here on demand by <code>ws:scaffold-init</code>.</td>
+   </tr>
   </tbody>
  </table>
  <p>The foundation repos (<code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code>) are <strong>intentionally not</strong> workspace subprojects — they are upstream infrastructure consumed at their released versions from Nexus, not co-developed inside this workspace. See the comment block in <code>workspace.yaml</code> for the rationale (self-bootstrap concerns for <code>ike-tooling</code>, parent-cycle concerns for <code>ike-platform</code>).</p>
@@ -334,15 +338,15 @@
   <tbody>
    <tr class="b">
     <td style="text-align: left;"><code>ike-tooling</code></td>
-    <td><a href="https://ike.network/ike-tooling/">ike.network/ike-tooling/</a><sup class="visible-print-inline">[3]</sup> — Release orchestration, BOM generation, AsciiDoc utilities; source of <code>ike-maven-plugin</code>.</td>
+    <td><a href="https://ike.network/ike-tooling/">ike.network/ike-tooling/</a><sup class="visible-print-inline">[4]</sup> — Release orchestration, BOM generation, AsciiDoc utilities; source of <code>ike-maven-plugin</code>.</td>
    </tr>
    <tr class="a">
     <td style="text-align: left;"><code>ike-docs</code></td>
-    <td><a href="https://ike.network/ike-docs/">ike.network/ike-docs/</a><sup class="visible-print-inline">[4]</sup> — Doc plumbing: <code>ike-doc-maven-plugin</code>, <code>koncept-asciidoc-extension</code>, <code>minimal-fonts</code>, <code>docbook-xsl</code>, <code>ike-doc-resources</code>, <code>semantic-linebreak</code>.</td>
+    <td><a href="https://ike.network/ike-docs/">ike.network/ike-docs/</a><sup class="visible-print-inline">[5]</sup> — Doc plumbing: <code>ike-doc-maven-plugin</code>, <code>koncept-asciidoc-extension</code>, <code>minimal-fonts</code>, <code>docbook-xsl</code>, <code>ike-doc-resources</code>, <code>semantic-linebreak</code>.</td>
    </tr>
    <tr class="b">
     <td style="text-align: left;"><code>ike-platform</code></td>
-    <td><a href="https://ike.network/ike-platform/">ike.network/ike-platform/</a><sup class="visible-print-inline">[5]</sup> — Consumer-facing parent: <code>ike-parent</code>, <code>ike-bom</code>, <code>ike-workspace-maven-plugin</code>.</td>
+    <td><a href="https://ike.network/ike-platform/">ike.network/ike-platform/</a><sup class="visible-print-inline">[6]</sup> — Consumer-facing parent: <code>ike-parent</code>, <code>ike-bom</code>, <code>ike-workspace-maven-plugin</code>.</td>
    </tr>
   </tbody>
  </table>
@@ -396,7 +400,7 @@ mvn ws:feature-finish-squash-publish -Dfeature=my-feature
 mvn ws:release-draft       # preview
 mvn ws:release-publish     # execute</code></pre>
  </div>
- <p>For the full reference of all 50 <code>ws:*</code> goals, see the <a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html">ws:* Goal Reference</a><sup class="visible-print-inline">[6]</sup> on the IKE Platform site. For first-time setup of a workspace, see <a href="https://ike.network/ike-platform/workspace-getting-started.html">Workspace Getting Started</a><sup class="visible-print-inline">[7]</sup>.</p>
+ <p>For the full reference of all 50 <code>ws:*</code> goals, see the <a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html">ws:* Goal Reference</a><sup class="visible-print-inline">[7]</sup> on the IKE Platform site. For first-time setup of a workspace, see <a href="https://ike.network/ike-platform/workspace-getting-started.html">Workspace Getting Started</a><sup class="visible-print-inline">[8]</sup>.</p>
 </div>
 <div>
  <h2 id="when-to-copy-this-template"><a href="#when-to-copy-this-template"></a><a id="when-to-copy-this-template"></a>When to Copy This Template</h2>
@@ -432,13 +436,13 @@ mvn ws:release-publish     # execute</code></pre>
  <h2 id="discipline-rules"><a href="#discipline-rules"></a><a id="discipline-rules"></a>Discipline Rules</h2>
  <ol style="list-style-type: decimal;">
   <li><strong>Use <code>ws:*</code> goals, never raw <code>git</code> for workspace ops.</strong> The whole point of the workspace plugin is that one command stays coherent across all subprojects. Reaching into one subproject with raw git breaks the abstraction.</li>
-  <li><strong>All subprojects track the workspace’s git branch.</strong> No per-subproject branch opt-out. See <a href="https://github.com/IKE-Network/ike-issues/issues/233" class="externalLink">ike-issues#233</a><sup class="visible-print-inline">[8]</sup> for the alignment model.</li>
+  <li><strong>All subprojects track the workspace’s git branch.</strong> No per-subproject branch opt-out. See <a href="https://github.com/IKE-Network/ike-issues/issues/233" class="externalLink">ike-issues#233</a><sup class="visible-print-inline">[9]</sup> for the alignment model.</li>
   <li><strong>Component repos commit and push direct to <code>main</code>.</strong> No PRs in the IKE-Network organization. Releases cut from <code>main</code> via <code>ws:release-publish</code>.</li>
  </ol>
 </div>
 <div>
  <h2 id="not-published-to-maven-central"><a href="#not-published-to-maven-central"></a><a id="not-published-to-maven-central"></a>Not published to Maven Central</h2>
- <p><code>ike-example-ws</code> is a reference template for an IKE workspace aggregator, not a library. It holds no production artifacts and is deliberately <strong>not</strong> published to Maven Central — nothing should ever declare a dependency on it. You consume it by copying its <code>workspace.yaml</code>, aggregator <code>pom.xml</code>, and <code>src/site/</code> into a workspace of your own. The IKE foundation (<code>ike-base-parent</code>, <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code>) is the part published to Central and meant to be inherited; see <a href="https://ike.network/">the IKE Network landing page</a><sup class="visible-print-inline">[9]</sup> for the foundation/examples split.</p>
+ <p><code>ike-example-ws</code> is a reference template for an IKE workspace aggregator, not a library. It holds no production artifacts and is deliberately <strong>not</strong> published to Maven Central — nothing should ever declare a dependency on it. You consume it by copying its <code>workspace.yaml</code>, aggregator <code>pom.xml</code>, and <code>src/site/</code> into a workspace of your own. The IKE foundation (<code>ike-base-parent</code>, <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code>) is the part published to Central and meant to be inherited; see <a href="https://ike.network/">the IKE Network landing page</a><sup class="visible-print-inline">[10]</sup> for the foundation/examples split.</p>
 </div>
 <div>
  <h2 id="resources"><a href="#resources"></a><a id="resources"></a>Resources</h2>
@@ -452,27 +456,27 @@ mvn ws:release-publish     # execute</code></pre>
   <tbody>
    <tr class="b">
     <td style="text-align: left;">Source repository</td>
-    <td><a href="https://github.com/IKE-Network/ike-example-ws" class="bare externalLink">https://github.com/IKE-Network/ike-example-ws</a><sup class="visible-print-inline">[10]</sup></td>
+    <td><a href="https://github.com/IKE-Network/ike-example-ws" class="bare externalLink">https://github.com/IKE-Network/ike-example-ws</a><sup class="visible-print-inline">[11]</sup></td>
    </tr>
    <tr class="a">
     <td style="text-align: left;">Cross-project issue tracker</td>
-    <td><a href="https://github.com/IKE-Network/ike-issues" class="bare externalLink">https://github.com/IKE-Network/ike-issues</a><sup class="visible-print-inline">[11]</sup></td>
+    <td><a href="https://github.com/IKE-Network/ike-issues" class="bare externalLink">https://github.com/IKE-Network/ike-issues</a><sup class="visible-print-inline">[12]</sup></td>
    </tr>
    <tr class="b">
     <td style="text-align: left;">IKE Network landing page</td>
-    <td><a href="https://ike.network/" class="bare">https://ike.network/</a><sup class="visible-print-inline">[9]</sup></td>
+    <td><a href="https://ike.network/" class="bare">https://ike.network/</a><sup class="visible-print-inline">[10]</sup></td>
    </tr>
    <tr class="a">
     <td style="text-align: left;">IKE Platform (workspace plugin lives here)</td>
-    <td><a href="https://ike.network/ike-platform/" class="bare">https://ike.network/ike-platform/</a><sup class="visible-print-inline">[5]</sup></td>
+    <td><a href="https://ike.network/ike-platform/" class="bare">https://ike.network/ike-platform/</a><sup class="visible-print-inline">[6]</sup></td>
    </tr>
    <tr class="b">
     <td style="text-align: left;">ws:* Goal Reference</td>
-    <td><a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html" class="bare">https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html</a><sup class="visible-print-inline">[6]</sup></td>
+    <td><a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html" class="bare">https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html</a><sup class="visible-print-inline">[7]</sup></td>
    </tr>
    <tr class="a">
     <td style="text-align: left;">Workspace Getting Started</td>
-    <td><a href="https://ike.network/ike-platform/workspace-getting-started.html" class="bare">https://ike.network/ike-platform/workspace-getting-started.html</a><sup class="visible-print-inline">[7]</sup></td>
+    <td><a href="https://ike.network/ike-platform/workspace-getting-started.html" class="bare">https://ike.network/ike-platform/workspace-getting-started.html</a><sup class="visible-print-inline">[8]</sup></td>
    </tr>
   </tbody>
  </table>
@@ -493,18 +497,19 @@ mvn ws:release-publish     # execute</code></pre>
 								<ul class="list-unstyled">
 								<li>[1] https://ike.network/example-project/</li>
 								<li>[2] https://ike.network/doc-example/</li>
-								<li>[3] https://ike.network/ike-tooling/</li>
-								<li>[4] https://ike.network/ike-docs/</li>
-								<li>[5] https://ike.network/ike-platform/</li>
-								<li>[6] https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html</li>
-								<li>[7] https://ike.network/ike-platform/workspace-getting-started.html</li>
-								<li>[8] https://github.com/IKE-Network/ike-issues/issues/233</li>
-								<li>[9] https://ike.network/</li>
-								<li>[10] https://github.com/IKE-Network/ike-example-ws</li>
-								<li>[11] https://github.com/IKE-Network/ike-issues</li>
+								<li>[3] https://ike.network/ike-example-its/</li>
+								<li>[4] https://ike.network/ike-tooling/</li>
+								<li>[5] https://ike.network/ike-docs/</li>
+								<li>[6] https://ike.network/ike-platform/</li>
+								<li>[7] https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html</li>
+								<li>[8] https://ike.network/ike-platform/workspace-getting-started.html</li>
+								<li>[9] https://github.com/IKE-Network/ike-issues/issues/233</li>
+								<li>[10] https://ike.network/</li>
+								<li>[11] https://github.com/IKE-Network/ike-example-ws</li>
+								<li>[12] https://github.com/IKE-Network/ike-issues</li>
 								</ul>
 							</div>
-<div class="date">Date: <strong>2026-05-20 07:19:21 -0700</strong></div>
+<div class="date">Date: <strong>2026-05-20 07:51:17 -0700</strong></div>
 						</div>
 						</div>
 					</div>
