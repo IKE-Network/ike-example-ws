@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>workspace.yaml — Annotated Tour &ndash; ike-example-ws</title>
+	<title>workspace.yaml — Annotated Tour &ndash; workspace-example</title>
 
 	<meta name="keywords" content="IKE,workspace,aggregator,ws goals,multi-repo,integration test,IKE Network" />
 	<meta name="generator" content="Maven Site Plugin, Doxia Site Renderer 2.0.0, Skin sentry-maven-skin 7.0.00, from asciidoc" />
@@ -14,7 +14,7 @@
 	<meta property="article:modified_time" content="2026-05-20T00:00:00" />
 
 
-	<link rel="canonical" href="https://ike.network/ike-platform/ike-parent/ike-example-ws/workspace-yaml.html">
+	<link rel="canonical" href="https://ike.network/ike-platform/ike-parent/workspace-example/workspace-yaml.html">
 	<link rel="alternate" type="text/markdown" href="workspace-yaml.html.md">	<link rel="stylesheet" href="./css/main-combined.css">
 	<link rel="stylesheet" href="./css/site.css">
 
@@ -25,7 +25,7 @@
 	"headline": "workspace.yaml \u2014 Annotated Tour",
 	"datePublished": "2026-05-20T00:00:00",
 	"dateModified": "2026-05-20T00:00:00",
-	"mainEntityOfPage": "https://ike.network/ike-platform/ike-parent/ike-example-ws/workspace-yaml.html",
+	"mainEntityOfPage": "https://ike.network/ike-platform/ike-parent/workspace-example/workspace-yaml.html",
 }
 </script>
 </head>
@@ -41,26 +41,26 @@
 				<a class="navbar-brand" href="https://ike.network/"><img src="images/ike-logo.svg" alt="IKE"></a>
 			</div>
 			<ul class="nav navbar-nav">
-<li><a href="https://github.com/IKE-Network/ike-example-ws" class="externalLink">GitHub</a></li>
+<li><a href="https://github.com/IKE-Network/workspace-example" class="externalLink">GitHub</a></li>
 <li><a href="https://github.com/IKE-Network/ike-issues" class="externalLink">Issues</a></li>
 			</ul>
 		<ul class="nav navbar-nav navbar-right">
 <li class="dark-toggle"><toggle ng-model="$matchMedia.dark" ng-change="switchColors()" size="btn-xs" width="34px" height="22px" off-class="day" on-class="night" toggle-class="navbar-btn dark-toggle" on="<i class='fa-solid fa-moon'></i>" off="<i class='sun-icon'></i>" title="Switch between dark and light color schemes" tabindex="0"></toggle></li>
 					<li>
-					<a href="https://github.com/IKE-Network/ike-example-ws">GitHub <i class='fa-brands fa-github'></i></a>
+					<a href="https://github.com/IKE-Network/workspace-example">GitHub <i class='fa-brands fa-github'></i></a>
 				</li>
 				</ul>
 	</div>
 
 	<div class="visible-xs navbar navbar-inverse site-logo site-logo-xs">
 			<ul class="nav navbar-nav">
-				<li><a href="https://ike.network/">ike-example-ws</a></li>
+				<li><a href="https://ike.network/">workspace-example</a></li>
 			</ul>
 		</div>
 	<div class="visible-xs navbar navbar-inverse site-logo site-logo-xs breadcrumb-xs">
 			<ul class="nav navbar-nav">
 <li><a href="https://ike.network/">IKE</a></li>
-<li><a href="index.html">ike-example-ws</a></li>
+<li><a href="index.html">workspace-example</a></li>
 			</ul>
 		</div>
 
@@ -81,16 +81,16 @@
 					<div class="navbar-brand">
 					<ol class="breadcrumb hidden-xs">
 <li><a href="https://ike.network/">IKE</a></li>
-<li><a href="index.html">ike-example-ws</a></li>
+<li><a href="index.html">workspace-example</a></li>
 						</ol>
-					<div class="header-title">ike-example-ws</div>
+					<div class="header-title">workspace-example</div>
 						<div class="header-subtitle">
 							<span class="version-prefix">Version</span>
 							<span class="version">23-SNAPSHOT</span>
 						</div>
 					</div>
 					<div class="navbar-brand header-xxs visible-xs">
-						<div class="header-title">ike-example-ws</div>
+						<div class="header-title">workspace-example</div>
 						<div class="header-subtitle">
 							Version <strong>23-SNAPSHOT</strong>
 						</div>
@@ -151,8 +151,8 @@
 
 <ul class="nav nav-pills nav-stacked animate">
 <li><a href="https://ike.network/doc-example/"><i class="fas fa-file-alt"></i> doc-example</a></li>
-<li><a href="https://ike.network/example-project/"><i class="fas fa-file-alt"></i> example-project</a></li>
-<li><a href="https://ike.network/ike-example-its/"><i class="fas fa-file-alt"></i> ike-example-its (IT Suite)</a></li>
+<li><a href="https://ike.network/project-example/"><i class="fas fa-file-alt"></i> project-example</a></li>
+<li><a href="https://ike.network/integration-tests-example/"><i class="fas fa-file-alt"></i> integration-tests-example (IT Suite)</a></li>
 </ul>
 		<h5 class="text-uppercase">Foundation repos (consumed via Nexus)</h5>
 
@@ -183,7 +183,7 @@
 
 					<div class="col-md-12">
 					<div class="page-header visible-print-block">
-							<h3><small>ike-example-ws</small><br/>							IKE Example Workspace 23-SNAPSHOT
+							<h3><small>workspace-example</small><br/>							IKE Workspace Example 23-SNAPSHOT
 							</h3>
 						</div>
 						<div class="parents hidden-xs">
@@ -210,7 +210,7 @@
 						</div>
 <h1 id="workspace-yaml--annotated-tour">workspace.yaml — Annotated Tour</h1>
 <p><code>workspace.yaml</code> is the <strong>manifest</strong> of an IKE workspace. It’s the source of truth for which subprojects this workspace orchestrates, where they live in Git, what branch they track, and the dependency relationships that drive <code>ws:*</code> goal ordering.</p>
-<p>This page walks through <code>ike-example-ws/workspace.yaml</code> field by field. Use it as a template when authoring a new workspace.</p>
+<p>This page walks through <code>workspace-example/workspace.yaml</code> field by field. Use it as a template when authoring a new workspace.</p>
 <div>
  <h2 id="file-location"><a href="#file-location"></a><a id="file-location"></a>File location</h2>
  <p>A workspace’s manifest always lives at:</p>
@@ -227,7 +227,7 @@
 
 <span class="key">workspace-root</span>:
   <span class="key">groupId</span>: <span class="string"><span class="content">network.ike.examples</span></span>
-  <span class="key">artifactId</span>: <span class="string"><span class="content">ike-example-ws</span></span>
+  <span class="key">artifactId</span>: <span class="string"><span class="content">workspace-example</span></span>
   <span class="key">version</span>: <span class="string"><span class="content">23-SNAPSHOT</span></span>
 
 <span class="key">defaults</span>:
@@ -239,12 +239,12 @@
     <span class="key">repo</span>: <span class="string"><span class="content">https://github.com/IKE-Network/doc-example.git</span></span>
     <span class="key">version</span>: <span class="string"><span class="content">32-SNAPSHOT</span></span>
     <span class="key">groupId</span>: <span class="string"><span class="content">network.ike.examples</span></span>
-  <span class="key">example-project</span>:
-    <span class="key">repo</span>: <span class="string"><span class="content">https://github.com/IKE-Network/example-project.git</span></span>
+  <span class="key">project-example</span>:
+    <span class="key">repo</span>: <span class="string"><span class="content">https://github.com/IKE-Network/project-example.git</span></span>
     <span class="key">version</span>: <span class="string"><span class="content">32-SNAPSHOT</span></span>
     <span class="key">groupId</span>: <span class="string"><span class="content">network.ike.examples</span></span>
-  <span class="key">its</span>:
-    <span class="key">repo</span>: <span class="string"><span class="content">https://github.com/IKE-Network/ike-example-its.git</span></span>
+  <span class="key">integration-tests-example</span>:
+    <span class="key">repo</span>: <span class="string"><span class="content">https://github.com/IKE-Network/integration-tests-example.git</span></span>
     <span class="key">version</span>: <span class="string"><span class="content">24-SNAPSHOT</span></span>
     <span class="key">groupId</span>: <span class="string"><span class="content">network.ike.examples</span></span></code></pre>
  </div>
@@ -295,7 +295,7 @@
 </div>
 <div>
  <h2 id="why-ike-tooling-ike-docs-ike-platform-and-ike-work"><a href="#why-ike-tooling-ike-docs-ike-platform-and-ike-work"></a><a id="why-ike-tooling-ike-docs-ike-platform-and-ike-workspace-extension-are-not-subprojects"></a>Why <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code>, and <code>ike-workspace-extension</code> are NOT subprojects</h2>
- <p><code>ike-example-ws/workspace.yaml</code> lists three subprojects: <code>doc-example</code>, <code>example-project</code>, and <code>its</code> (the <code>ike-example-its</code> integration-test harness). The IKE Network foundation repos — <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code>, <code>ike-base-parent</code>, and <code>ike-workspace-extension</code> — are <strong>intentionally not</strong> under workspace orchestration. Three reasons:</p>
+ <p><code>workspace-example/workspace.yaml</code> lists three subprojects: <code>doc-example</code>, <code>project-example</code>, and <code>integration-tests-example</code>. The IKE Network foundation repos — <code>ike-tooling</code>, <code>ike-docs</code>, <code>ike-platform</code>, <code>ike-base-parent</code>, and <code>ike-workspace-extension</code> — are <strong>intentionally not</strong> under workspace orchestration. Three reasons:</p>
  <ol style="list-style-type: decimal;">
   <li><strong><code>ike-tooling</code> is the bootstrap.</strong> It produces <code>ike-maven-plugin</code>, which the workspace plugin itself depends on. Putting <code>ike-tooling</code> inside a workspace creates a chicken-and-egg problem: the workspace can’t bootstrap before the plugin it needs is installed.</li>
   <li><strong><code>ike-platform</code> contains <code>ike-workspace-maven-plugin</code> AND <code>ike-parent</code>.</strong> The first defines the <code>ws:*</code> goals; the second is the release-tracked parent POM the workspace itself inherits. That self-reference triggers a Maven 4 reactor parent-cycle bug (<code>ike-parent:N → workspace pom.xml → ike-parent:N</code>).</li>
@@ -374,8 +374,8 @@ mvn ws:scaffold-publish</code></pre>
 <div>
  <h2 id="see-also"><a href="#see-also"></a><a id="see-also"></a>See also</h2>
  <ul>
-  <li><a href="index.html">ike-example-ws overview</a><sup class="visible-print-inline">[3]</sup> — the workspace landing page.</li>
-  <li><a href="https://ike.network/ike-example-its/">Integration Test Suite</a><sup class="visible-print-inline">[4]</sup> — what the <code>its/</code> reactor proves about cross-workspace behavior.</li>
+  <li><a href="index.html">workspace-example overview</a><sup class="visible-print-inline">[3]</sup> — the workspace landing page.</li>
+  <li><a href="https://ike.network/integration-tests-example/">Integration Test Suite</a><sup class="visible-print-inline">[4]</sup> — what the <code>integration-tests-example/</code> reactor proves about cross-workspace behavior.</li>
   <li><a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html"><code>ws:*</code> Goal Reference</a><sup class="visible-print-inline">[5]</sup> — full per-goal documentation in `ike-workspace-maven-plugin’s site.</li>
  </ul>
 </div>
@@ -396,11 +396,11 @@ mvn ws:scaffold-publish</code></pre>
 								<li>[1] https://github.com/IKE-Network/ike-issues</li>
 								<li>[2] https://ike.network/ike-workspace-extension/</li>
 								<li>[3] index.html</li>
-								<li>[4] https://ike.network/ike-example-its/</li>
+								<li>[4] https://ike.network/integration-tests-example/</li>
 								<li>[5] https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html</li>
 								</ul>
 							</div>
-<div class="date">Date: <strong>2026-05-20 07:45:30 -0700</strong></div>
+<div class="date">Date: <strong>2026-05-20 12:06:29 -0700</strong></div>
 						</div>
 						</div>
 					</div>
@@ -479,14 +479,14 @@ mvn ws:scaffold-publish</code></pre>
 	<footer class="footer">
 
 		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
-			<strong>ike-example-ws 23-SNAPSHOT</strong>
+			<strong>workspace-example 23-SNAPSHOT</strong>
 			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
 			Documentation as of <strong><time datetime="2026-05-20">2026-05-20</time></strong>
 		</p>
 	<div class="visible-xs navbar navbar-inverse site-logo site-logo-xs">
 			<ul class="nav navbar-nav">
-			<li><a href="https://ike.network/">ike-example-ws</a></li>
-<li><a href="https://github.com/IKE-Network/ike-example-ws" class="externalLink">GitHub</a></li>
+			<li><a href="https://ike.network/">workspace-example</a></li>
+<li><a href="https://github.com/IKE-Network/workspace-example" class="externalLink">GitHub</a></li>
 <li><a href="https://github.com/IKE-Network/ike-issues" class="externalLink">Issues</a></li>
 <li class="dark-toggle dark-toggle-xs">
     <toggle
@@ -503,7 +503,7 @@ mvn ws:scaffold-publish</code></pre>
         title="Switch between dark and light color schemes"
         tabindex="0"></toggle>
 		</li>
-			<li><a href="https://github.com/IKE-Network/ike-example-ws">GitHub <i class='fa-brands fa-github'></i></a></li>
+			<li><a href="https://github.com/IKE-Network/workspace-example">GitHub <i class='fa-brands fa-github'></i></a></li>
 		</ul>
 		</div>
 
@@ -541,13 +541,13 @@ angular.module("sentry.site").constant("SITE_MENU", [
 	parents: [{ title: "Subprojects" }]
 },
 {
-	path: "https://ike.network/example-project/",
-	title: "example-project",
+	path: "https://ike.network/project-example/",
+	title: "project-example",
 	parents: [{ title: "Subprojects" }]
 },
 {
-	path: "https://ike.network/ike-example-its/",
-	title: "ike-example-its (IT Suite)",
+	path: "https://ike.network/integration-tests-example/",
+	title: "integration-tests-example (IT Suite)",
 	parents: [{ title: "Subprojects" }]
 },
 {

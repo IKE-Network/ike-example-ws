@@ -1,7 +1,7 @@
 ---
 date_published: 2026-05-19
 date_modified: 2026-05-19
-canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/dependency-info.html
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/dependency-info.html
 ---
 
 # Maven Coordinates
@@ -11,7 +11,7 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/depend
 ```
 <dependency>
   <groupId>network.ike.examples</groupId>
-  <artifactId>ike-example-ws</artifactId>
+  <artifactId>workspace-example</artifactId>
   <version>23-SNAPSHOT</version>
   <type>pom</type>
 </dependency>
@@ -20,8 +20,8 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/depend
 ## [Apache Ivy](#apache-ivy)
 
 ```
-<dependency org="network.ike.examples" name="ike-example-ws" rev="23-SNAPSHOT">
-  <artifact name="ike-example-ws" type="pom" />
+<dependency org="network.ike.examples" name="workspace-example" rev="23-SNAPSHOT">
+  <artifact name="workspace-example" type="pom" />
 </dependency>
 ```
 
@@ -29,24 +29,24 @@ canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/depend
 
 ```
 @Grapes(
-@Grab(group='network.ike.examples', module='ike-example-ws', version='23-SNAPSHOT')
+@Grab(group='network.ike.examples', module='workspace-example', version='23-SNAPSHOT')
 )
 ```
 
 ## [Gradle/Grails](#gradle-grails)
 
 ```
-implementation 'network.ike.examples:ike-example-ws:23-SNAPSHOT'
+implementation 'network.ike.examples:workspace-example:23-SNAPSHOT'
 ```
 
 ## [Scala SBT](#scala-sbt)
 
 ```
-libraryDependencies += "network.ike.examples" % "ike-example-ws" % "23-SNAPSHOT"
+libraryDependencies += "network.ike.examples" % "workspace-example" % "23-SNAPSHOT"
 ```
 
 ## [Leiningen](#leiningen)
 
 ```
-[network.ike.examples/ike-example-ws "23-SNAPSHOT"]
+[network.ike.examples/workspace-example "23-SNAPSHOT"]
 ```

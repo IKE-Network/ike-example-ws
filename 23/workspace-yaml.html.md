@@ -1,14 +1,14 @@
 ---
 date_published: 2026-05-19
 date_modified: 2026-05-19
-canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/workspace-yaml.html
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/workspace-yaml.html
 ---
 
 # workspace.yaml — Annotated Tour
 
 `workspace.yaml` is the **manifest** of an IKE workspace. It’s the source of truth for which subprojects this workspace orchestrates, where they live in Git, what branch they track, and the dependency relationships that drive `ws:*` goal ordering.
 
-This page walks through `ike-example-ws/workspace.yaml` field by field. Use it as a template when authoring a new workspace.
+This page walks through `workspace-example/workspace.yaml` field by field. Use it as a template when authoring a new workspace.
 
 ## [#file-location](#file-location)File location
 
@@ -28,7 +28,7 @@ generated: 2026-05-20
 
 workspace-root:
   groupId: network.ike.examples
-  artifactId: ike-example-ws
+  artifactId: workspace-example
   version: 23-SNAPSHOT
 
 defaults:
@@ -40,12 +40,12 @@ subprojects:
     repo: https://github.com/IKE-Network/doc-example.git
     version: 32-SNAPSHOT
     groupId: network.ike.examples
-  example-project:
-    repo: https://github.com/IKE-Network/example-project.git
+  project-example:
+    repo: https://github.com/IKE-Network/project-example.git
     version: 32-SNAPSHOT
     groupId: network.ike.examples
-  its:
-    repo: https://github.com/IKE-Network/ike-example-its.git
+  integration-tests-example:
+    repo: https://github.com/IKE-Network/integration-tests-example.git
     version: 24-SNAPSHOT
     groupId: network.ike.examples
 ```
@@ -94,7 +94,7 @@ Optional per-subproject fields:
 
 ## [#why-ike-tooling-ike-docs-ike-platform-and-ike-work](#why-ike-tooling-ike-docs-ike-platform-and-ike-work)Why `ike-tooling`, `ike-docs`, `ike-platform`, and `ike-workspace-extension` are NOT subprojects
 
-`ike-example-ws/workspace.yaml` lists three subprojects: `doc-example`, `example-project`, and `its` (the `ike-example-its` integration-test harness). The IKE Network foundation repos — `ike-tooling`, `ike-docs`, `ike-platform`, `ike-base-parent`, and `ike-workspace-extension` — are **intentionally not** under workspace orchestration. Three reasons:
+`workspace-example/workspace.yaml` lists three subprojects: `doc-example`, `project-example`, and `integration-tests-example`. The IKE Network foundation repos — `ike-tooling`, `ike-docs`, `ike-platform`, `ike-base-parent`, and `ike-workspace-extension` — are **intentionally not** under workspace orchestration. Three reasons:
 
 1. **`ike-tooling` is the bootstrap.** It produces `ike-maven-plugin`, which the workspace plugin itself depends on. Putting `ike-tooling` inside a workspace creates a chicken-and-egg problem: the workspace can’t bootstrap before the plugin it needs is installed.
 2. **`ike-platform` contains `ike-workspace-maven-plugin` AND `ike-parent`.** The first defines the `ws:*` goals; the second is the release-tracked parent POM the workspace itself inherits. That self-reference triggers a Maven 4 reactor parent-cycle bug (`ike-parent:N → workspace pom.xml → ike-parent:N`).
@@ -139,6 +139,6 @@ The `pom.xml` declares `<subprojects>` **unconditionally** at the top level — 
 
 ## [#see-also](#see-also)See also
 
-- [ike-example-ws overview](index.html)[3] — the workspace landing page.
-- [Integration Test Suite](https://ike.network/ike-example-its/)[4] — what the `its/` reactor proves about cross-workspace behavior.
+- [workspace-example overview](index.html)[3] — the workspace landing page.
+- [Integration Test Suite](https://ike.network/integration-tests-example/)[4] — what the `integration-tests-example/` reactor proves about cross-workspace behavior.
 - [ws:* Goal Reference](https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html)[5] — full per-goal documentation in `ike-workspace-maven-plugin’s site.

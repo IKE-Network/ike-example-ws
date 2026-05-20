@@ -1,0 +1,144 @@
+---
+date_published: 2026-05-19
+date_modified: 2026-05-19
+canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/workspace-yaml.html
+---
+
+# workspace.yaml — Annotated Tour
+
+`workspace.yaml` is the **manifest** of an IKE workspace. It’s the source of truth for which subprojects this workspace orchestrates, where they live in Git, what branch they track, and the dependency relationships that drive `ws:*` goal ordering.
+
+This page walks through `ike-example-ws/workspace.yaml` field by field. Use it as a template when authoring a new workspace.
+
+## [#file-location](#file-location)File location
+
+A workspace’s manifest always lives at:
+
+```
+<workspace-root>/workspace.yaml
+```
+
+The `ws:*` goal family reads it on every invocation. The workspace root is detected by walking up from `pwd` looking for a directory that contains both `workspace.yaml` and `pom.xml`.
+
+## [#schema](#schema)Schema
+
+```
+schema-version: "1.1"
+generated: 2026-05-20
+
+workspace-root:
+  groupId: network.ike.examples
+  artifactId: ike-example-ws
+  version: 23-SNAPSHOT
+
+defaults:
+  branch: main
+  maven-version: "4.0.0-rc-5"
+
+subprojects:
+  doc-example:
+    repo: https://github.com/IKE-Network/doc-example.git
+    version: 32-SNAPSHOT
+    groupId: network.ike.examples
+  example-project:
+    repo: https://github.com/IKE-Network/example-project.git
+    version: 32-SNAPSHOT
+    groupId: network.ike.examples
+  its:
+    repo: https://github.com/IKE-Network/ike-example-its.git
+    version: 24-SNAPSHOT
+    groupId: network.ike.examples
+```
+
+### [#schema-version](#schema-version)`schema-version`
+
+Identifies the manifest format. Bumped when the schema gains breaking changes; `ws:align-publish` migrates legacy schemas in place. Current value is `"1.1"` (added the typed `workspace-root:` block in IKE-Network/ike-issues#183 so `ws:release-publish` and `ws:align-publish` have real Maven coordinates to address). Legacy `"1.0"` manifests still parse — the workspace root falls back to defaults.
+
+### [#workspace-root](#workspace-root)`workspace-root`
+
+Maven coordinates of the workspace root POM itself, as a typed block (schema 1.1+). Three fields, all required when present:
+
+- `groupId` — the workspace POM’s `<groupId>`.
+- `artifactId` — typically the workspace name.
+- `version` — the workspace’s own version, tracked separately from any subproject’s version.
+
+`ws:release-publish` reads this block to know what tag and Maven artifact to mint when the workspace root itself has unreleased changes; `ws:align-publish` uses it for site-deploy URL templating.
+
+### [#generated](#generated)`generated`
+
+Date stamp of the last `ws:scaffold-init` or `ws:align-publish` rewrite. Informational; does not affect goal behavior.
+
+### [#defaults](#defaults)`defaults`
+
+Default values applied to every subproject that doesn’t override them. Two fields supported:
+
+- `branch` — the git branch each subproject tracks. The workspace-branch-coherence rule ([ike-issues](https://github.com/IKE-Network/ike-issues)[1] — see `feedback_workspace_branch_coherence`) requires every subproject to track the same branch as the workspace root, so this is typically `main`.
+- `maven-version` — the Maven Wrapper version each subproject resolves on `ws:scaffold-init` and on `mvn -N` invocations. Pinned to a Maven 4 RC (`4.0.0-rc-5`) for the IKE Network’s modelVersion 4.1.0 POMs.
+
+### [#subprojects](#subprojects)`subprojects`
+
+The map of subprojects under workspace orchestration. Each entry’s key is the subproject name (typically matching the artifact ID and the directory name under the workspace root). Per-entry fields:
+
+- `repo` — git URL the subproject is cloned from on `ws:scaffold-init`.
+- `version` — release version pin (tag) or `<n>-SNAPSHOT` for HEAD tracking. `ws:scaffold-publish` writes this when the workspace releases the subproject; `ws:scaffold-init` checks out the corresponding commit on a fresh clone.
+- `groupId` — the subproject’s Maven `<groupId>`. Denormalized from the POM; `ws:scaffold-publish` keeps it in sync via the `FieldNormalizationReconciler` (#393).
+
+Optional per-subproject fields:
+
+- `branch` — override the default branch.
+- `description` — human-readable purpose, surfaced in `ws:overview`.
+- `depends-on` — inter-subproject build edges. Each entry names a sibling subproject and the relationship kind (`build`, `runtime`, `test`). `ws:scaffold-publish` (via `YamlDepsSync`) derives this from POM contents and rewrites the manifest when the graph drifts.
+- `sha` — pin a specific git commit SHA (typically written by `ws:checkpoint-publish`). When present, overrides `version` for `ws:scaffold-init` purposes.
+- `state` / `tag` / `kind` — alignment fields from IKE-Network/ike-issues#233. The default `state: snapshot` means the subproject is in the workspace, tracked as a SNAPSHOT, and released by `ws:release-publish`. Other states (`tag-aligned`, `external-consumer`, `unrelated`) are transitions on the workspace-alignment lattice and are driven by `ws:attach-*`, `ws:promote`, `ws:demote`, `ws:detach`.
+- `maven-version` — override `defaults.maven-version` for this subproject’s Maven wrapper.
+
+## [#why-ike-tooling-ike-docs-ike-platform-and-ike-work](#why-ike-tooling-ike-docs-ike-platform-and-ike-work)Why `ike-tooling`, `ike-docs`, `ike-platform`, and `ike-workspace-extension` are NOT subprojects
+
+`ike-example-ws/workspace.yaml` lists three subprojects: `doc-example`, `example-project`, and `its` (the `ike-example-its` integration-test harness). The IKE Network foundation repos — `ike-tooling`, `ike-docs`, `ike-platform`, `ike-base-parent`, and `ike-workspace-extension` — are **intentionally not** under workspace orchestration. Three reasons:
+
+1. **`ike-tooling` is the bootstrap.** It produces `ike-maven-plugin`, which the workspace plugin itself depends on. Putting `ike-tooling` inside a workspace creates a chicken-and-egg problem: the workspace can’t bootstrap before the plugin it needs is installed.
+2. **`ike-platform` contains `ike-workspace-maven-plugin` AND `ike-parent`.** The first defines the `ws:*` goals; the second is the release-tracked parent POM the workspace itself inherits. That self-reference triggers a Maven 4 reactor parent-cycle bug (`ike-parent:N → workspace pom.xml → ike-parent:N`).
+3. **`ike-docs` provides `ike-doc-maven-plugin`.** Same release-cadence argument as the others: it lives above the consumer line in the cascade, releases independently via its own `ike:release-publish`, and is consumed at released versions from Nexus rather than co-developed inside any workspace.
+
+The corollary: when the foundation repos release (e.g., a fresh `ike-tooling → ike-docs → ike-platform` cascade), this workspace picks up the new versions by running:
+
+```
+# Detection only — reports parent + property drift
+mvn ws:scaffold-draft
+
+# Detection + apply in one command
+mvn ws:scaffold-publish
+```
+
+The scaffold zip embeds the tested-together foundation versions at ike-tooling release time. Running `ws:scaffold-draft` shows what’s behind; `ws:scaffold-publish` applies the bumps via the convergence-pattern `ReconcilerRegistry` (IKE-Network/ike-issues#393 — single goal replaces the retired `ws:fix`, `ws:verify`, `ws:set-parent`, `ws:scaffold-upgrade-*`). For specific-version overrides (reproducibility testing, partial-cycle rollback), `ws:scaffold-publish -DparentVersion=N` remains available — but the routine "bump to current" workflow collapses to a single scaffold command.
+
+Foundation repos themselves are never under `ws:*` control — they release independently via their own `ike:release-publish`.
+
+## [#how-ws-goals-consume-this-file](#how-ws-goals-consume-this-file)How `ws:*` goals consume this file
+
+| Goal | What it reads from workspace.yaml | What it writes back |
+| --- | --- | --- |
+| `ws:scaffold-init` | `repo`, `branch`, `version`, `sha` for each subproject | Nothing — this is read-only. |
+| `ws:overview` | Whole manifest | Nothing — produces the `ws꞉overview.md` report at the workspace root. |
+| `ws:sync` | `branch`, `version` per subproject | Updates the on-disk repo state to match the manifest (or vice versa, depending on `-Dfrom=…​`). |
+| `ws:scaffold-publish` | Reads the parent declaration in each subproject’s POM (not workspace.yaml directly) | Updates each subproject’s `<parent>` block in its `pom.xml` to the requested version. Commits per subproject. Does not touch workspace.yaml itself. |
+| `ws:release-publish` | Whole manifest (build order, dependencies) | Walks subprojects in topological order and runs `ike:release-publish` on each that has source changes since its last release tag. After all subprojects release, releases the workspace root last when it has its own unreleased changes (#326+#328). Does **not** rewrite `workspace.yaml` per-subproject `version:` fields — those remain at the workspace’s HEAD-tracking value (typically `1-SNAPSHOT`); the durable per-cycle anchor is the workspace’s own release tag plus any `ws:checkpoint-publish` snapshots under `checkpoints/`. |
+| `ws:align-publish` | Whole manifest | Migrates legacy schema (`components:` → `subprojects:` for the pre-#150 schema, etc.). Writes back the migrated form. |
+| `ws:scaffold-draft` | Whole manifest | Nothing — runs read-only checks (parent-version alignment, branch coherence, working-tree cleanliness, etc.). |
+
+## [#relationship-to-the-workspace-pom-xml](#relationship-to-the-workspace-pom-xml)Relationship to the workspace `pom.xml`
+
+The workspace root has both `workspace.yaml` and `pom.xml`. They serve different purposes:
+
+- `workspace.yaml` is the **manifest** — declarative, IKE-specific, consumed by `ws:*` goals.
+- `pom.xml` is a **standard Maven aggregator** — declares `<subprojects>` for normal Maven reactor operations (`mvn clean install` walks the reactor in topological order).
+
+The two stay synchronized: each entry in `workspace.yaml.subprojects` has a matching `<subproject>name</subproject>` in `pom.xml`. The `ws:scaffold-init` and `ws:add` goals write both files atomically; `ws:scaffold-draft` flags drift.
+
+The `pom.xml` declares `<subprojects>` **unconditionally** at the top level — every entry is listed even when its directory is not yet cloned. The Maven 4 build extension [network.ike.tooling:ike-workspace-extension](https://ike.network/ike-workspace-extension/)[2] (registered in `.mvn/extensions.xml`) hooks `ModelTransformer.transformFileModel` and **prunes** `<subprojects>` entries whose directory is missing before Maven’s validator runs. That’s what makes the fresh-clone bootstrap path work — a `git clone` of this repo + `mvn ws:scaffold-init` succeeds with no subprojects on disk, the extension strips them all, scaffold-init clones them, and subsequent builds see the full reactor. See IKE-Network/ike-issues#460 for the design.
+
+## [#see-also](#see-also)See also
+
+- [ike-example-ws overview](index.html)[3] — the workspace landing page.
+- [Integration Test Suite](https://ike.network/ike-example-its/)[4] — what the `its/` reactor proves about cross-workspace behavior.
+- [ws:* Goal Reference](https://ike.network/ike-platform/ike-workspace-maven-plugin/ws-goals.html)[5] — full per-goal documentation in `ike-workspace-maven-plugin’s site.

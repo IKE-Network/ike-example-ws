@@ -1,7 +1,7 @@
 ---
 date_published: 2026-05-19
 date_modified: 2026-05-19
-canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/distribution-management.html
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/distribution-management.html
 ---
 
 # Overview
@@ -18,4 +18,4 @@ The following is the distribution management information used by this project.
 
 ## [Site - ike-site](#site---ike-site)
 
-[https://ike.network/ike-example-ws/](https://ike.network/ike-example-ws/)[3]
+[https://ike.network/workspace-example/](https://ike.network/workspace-example/)[3]

@@ -1,12 +1,12 @@
 ---
 date_published: 2026-05-19
 date_modified: 2026-05-19
-canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/built-with.html
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/built-with.html
 ---
 
 # Built With
 
-Open-source software that `ike-example-ws` 23-SNAPSHOT depends on, links against, ships within, or invokes at runtime.
+Open-source software that `workspace-example` 23-SNAPSHOT depends on, links against, ships within, or invokes at runtime.
 
 Three layers of attribution ship with each release:
 

@@ -1,7 +1,7 @@
 ---
 date_published: 2026-05-19
 date_modified: 2026-05-19
-canonical_url: https://ike.network/ike-platform/ike-parent/ike-example-ws/project-info.html
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/project-info.html
 ---
 
 # Project Information
