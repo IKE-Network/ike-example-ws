@@ -38,6 +38,17 @@
 
     <name>IKE Workspace Example</name>
 
+    <!-- Locally declared so the cascade's coordinate-to-repository
+         lookup resolves a real repo URL, not the artifactId-appended
+         path Maven would otherwise inherit from ike-parent (and in
+         turn ike-base-parent). See IKE-Network/ike-issues#496. -->
+    <scm>
+        <connection>scm:git:https://github.com/IKE-Network/workspace-example.git</connection>
+        <developerConnection>scm:git:git@github.com:IKE-Network/workspace-example.git</developerConnection>
+        <url>https://github.com/IKE-Network/workspace-example</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <properties>
         <!-- This is a worked example workspace, not a library.
              Override the Tier 0 default so ike:release-publish ships
