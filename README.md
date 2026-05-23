@@ -1,16 +1,21 @@
-# IKE Workspace Example
+# IKE Workspace Reactor Example
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Documentation](https://img.shields.io/badge/docs-ike.network%2Fworkspace--example-blue)](https://ike.network/workspace-example/)
+[![Documentation](https://img.shields.io/badge/docs-ike.network%2Fworkspace--example-blue)](https://ike.network/workspace-reactor-example/)
 [![IKE Network](https://img.shields.io/badge/IKE-Network-green)](https://ike.network/)
 
-> **Note (2026-05-20):** This workspace was previously named
-> `ike-example-ws`, with subprojects `example-project` and `its`
+> **Note (2026-05-20 / 2026-05-23):** This workspace was originally
+> named `ike-example-ws`, with subprojects `example-project` and `its`
 > (the `ike-example-its` repo). All four were renamed under the
 > canonical naming policy in IKE-Network/ike-issues#467 so the
 > artifact ID, git repo name, on-disk directory, and
-> workspace.yaml subproject key all match. GitHub redirects keep
-> old clone URLs working.
+> workspace.yaml subproject key all match. The workspace was
+> further renamed from `workspace-example` to
+> `workspace-reactor-example` under the `-wsr` aggregator-reactor
+> suffix policy — see the
+> `arch-workspace-and-workspace-reactor` topic in
+> `ike-lab-documents`. GitHub redirects keep old clone URLs
+> working.
 
 Workspace aggregator that orchestrates three consumer-side
 subprojects (`doc-example`, `project-example`,
@@ -32,8 +37,8 @@ subprojects and build the cascade as a single reactor.
 ## Bootstrap
 
 ```bash
-git clone https://github.com/IKE-Network/workspace-example.git
-cd workspace-example
+git clone https://github.com/IKE-Network/workspace-reactor-example.git
+cd workspace-reactor-example
 
 mvn ws:scaffold-init # clone subprojects per workspace.yaml
 mvn ws:overview      # print the workspace dashboard
@@ -73,7 +78,7 @@ declarations.
 ## Release Cascade
 
 ```
-ike-tooling → ike-docs → ike-platform → [ workspace: { doc-example, project-example, integration-tests-example } → workspace-example ]
+ike-tooling → ike-docs → ike-platform → [ workspace: { doc-example, project-example, integration-tests-example } → workspace-reactor-example ]
 ```
 
 `ike-tooling` is bootstrapped out-of-band (it releases itself using
@@ -110,7 +115,7 @@ The standards most directly relevant to a workspace consumer are
 
 ## Links
 
-- **Documentation:** [`https://ike.network/workspace-example/`](https://ike.network/workspace-example/)
+- **Documentation:** [`https://ike.network/workspace-reactor-example/`](https://ike.network/workspace-reactor-example/)
 - **Subproject sites** (each publishes its own top-level gh-pages):
   - [`doc-example`](https://ike.network/doc-example/) — documentation-only example
   - [`project-example`](https://ike.network/project-example/) — Java + docs example
@@ -121,7 +126,7 @@ The standards most directly relevant to a workspace consumer are
   [`ike-platform`](https://ike.network/ike-platform/)
 - **Build standards:** [`ike-build-standards`](https://ike.network/ike-tooling/ike-build-standards/)
 - **Issues:** [`IKE-Network/ike-issues`](https://github.com/IKE-Network/ike-issues) (cross-project tracker)
-- **Source:** [`IKE-Network/workspace-example`](https://github.com/IKE-Network/workspace-example)
+- **Source:** [`IKE-Network/workspace-reactor-example`](https://github.com/IKE-Network/workspace-reactor-example)
 
 ## History
 

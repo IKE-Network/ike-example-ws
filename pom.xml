@@ -32,20 +32,20 @@
     </parent>
 
     <groupId>network.ike.examples</groupId>
-    <artifactId>workspace-example</artifactId>
+    <artifactId>workspace-reactor-example</artifactId>
     <version>24-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>IKE Workspace Example</name>
+    <name>IKE Workspace Reactor Example</name>
 
     <!-- Locally declared so the cascade's coordinate-to-repository
          lookup resolves a real repo URL, not the artifactId-appended
          path Maven would otherwise inherit from ike-parent (and in
          turn ike-base-parent). See IKE-Network/ike-issues#496. -->
     <scm>
-        <connection>scm:git:https://github.com/IKE-Network/workspace-example.git</connection>
-        <developerConnection>scm:git:git@github.com:IKE-Network/workspace-example.git</developerConnection>
-        <url>https://github.com/IKE-Network/workspace-example</url>
+        <connection>scm:git:https://github.com/IKE-Network/workspace-reactor-example.git</connection>
+        <developerConnection>scm:git:git@github.com:IKE-Network/workspace-reactor-example.git</developerConnection>
+        <url>https://github.com/IKE-Network/workspace-reactor-example</url>
         <tag>HEAD</tag>
     </scm>
 

@@ -1,10 +1,10 @@
-# workspace-example — Project Notes
+# workspace-reactor-example — Project Notes
 
 <!-- Migrated from CLAUDE.md by ws:init.
      This file is for hand-authored, project-specific information.
      Commit this file to git. -->
 
-# IKE Workspace Example — Claude Standards
+# IKE Workspace Reactor Example — Claude Standards
 
 ## Initial Setup — ALWAYS DO THIS FIRST
 
@@ -24,10 +24,13 @@ After validate completes, read and follow these files in `.claude/standards/`:
 
 ## Project Overview
 
-This is **IKE Workspace Example** (formerly `ike-example-ws`) — a
-workspace aggregator for the IKE example template set. It is not
-a component repo; it's a coordination layer that orchestrates
-multi-repo releases and end-to-end integration testing.
+This is **IKE Workspace Reactor Example** (originally `ike-example-ws`,
+then `workspace-example`) — a workspace aggregator for the IKE
+example template set. It is not a component repo; it's a
+coordination layer that orchestrates multi-repo releases and
+end-to-end integration testing. The `-wsr` suffix marks it as an
+aggregator that is itself activated as a Maven reactor; see the
+`arch-workspace-and-workspace-reactor` topic in `ike-lab-documents`.
 
 Clone this repo and run `mvn ws:scaffold-init` to pull down all the component
 repos declared in `workspace.yaml`. After the initial clone, the
@@ -37,7 +40,7 @@ exists on disk (file-activated profiles).
 ### Component Layout
 
 ```
-workspace-example/
+workspace-reactor-example/
 ├── workspace.yaml                  ← the manifest
 ├── pom.xml                         ← workspace aggregator
 ├── .mvn/extensions.xml             ← ike-workspace-extension registration
@@ -49,7 +52,7 @@ workspace-example/
 ### Release Cascade
 
 ```
-ike-tooling → ike-docs → ike-platform → { doc-example, project-example, integration-tests-example } → workspace-example
+ike-tooling → ike-docs → ike-platform → { doc-example, project-example, integration-tests-example } → workspace-reactor-example
 ```
 
 This workspace covers the consumer-side portion; the foundation

@@ -9,7 +9,7 @@ source of truth for which subprojects this workspace orchestrates,
 where they live in Git, what branch they track, and the dependency
 relationships that drive `ws:*` goal ordering.
 
-This page walks through `workspace-example/workspace.yaml` field by
+This page walks through `workspace-reactor-example/workspace.yaml` field by
 field. Use it as a template when authoring a new workspace.
 
 == File location
@@ -33,7 +33,7 @@ generated: 2026-05-20
 
 workspace-root:
   groupId: network.ike.examples
-  artifactId: workspace-example
+  artifactId: workspace-reactor-example
   version: 23-SNAPSHOT
 
 defaults:
@@ -136,7 +136,7 @@ Optional per-subproject fields:
 
 == Why `ike-tooling`, `ike-docs`, `ike-platform`, and `ike-workspace-extension` are NOT subprojects
 
-`workspace-example/workspace.yaml` lists three subprojects:
+`workspace-reactor-example/workspace.yaml` lists three subprojects:
 `doc-example`, `project-example`, and `integration-tests-example`.
 The IKE Network
 foundation repos — `ike-tooling`, `ike-docs`, `ike-platform`,
@@ -266,7 +266,7 @@ IKE-Network/ike-issues#460 for the design.
 
 == See also
 
-* link:index.html[workspace-example overview] — the workspace landing
+* link:index.html[workspace-reactor-example overview] — the workspace landing
   page.
 * https://ike.network/integration-tests-example/[Integration Test Suite] —
   what the `integration-tests-example/` reactor proves about

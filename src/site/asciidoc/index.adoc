@@ -1,4 +1,4 @@
-= workspace-example
+= workspace-reactor-example
 :icons: font
 :source-highlighter: coderay
 
@@ -9,13 +9,16 @@ subprojects: `doc-example`, `project-example`, and
 declared in `workspace.yaml`. A subsequent `mvn clean install`
 rebuilds them in dependency order from a single command.
 
-Previously named `ike-example-ws` (with subprojects
-`example-project` and `its`); renamed to `workspace-example` on
-2026-05-20 under the canonical naming policy
+Originally `ike-example-ws` (with subprojects `example-project`
+and `its`); renamed to `workspace-example` on 2026-05-20 under the
+canonical naming policy
 (link:https://github.com/IKE-Network/ike-issues/issues/467[ike-issues#467]):
 artifact ID, git repo name, on-disk directory, and workspace.yaml
-subproject key must all match. GitHub redirects keep old clone
-URLs working.
+subproject key must all match. Renamed again to
+`workspace-reactor-example` on 2026-05-23 under the `-wsr`
+aggregator-reactor suffix policy — see the
+`arch-workspace-and-workspace-reactor` topic in `ike-lab-documents`
+for the vocabulary. GitHub redirects keep old clone URLs working.
 
 The foundation repos `ike-tooling`, `ike-docs`, and `ike-platform`
 are *not* subprojects — they are consumed at their released
@@ -27,14 +30,14 @@ canonical template for an *IKE workspace aggregator*.
 |===
 | Coordinate | Value
 | Group ID    | `network.ike.examples`
-| Artifact    | `workspace-example`
+| Artifact    | `workspace-reactor-example`
 | Packaging   | POM (workspace aggregator)
 | Parent      | `network.ike.platform:ike-parent`
 |===
 
 == Role in the IKE Ecosystem
 
-`workspace-example` is a *coordination layer*, not a component repo. It
+`workspace-reactor-example` is a *coordination layer*, not a component repo. It
 holds no production artifacts and contributes no code to releases.
 Its job is to make multi-repo operations — cross-repo feature
 branches, coordinated releases, dependency-version alignment — work
@@ -54,7 +57,7 @@ The two component-repo templates it complements:
 | Doc-only consumer template — single-repo project whose primary
   deliverable is a published document.
 
-| **`workspace-example`** *(this site)*
+| **`workspace-reactor-example`** *(this site)*
 | Workspace-aggregator template — orchestrates multiple component
   repositories into a single coordinated build/release/feature
   cycle.
@@ -122,10 +125,10 @@ co-developed inside this workspace. See the comment block in
 
 [source]
 ----
-ike-tooling -> ike-docs -> ike-platform -> { doc-example, project-example, integration-tests-example } -> [workspace-example]
+ike-tooling -> ike-docs -> ike-platform -> { doc-example, project-example, integration-tests-example } -> [workspace-reactor-example]
 ----
 
-`workspace-example` is the last link in the cascade. Its role is to
+`workspace-reactor-example` is the last link in the cascade. Its role is to
 verify — through its integration tests — that releasing the full
 cascade produces consumable artifacts on Nexus before any tags are
 cut on the component repos.
@@ -133,7 +136,7 @@ cut on the component repos.
 == Layout
 
 ----
-workspace-example/
+workspace-reactor-example/
 ├── workspace.yaml              <1>
 ├── pom.xml                     <2>
 ├── .mvn/extensions.xml         <3>
@@ -245,7 +248,7 @@ subprojects to the cascade), copy:
 
 == Not published to Maven Central
 
-`workspace-example` is a reference template for an IKE workspace
+`workspace-reactor-example` is a reference template for an IKE workspace
 aggregator, not a library. It holds no production artifacts and is
 deliberately *not* published to Maven Central — nothing should ever
 declare a dependency on it. You consume it by copying its
@@ -262,7 +265,7 @@ Network landing page] for the foundation/examples split.
 | Resource | URL
 
 | Source repository
-| https://github.com/IKE-Network/workspace-example
+| https://github.com/IKE-Network/workspace-reactor-example
 
 | Cross-project issue tracker
 | https://github.com/IKE-Network/ike-issues

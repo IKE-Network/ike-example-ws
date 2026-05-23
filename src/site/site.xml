@@ -18,7 +18,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0
       https://maven.apache.org/xsd/site-2.0.0.xsd"
-      name="workspace-example">
+      name="workspace-reactor-example">
 
     <skin>
         <groupId>org.sentrysoftware.maven</groupId>
@@ -36,23 +36,23 @@
                    integration test, IKE Network</keywords>
     </custom>
 
-    <bannerLeft name="workspace-example" href="https://ike.network/">
+    <bannerLeft name="workspace-reactor-example" href="https://ike.network/">
         <image src="images/ike-logo.svg" alt="IKE"/>
     </bannerLeft>
 
     <bannerRight name="GitHub &lt;i class='fa-brands fa-github'&gt;&lt;/i&gt;"
-        href="https://github.com/IKE-Network/workspace-example"/>
+        href="https://github.com/IKE-Network/workspace-reactor-example"/>
 
     <publishDate format="yyyy-MM-dd"/>
 
     <body>
         <breadcrumbs>
             <item name="IKE" href="https://ike.network/"/>
-            <item name="workspace-example" href="index.html"/>
+            <item name="workspace-reactor-example" href="index.html"/>
         </breadcrumbs>
 
         <links>
-            <item name="GitHub" href="https://github.com/IKE-Network/workspace-example"/>
+            <item name="GitHub" href="https://github.com/IKE-Network/workspace-reactor-example"/>
             <item name="Issues" href="https://github.com/IKE-Network/ike-issues"/>
         </links>
 
