@@ -1,12 +1,12 @@
 ---
-date_published: 2026-05-20
-date_modified: 2026-05-20
-canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/built-with.html
+date_published: 2026-05-26
+date_modified: 2026-05-26
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-reactor-example/built-with.html
 ---
 
 # Built With
 
-Open-source software that `workspace-example` 23 depends on, links against, ships within, or invokes at runtime.
+Open-source software that `workspace-reactor-example` 24 depends on, links against, ships within, or invokes at runtime.
 
 Three layers of attribution ship with each release:
 
@@ -87,8 +87,8 @@ Direct dependencies of this module, grouped by SPDX expression. Generated from `
 
 | SPDX Expression | Components |
 | --- | --- |
-| `Apache-2.0` | 5 |
-| **Total** | **5** |
+| `Apache-2.0` | 6 |
+| **Total** | **6** |
 
 For full per-component detail (group, artifact, version, hashes, transitive deps), see [bom.json](bom.json)[1] or [licenses.html](licenses.html)[2].
 

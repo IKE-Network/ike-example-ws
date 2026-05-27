@@ -6,15 +6,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Project Plugin Management &ndash; workspace-example</title>
+	<title>Project Plugin Management &ndash; workspace-reactor-example</title>
 
 	<meta name="keywords" content="IKE,workspace,aggregator,ws goals,multi-repo,integration test,IKE Network" />
 	<meta name="generator" content="Maven Site Plugin, Doxia Site Renderer 2.0.0, Skin sentry-maven-skin 7.0.00, with org.apache.maven.plugins:maven-project-info-reports-plugin:3.9.0:plugin-management" />
-	<meta property="article:published_time" content="2026-05-21T00:00:00" />
-	<meta property="article:modified_time" content="2026-05-21T00:00:00" />
+	<meta property="article:published_time" content="2026-05-27T00:00:00" />
+	<meta property="article:modified_time" content="2026-05-27T00:00:00" />
 
 
-	<link rel="canonical" href="https://ike.network/ike-platform/ike-parent/workspace-example/plugin-management.html">
+	<link rel="canonical" href="https://ike.network/ike-platform/ike-parent/workspace-reactor-example/plugin-management.html">
 	<link rel="alternate" type="text/markdown" href="plugin-management.html.md">	<link rel="stylesheet" href="./css/main-combined.css">
 	<link rel="stylesheet" href="./css/site.css">
 
@@ -23,9 +23,9 @@
 	"@context": "https://schema.org",
 	"@type": "TechArticle",
 	"headline": "Project Plugin Management",
-	"datePublished": "2026-05-21T00:00:00",
-	"dateModified": "2026-05-21T00:00:00",
-	"mainEntityOfPage": "https://ike.network/ike-platform/ike-parent/workspace-example/plugin-management.html",
+	"datePublished": "2026-05-27T00:00:00",
+	"dateModified": "2026-05-27T00:00:00",
+	"mainEntityOfPage": "https://ike.network/ike-platform/ike-parent/workspace-reactor-example/plugin-management.html",
 }
 </script>
 </head>
@@ -41,26 +41,25 @@
 				<a class="navbar-brand" href="https://ike.network/"><img src="images/ike-logo.svg" alt="IKE"></a>
 			</div>
 			<ul class="nav navbar-nav">
-<li><a href="https://github.com/IKE-Network/workspace-example" class="externalLink">GitHub</a></li>
 <li><a href="https://github.com/IKE-Network/ike-issues" class="externalLink">Issues</a></li>
 			</ul>
 		<ul class="nav navbar-nav navbar-right">
 <li class="dark-toggle"><toggle ng-model="$matchMedia.dark" ng-change="switchColors()" size="btn-xs" width="34px" height="22px" off-class="day" on-class="night" toggle-class="navbar-btn dark-toggle" on="<i class='fa-solid fa-moon'></i>" off="<i class='sun-icon'></i>" title="Switch between dark and light color schemes" tabindex="0"></toggle></li>
 					<li>
-					<a href="https://github.com/IKE-Network/workspace-example">GitHub <i class='fa-brands fa-github'></i></a>
+					<a href="https://github.com/IKE-Network/workspace-reactor-example">GitHub <i class='fa-brands fa-github'></i></a>
 				</li>
 				</ul>
 	</div>
 
 	<div class="visible-xs navbar navbar-inverse site-logo site-logo-xs">
 			<ul class="nav navbar-nav">
-				<li><a href="https://ike.network/">workspace-example</a></li>
+				<li><a href="https://ike.network/">workspace-reactor-example</a></li>
 			</ul>
 		</div>
 	<div class="visible-xs navbar navbar-inverse site-logo site-logo-xs breadcrumb-xs">
 			<ul class="nav navbar-nav">
 <li><a href="https://ike.network/">IKE</a></li>
-<li><a href="index.html">workspace-example</a></li>
+<li><a href="index.html">workspace-reactor-example</a></li>
 			</ul>
 		</div>
 
@@ -81,18 +80,18 @@
 					<div class="navbar-brand">
 					<ol class="breadcrumb hidden-xs">
 <li><a href="https://ike.network/">IKE</a></li>
-<li><a href="index.html">workspace-example</a></li>
+<li><a href="index.html">workspace-reactor-example</a></li>
 						</ol>
-					<div class="header-title">workspace-example</div>
+					<div class="header-title">workspace-reactor-example</div>
 						<div class="header-subtitle">
 							<span class="version-prefix">Version</span>
-							<span class="version">23</span>
+							<span class="version">24</span>
 						</div>
 					</div>
 					<div class="navbar-brand header-xxs visible-xs">
-						<div class="header-title">workspace-example</div>
+						<div class="header-title">workspace-reactor-example</div>
 						<div class="header-subtitle">
-							Version <strong>23</strong>
+							Version <strong>24</strong>
 						</div>
 					</div>
 					<form class="navbar-form site-search site-search-xs visible-xs" ng-show="showSearchInput">
@@ -192,7 +191,7 @@
 
 					<div class="col-md-12">
 					<div class="page-header visible-print-block">
-							<h3><small>workspace-example</small><br/>							IKE Workspace Example 23
+							<h3><small>workspace-reactor-example</small><br/>							IKE Workspace Reactor Example 24
 							</h3>
 						</div>
 						<div class="parents hidden-xs">
@@ -236,132 +235,142 @@
   <tbody>
    <tr class="b">
     <td>network.ike.docs</td>
-    <td><a href="https://github.com/IKE-Network/ike-docs" class="externalLink">semantic-linebreak</a><sup class="visible-print-inline">[1]</sup></td>
-    <td>49</td>
+    <td><a href="https://github.com/IKE-Network/ike-docs" class="externalLink">ike-doc-maven-plugin</a><sup class="visible-print-inline">[1]</sup></td>
+    <td>65</td>
    </tr>
    <tr class="a">
-    <td>network.ike.platform</td>
-    <td><a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/">ike-workspace-maven-plugin</a><sup class="visible-print-inline">[2]</sup></td>
-    <td>79</td>
+    <td>network.ike.docs</td>
+    <td><a href="https://github.com/IKE-Network/ike-docs" class="externalLink">semantic-linebreak</a><sup class="visible-print-inline">[1]</sup></td>
+    <td>65</td>
    </tr>
    <tr class="b">
-    <td>network.ike.tooling</td>
-    <td><a href="https://ike.network/ike-tooling/ike-maven-plugin/">ike-maven-plugin</a><sup class="visible-print-inline">[3]</sup></td>
-    <td>193</td>
+    <td>network.ike.platform</td>
+    <td><a href="https://ike.network/ike-platform/ike-workspace-maven-plugin/">ike-workspace-maven-plugin</a><sup class="visible-print-inline">[2]</sup></td>
+    <td>96</td>
    </tr>
    <tr class="a">
+    <td>network.ike.tooling</td>
+    <td><a href="https://ike.network/ike-tooling/ike-maven-plugin/">ike-maven-plugin</a><sup class="visible-print-inline">[3]</sup></td>
+    <td>217</td>
+   </tr>
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-artifact-plugin/" class="externalLink">maven-artifact-plugin</a><sup class="visible-print-inline">[4]</sup></td>
     <td>3.5.2</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-assembly-plugin/" class="externalLink">maven-assembly-plugin</a><sup class="visible-print-inline">[5]</sup></td>
     <td>3.7.1</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-clean-plugin/" class="externalLink">maven-clean-plugin</a><sup class="visible-print-inline">[6]</sup></td>
     <td>3.4.0</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-compiler-plugin/" class="externalLink">maven-compiler-plugin</a><sup class="visible-print-inline">[7]</sup></td>
     <td>3.14.0</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-dependency-plugin/" class="externalLink">maven-dependency-plugin</a><sup class="visible-print-inline">[8]</sup></td>
     <td>3.9.0</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-deploy-plugin/" class="externalLink">maven-deploy-plugin</a><sup class="visible-print-inline">[9]</sup></td>
     <td>3.1.3</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/enforcer/maven-enforcer-plugin/" class="externalLink">maven-enforcer-plugin</a><sup class="visible-print-inline">[10]</sup></td>
     <td>3.5.0</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/surefire/maven-failsafe-plugin/" class="externalLink">maven-failsafe-plugin</a><sup class="visible-print-inline">[11]</sup></td>
     <td>3.5.2</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-gpg-plugin/" class="externalLink">maven-gpg-plugin</a><sup class="visible-print-inline">[12]</sup></td>
     <td>3.2.8</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-install-plugin/" class="externalLink">maven-install-plugin</a><sup class="visible-print-inline">[13]</sup></td>
     <td>3.1.3</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-jar-plugin/" class="externalLink">maven-jar-plugin</a><sup class="visible-print-inline">[14]</sup></td>
     <td>3.4.2</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-javadoc-plugin/" class="externalLink">maven-javadoc-plugin</a><sup class="visible-print-inline">[15]</sup></td>
     <td>3.11.2</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-project-info-reports-plugin/" class="externalLink">maven-project-info-reports-plugin</a><sup class="visible-print-inline">[16]</sup></td>
     <td>3.9.0</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-resources-plugin/" class="externalLink">maven-resources-plugin</a><sup class="visible-print-inline">[17]</sup></td>
     <td>3.3.1</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-site-plugin/" class="externalLink">maven-site-plugin</a><sup class="visible-print-inline">[18]</sup></td>
     <td>3.21.0</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/plugins/maven-source-plugin/" class="externalLink">maven-source-plugin</a><sup class="visible-print-inline">[19]</sup></td>
     <td>3.3.1</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.apache.maven.plugins</td>
     <td><a href="https://maven.apache.org/surefire/maven-surefire-plugin/" class="externalLink">maven-surefire-plugin</a><sup class="visible-print-inline">[20]</sup></td>
     <td>3.5.2</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.asciidoctor</td>
     <td><a href="https://github.com/asciidoctor/asciidoctor-maven-plugin" class="externalLink">asciidoctor-maven-plugin</a><sup class="visible-print-inline">[21]</sup></td>
     <td>3.2.0</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.codehaus.mojo</td>
     <td><a href="https://www.mojohaus.org/build-helper-maven-plugin/" class="externalLink">build-helper-maven-plugin</a><sup class="visible-print-inline">[22]</sup></td>
     <td>3.6.0</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.codehaus.mojo</td>
     <td><a href="https://www.mojohaus.org/xml-maven-plugin/" class="externalLink">xml-maven-plugin</a><sup class="visible-print-inline">[23]</sup></td>
     <td>1.1.0</td>
    </tr>
-   <tr class="a">
+   <tr class="b">
     <td>org.cyclonedx</td>
     <td><a href="https://github.com/CycloneDX/cyclonedx-maven-plugin" class="externalLink">cyclonedx-maven-plugin</a><sup class="visible-print-inline">[24]</sup></td>
     <td>2.9.0</td>
    </tr>
-   <tr class="b">
+   <tr class="a">
     <td>org.jacoco</td>
     <td><a href="https://www.jacoco.org/jacoco/trunk/doc/maven.html" class="externalLink">jacoco-maven-plugin</a><sup class="visible-print-inline">[25]</sup></td>
     <td>0.8.14</td>
    </tr>
+   <tr class="b">
+    <td>org.jreleaser</td>
+    <td><a href="https://github.com/jreleaser/jreleaser" class="externalLink">jreleaser-maven-plugin</a><sup class="visible-print-inline">[26]</sup></td>
+    <td>1.24.0</td>
+   </tr>
    <tr class="a">
     <td>org.openrewrite.maven</td>
-    <td><a href="https://openrewrite.github.io/rewrite-maven-plugin/" class="externalLink">rewrite-maven-plugin</a><sup class="visible-print-inline">[26]</sup></td>
+    <td><a href="https://openrewrite.github.io/rewrite-maven-plugin/" class="externalLink">rewrite-maven-plugin</a><sup class="visible-print-inline">[27]</sup></td>
     <td>6.36.0</td>
    </tr>
   </tbody>
@@ -406,7 +415,8 @@
 								<li>[23] https://www.mojohaus.org/xml-maven-plugin/</li>
 								<li>[24] https://github.com/CycloneDX/cyclonedx-maven-plugin</li>
 								<li>[25] https://www.jacoco.org/jacoco/trunk/doc/maven.html</li>
-								<li>[26] https://openrewrite.github.io/rewrite-maven-plugin/</li>
+								<li>[26] https://github.com/jreleaser/jreleaser</li>
+								<li>[27] https://openrewrite.github.io/rewrite-maven-plugin/</li>
 								</ul>
 							</div>
 						</div>
@@ -487,14 +497,13 @@
 	<footer class="footer">
 
 		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
-			<strong>workspace-example 23</strong>
+			<strong>workspace-reactor-example 24</strong>
 			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
-			Documentation as of <strong><time datetime="2026-05-21">2026-05-21</time></strong>
+			Documentation as of <strong><time datetime="2026-05-27">2026-05-27</time></strong>
 		</p>
 	<div class="visible-xs navbar navbar-inverse site-logo site-logo-xs">
 			<ul class="nav navbar-nav">
-			<li><a href="https://ike.network/">workspace-example</a></li>
-<li><a href="https://github.com/IKE-Network/workspace-example" class="externalLink">GitHub</a></li>
+			<li><a href="https://ike.network/">workspace-reactor-example</a></li>
 <li><a href="https://github.com/IKE-Network/ike-issues" class="externalLink">Issues</a></li>
 <li class="dark-toggle dark-toggle-xs">
     <toggle
@@ -511,7 +520,7 @@
         title="Switch between dark and light color schemes"
         tabindex="0"></toggle>
 		</li>
-			<li><a href="https://github.com/IKE-Network/workspace-example">GitHub <i class='fa-brands fa-github'></i></a></li>
+			<li><a href="https://github.com/IKE-Network/workspace-reactor-example">GitHub <i class='fa-brands fa-github'></i></a></li>
 		</ul>
 		</div>
 

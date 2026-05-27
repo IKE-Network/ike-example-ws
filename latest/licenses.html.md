@@ -1,19 +1,19 @@
 ---
-date_published: 2026-05-20
-date_modified: 2026-05-20
-canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/licenses.html
+date_published: 2026-05-26
+date_modified: 2026-05-26
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-reactor-example/licenses.html
 ---
 
 # Licenses (SPDX)
 
-Licenses for declared dependencies of `workspace-example` 23, grouped by SPDX expression. Rendered from `[bom.json](bom.json)[1]` (CycloneDX) at `pre-site` phase by `ike:render-spdx-licenses` (ike-issues#335).
+Licenses for declared dependencies of `workspace-reactor-example` 24, grouped by SPDX expression. Rendered from `[bom.json](bom.json)[1]` (CycloneDX) at `pre-site` phase by `ike:render-spdx-licenses` (ike-issues#335).
 
 ## [#summary](#summary)Summary
 
 | SPDX Expression | Components |
 | --- | --- |
-| `Apache-2.0` | 5 |
-| **Total** | **5** |
+| `Apache-2.0` | 6 |
+| **Total** | **6** |
 
 ## [#apache-2-0](#apache-2-0)Apache-2.0
 
@@ -21,11 +21,12 @@ Reference: [Apache-2.0 on spdx.org](https://spdx.org/licenses/Apache-2.0.html)[2
 
 | Group | Artifact | Version |
 | --- | --- | --- |
-| `network.ike.tooling` | `ike-build-standards` | `193` |
-| `network.ike.tooling` | `ike-build-standards` | `193` |
-| `network.ike.tooling` | `ike-build-standards` | `193` |
-| `network.ike.tooling` | `ike-build-standards` | `193` |
-| `network.ike.tooling` | `ike-build-standards` | `193` |
+| `network.ike` | `ike-base-parent` | `15` |
+| `network.ike.tooling` | `ike-build-standards` | `217` |
+| `network.ike.tooling` | `ike-build-standards` | `217` |
+| `network.ike.tooling` | `ike-build-standards` | `217` |
+| `network.ike.tooling` | `ike-build-standards` | `217` |
+| `network.ike.tooling` | `ike-build-standards` | `217` |
 
 ## [#see-also](#see-also)See also
 

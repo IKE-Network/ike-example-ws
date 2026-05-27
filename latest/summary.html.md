@@ -1,7 +1,7 @@
 ---
-date_published: 2026-05-20
-date_modified: 2026-05-20
-canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/summary.html
+date_published: 2026-05-26
+date_modified: 2026-05-26
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-reactor-example/summary.html
 ---
 
 # Project Summary
@@ -10,9 +10,9 @@ canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/sum
 
 | Field | Value |
 | --- | --- |
-| Name | IKE Workspace Example |
+| Name | IKE Workspace Reactor Example |
 | Description | Standard parent POM for IKE Network projects. Inheriting this POM provides build conventions (Java 25 compiler, test harness, GPG signing, AsciiDoc documentation pipeline) from the ike-platform reactor root and centralized dependency version management declared inline. Declares ike-doc-maven-plugin (from network.ike.docs) with extensions=true to provide the ike-doc custom packaging type to external doc projects. |
-| Homepage | [https://ike.network/ike-platform/ike-parent/workspace-example/](https://ike.network/ike-platform/ike-parent/workspace-example/)[1] |
+| Homepage | [https://ike.network/ike-platform/ike-parent/workspace-reactor-example/](https://ike.network/ike-platform/ike-parent/workspace-reactor-example/)[1] |
 
 ## [Project Organization](#project-organization)
 
@@ -26,6 +26,6 @@ canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/sum
 | Field | Value |
 | --- | --- |
 | GroupId | network.ike.examples |
-| ArtifactId | workspace-example |
-| Version | 23 |
+| ArtifactId | workspace-reactor-example |
+| Version | 24 |
 | Type | pom |

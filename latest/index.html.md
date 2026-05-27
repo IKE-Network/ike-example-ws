@@ -1,27 +1,27 @@
 ---
-date_published: 2026-05-20
-date_modified: 2026-05-20
-canonical_url: https://ike.network/ike-platform/ike-parent/workspace-example/index.html
+date_published: 2026-05-26
+date_modified: 2026-05-26
+canonical_url: https://ike.network/ike-platform/ike-parent/workspace-reactor-example/index.html
 ---
 
-# workspace-example
+# workspace-reactor-example
 
 A workspace aggregator that orchestrates three consumer-side subprojects: `doc-example`, `project-example`, and `integration-tests-example`. Cloning this repo and running `mvn ws:scaffold-init` pulls all three down at the versions declared in `workspace.yaml`. A subsequent `mvn clean install` rebuilds them in dependency order from a single command.
 
-Previously named `ike-example-ws` (with subprojects `example-project` and `its`); renamed to `workspace-example` on 2026-05-20 under the canonical naming policy ([ike-issues#467](https://github.com/IKE-Network/ike-issues/issues/467)[1]): artifact ID, git repo name, on-disk directory, and workspace.yaml subproject key must all match. GitHub redirects keep old clone URLs working.
+Originally `ike-example-ws` (with subprojects `example-project` and `its`); renamed to `workspace-example` on 2026-05-20 under the canonical naming policy ([ike-issues#467](https://github.com/IKE-Network/ike-issues/issues/467)[1]): artifact ID, git repo name, on-disk directory, and workspace.yaml subproject key must all match. Renamed again to `workspace-reactor-example` on 2026-05-23 under the `-wsr` aggregator-reactor suffix policy — see the `arch-workspace-and-workspace-reactor` topic in `ike-lab-documents` for the vocabulary. GitHub redirects keep old clone URLs working.
 
 The foundation repos `ike-tooling`, `ike-docs`, and `ike-platform` are **not** subprojects — they are consumed at their released versions from Nexus, not co-developed inside this workspace (see "Subprojects" below for the rationale). This is the canonical template for an **IKE workspace aggregator**.
 
 | Coordinate | Value |
 | --- | --- |
 | Group ID | `network.ike.examples` |
-| Artifact | `workspace-example` |
+| Artifact | `workspace-reactor-example` |
 | Packaging | POM (workspace aggregator) |
 | Parent | `network.ike.platform:ike-parent` |
 
 ## [#role-in-the-ike-ecosystem](#role-in-the-ike-ecosystem)Role in the IKE Ecosystem
 
-`workspace-example` is a **coordination layer**, not a component repo. It holds no production artifacts and contributes no code to releases. Its job is to make multi-repo operations — cross-repo feature branches, coordinated releases, dependency-version alignment — work from one command rather than four.
+`workspace-reactor-example` is a **coordination layer**, not a component repo. It holds no production artifacts and contributes no code to releases. Its job is to make multi-repo operations — cross-repo feature branches, coordinated releases, dependency-version alignment — work from one command rather than four.
 
 The two component-repo templates it complements:
 
@@ -29,7 +29,7 @@ The two component-repo templates it complements:
 | --- | --- |
 | [project-example](https://ike.network/project-example/)[2] | `JAR + docs` consumer template — single-repo project that ships compiled Java code AND rendered AsciiDoc docs. |
 | [doc-example](https://ike.network/doc-example/)[3] | Doc-only consumer template — single-repo project whose primary deliverable is a published document. |
-| **`workspace-example`** **(this site)** | Workspace-aggregator template — orchestrates multiple component repositories into a single coordinated build/release/feature cycle. |
+| **`workspace-reactor-example`** **(this site)** | Workspace-aggregator template — orchestrates multiple component repositories into a single coordinated build/release/feature cycle. |
 
 ## [#subprojects](#subprojects)Subprojects
 
@@ -52,15 +52,15 @@ The foundation repos (`ike-tooling`, `ike-docs`, `ike-platform`) are **intention
 ## [#release-cascade](#release-cascade)Release Cascade
 
 ```
-ike-tooling -> ike-docs -> ike-platform -> { doc-example, project-example, integration-tests-example } -> [workspace-example]
+ike-tooling -> ike-docs -> ike-platform -> { doc-example, project-example, integration-tests-example } -> [workspace-reactor-example]
 ```
 
-`workspace-example` is the last link in the cascade. Its role is to verify — through its integration tests — that releasing the full cascade produces consumable artifacts on Nexus before any tags are cut on the component repos.
+`workspace-reactor-example` is the last link in the cascade. Its role is to verify — through its integration tests — that releasing the full cascade produces consumable artifacts on Nexus before any tags are cut on the component repos.
 
 ## [#layout](#layout)Layout
 
 ```
-workspace-example/
+workspace-reactor-example/
 ├── workspace.yaml              (1)
 ├── pom.xml                     (2)
 ├── .mvn/extensions.xml         (3)
@@ -117,13 +117,13 @@ When creating a new IKE workspace aggregator (e.g., a workspace that holds a dif
 
 ## [#not-published-to-maven-central](#not-published-to-maven-central)Not published to Maven Central
 
-`workspace-example` is a reference template for an IKE workspace aggregator, not a library. It holds no production artifacts and is deliberately **not** published to Maven Central — nothing should ever declare a dependency on it. You consume it by copying its `workspace.yaml`, aggregator `pom.xml`, and `src/site/` into a workspace of your own. The IKE foundation (`ike-base-parent`, `ike-tooling`, `ike-docs`, `ike-platform`) is the part published to Central and meant to be inherited; see [the IKE Network landing page](https://ike.network/)[11] for the foundation/examples split.
+`workspace-reactor-example` is a reference template for an IKE workspace aggregator, not a library. It holds no production artifacts and is deliberately **not** published to Maven Central — nothing should ever declare a dependency on it. You consume it by copying its `workspace.yaml`, aggregator `pom.xml`, and `src/site/` into a workspace of your own. The IKE foundation (`ike-base-parent`, `ike-tooling`, `ike-docs`, `ike-platform`) is the part published to Central and meant to be inherited; see [the IKE Network landing page](https://ike.network/)[11] for the foundation/examples split.
 
 ## [#resources](#resources)Resources
 
 | Resource | URL |
 | --- | --- |
-| Source repository | [https://github.com/IKE-Network/workspace-example](https://github.com/IKE-Network/workspace-example)[12] |
+| Source repository | [https://github.com/IKE-Network/workspace-reactor-example](https://github.com/IKE-Network/workspace-reactor-example)[12] |
 | Cross-project issue tracker | [https://github.com/IKE-Network/ike-issues](https://github.com/IKE-Network/ike-issues)[13] |
 | IKE Network landing page | [https://ike.network/](https://ike.network/)[11] |
 | IKE Platform (workspace plugin lives here) | [https://ike.network/ike-platform/](https://ike.network/ike-platform/)[7] |
