@@ -27,7 +27,7 @@
     <parent>
         <groupId>network.ike.platform</groupId>
         <artifactId>ike-parent</artifactId>
-        <version>96</version>
+        <version>97</version>
         <relativePath/>
     </parent>
 
@@ -58,6 +58,10 @@
              integration-tests-example). Documented in ike-network-site
              index.adoc § Examples. -->
         <ike.publishToCentral>false</ike.publishToCentral>
+        <!-- Examples tier — sentry-orange chrome per
+             IKE-Network/ike-issues#545, #546. Distinguishes worked
+             examples from foundation (sentry-green) under ike.network. -->
+        <ike.site.deployment>ike-network-example</ike.site.deployment>
     </properties>
 
     <distributionManagement>
