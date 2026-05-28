@@ -1,0 +1,28 @@
+# integration-tests-example
+
+> End-to-end smoke tests that exercise the IKE Network release
+> cascade as external consumers would. Each IT case clones the
+> intended usage pattern (doc-only project, java + docs, BOM
+> import, ws:create scaffold) in a fresh Maven environment and
+> asserts that the build succeeds and produces the expected
+> artifacts.
+
+## Documentation
+
+- [integration-tests-example](https://ike.network/integration-tests-example/index.html.md)
+- [Dependencies (SBOM)](https://ike.network/integration-tests-example/dependencies.html.md)
+
+## Other
+
+- [Licenses (SPDX)](https://ike.network/integration-tests-example/licenses.html.md)
+- [Built With](https://ike.network/integration-tests-example/built-with.html.md)
+
+## Reports
+
+- [Project Summary](https://ike.network/integration-tests-example/summary.html.md)
+- [Maven Coordinates](https://ike.network/integration-tests-example/dependency-info.html.md)
+- [Project Dependency Management](https://ike.network/integration-tests-example/dependency-management.html.md)
+- [Project Plugins](https://ike.network/integration-tests-example/plugins.html.md)
+- [Project Plugin Management](https://ike.network/integration-tests-example/plugin-management.html.md)
+- [Project Distribution Management](https://ike.network/integration-tests-example/distribution-management.html.md)
+- [Project Information](https://ike.network/integration-tests-example/project-info.html.md)

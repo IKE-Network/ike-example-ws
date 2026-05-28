@@ -1,6 +1,6 @@
 ---
-date_published: 2026-05-26
-date_modified: 2026-05-26
+date_published: 2026-05-27
+date_modified: 2026-05-27
 canonical_url: https://ike.network/ike-platform/ike-parent/workspace-reactor-example/summary.html
 ---
 
@@ -27,5 +27,5 @@ canonical_url: https://ike.network/ike-platform/ike-parent/workspace-reactor-exa
 | --- | --- |
 | GroupId | network.ike.examples |
 | ArtifactId | workspace-reactor-example |
-| Version | 24 |
+| Version | 25-SNAPSHOT |
 | Type | pom |
