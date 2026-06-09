@@ -1,5 +1,12 @@
 # IKE Workspace Reactor Example
 
+<a href="https://ike.network">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://ike.network/brand/powered-by/powered-by-ike-color-on-dark.svg">
+    <img alt="Powered by IKE" height="28" src="https://ike.network/brand/powered-by/powered-by-ike-color-on-light.svg">
+  </picture>
+</a>
+
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Documentation](https://img.shields.io/badge/docs-ike.network%2Fworkspace--example-blue)](https://ike.network/workspace-reactor-example/)
 [![IKE Network](https://img.shields.io/badge/IKE-Network-green)](https://ike.network/)
