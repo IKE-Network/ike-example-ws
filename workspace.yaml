@@ -68,7 +68,7 @@ subprojects:
       network.ike.platform:ike-parent directly from Nexus.
     repo: https://github.com/IKE-Network/doc-example.git
     branch: main
-    version: 34-SNAPSHOT
+    version: 35-SNAPSHOT
     groupId: network.ike.examples
     # ── managed: depends-on is derived from POMs by ws goals; build edges are machine-owned, other relationships are preserved (ike-issues#964) ──
     depends-on: []
@@ -79,7 +79,7 @@ subprojects:
       build that compiles sources, runs tests, and renders AsciiDoc.
     repo: https://github.com/IKE-Network/project-example.git
     branch: main
-    version: 34-SNAPSHOT
+    version: 35-SNAPSHOT
     groupId: network.ike.examples
     # ── managed: depends-on is derived from POMs by ws goals; build edges are machine-owned, other relationships are preserved (ike-issues#964) ──
     depends-on:
@@ -96,7 +96,7 @@ subprojects:
       never blocks a workspace release.
     repo: https://github.com/IKE-Network/integration-tests-example.git
     branch: main
-    version: 26-SNAPSHOT
+    version: 27-SNAPSHOT
     groupId: network.ike.examples
     # ── managed: depends-on is derived from POMs by ws goals; build edges are machine-owned, other relationships are preserved (ike-issues#964) ──
     depends-on: []
