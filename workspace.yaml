@@ -82,7 +82,10 @@ subprojects:
     version: 34-SNAPSHOT
     groupId: network.ike.examples
     # ── managed: depends-on is derived from POMs by ws goals; build edges are machine-owned, other relationships are preserved (ike-issues#964) ──
-    depends-on: []
+    depends-on:
+      - subproject: doc-example
+        relationship: build
+        version-property: doc-example.version
 
   integration-tests-example:
     description: >
