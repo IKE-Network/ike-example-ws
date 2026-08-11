@@ -1,0 +1,13 @@
+# release-wre-proving-1.yaml — one release cycle of this working set.
+# Written by ws:record-release (IKE-Network/ike-issues#973); one file per cycle,
+# one row per released member. Do not hand-edit.
+
+cycle: "wre-proving-1"
+started: "2026-08-11"
+
+members:
+  doc-example:
+    version: "35"
+    tag: "v35"
+    sha: "0289560809c54a3ae8d5c9f0f182d9ca79494798"
+    recorded: "2026-08-11"

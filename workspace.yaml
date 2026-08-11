@@ -68,7 +68,10 @@ subprojects:
       network.ike.platform:ike-parent directly from Nexus.
     repo: https://github.com/IKE-Network/doc-example.git
     branch: main
-    version: 35-SNAPSHOT
+    version: "35"
+    state: tag-aligned
+    kind: release
+    tag: v35
     groupId: network.ike.examples
     # ── managed: depends-on is derived from POMs by ws goals; build edges are machine-owned, other relationships are preserved (ike-issues#964) ──
     depends-on: []
