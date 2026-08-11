@@ -70,6 +70,7 @@ subprojects:
     branch: main
     version: 34-SNAPSHOT
     groupId: network.ike.examples
+    # ── managed: depends-on is derived from POMs by ws goals; build edges are machine-owned, other relationships are preserved (ike-issues#964) ──
     depends-on: []
 
   project-example:
@@ -80,6 +81,7 @@ subprojects:
     branch: main
     version: 34-SNAPSHOT
     groupId: network.ike.examples
+    # ── managed: depends-on is derived from POMs by ws goals; build edges are machine-owned, other relationships are preserved (ike-issues#964) ──
     depends-on: []
 
   integration-tests-example:
@@ -93,4 +95,5 @@ subprojects:
     branch: main
     version: 26-SNAPSHOT
     groupId: network.ike.examples
+    # ── managed: depends-on is derived from POMs by ws goals; build edges are machine-owned, other relationships are preserved (ike-issues#964) ──
     depends-on: []
