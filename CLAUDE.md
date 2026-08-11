@@ -1,8 +1,5 @@
 # workspace-reactor-example
 
-(Formerly `ike-example-ws`; renamed under
-IKE-Network/ike-issues#467.)
-
 ## First Steps
 
 Run `mvn ws:scaffold-init` to clone components, then `mvn validate` to unpack
@@ -11,8 +8,8 @@ full build standards into `.claude/standards/`.
 ## Build
 
 ```bash
-mvn clean verify -DskipTests -T4   # compile + javadoc
-mvn clean verify -T4                # full build with tests
+mvn clean verify -DskipTests -T 1C   # compile + javadoc
+mvn clean verify -T 1C               # full build with tests
 ```
 
 ## Key Conventions
@@ -33,6 +30,12 @@ after building.
   write a proper Maven goal in `ike-maven-plugin` instead
 - **Never embed shell commands inline in POM** — extract to a named script
 - **Never use `git add -A` or `git add .`** — stage specific files
+- **Never use raw git for workspace ops** (commit, push, checkout, merge, branch,
+  stash) — use the `ws:` goals (`ws:commit-publish`, `ws:push`, `ws:switch-publish`, …).
+  `workspace.yaml` `sha:` pins are checkpoint-managed — never hand-edit them.
+  `depends-on` `build` edges are machine-derived from POMs the same way; to declare
+  an edge derivation must not overwrite, use `relationship: bundle`/`content`
+  (hand-declared, preserved). See `.claude/standards/IKE-WORKSPACE.md`
 
 ## Project-Specific Notes
 

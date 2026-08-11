@@ -77,59 +77,11 @@
         </site>
     </distributionManagement>
 
-    <profiles>
-
-        <!-- ── Examples ──────────────────────────────────────────── -->
-        <!-- Foundation repos (ike-tooling, ike-docs, ike-platform)    -->
-        <!-- are intentionally NOT subprojects of this workspace; see  -->
-        <!-- workspace.yaml for the rationale. They are consumed at    -->
-        <!-- their released versions from Nexus.                       -->
-
-        <profile>
-            <id>with-doc-example</id>
-            <activation>
-                <file>
-                    <exists>${project.basedir}/doc-example/pom.xml</exists>
-                </file>
-            </activation>
-            <subprojects>
-                <subproject>doc-example</subproject>
-            </subprojects>
-        </profile>
-
-        <profile>
-            <id>with-project-example</id>
-            <activation>
-                <file>
-                    <exists>${project.basedir}/project-example/pom.xml</exists>
-                </file>
-            </activation>
-            <subprojects>
-                <subproject>project-example</subproject>
-            </subprojects>
-        </profile>
-
-        <!-- ── Integration tests ─────────────────────────────────── -->
-        <!-- The ITs live in their own repo
-             (IKE-Network/integration-tests-example, extracted in #343).
-             Cloned into ./integration-tests-example/ on demand via
-             `mvn ws:scaffold-init`. When present, the file-activated
-             profile below picks them up as a workspace reactor module;
-             when absent, the workspace builds without them. -->
-
-        <profile>
-            <id>with-integration-tests-example</id>
-            <activation>
-                <file>
-                    <exists>${project.basedir}/integration-tests-example/pom.xml</exists>
-                </file>
-            </activation>
-            <subprojects>
-                <subproject>integration-tests-example</subproject>
-            </subprojects>
-        </profile>
-
-    </profiles>
+    <subprojects>
+        <subproject>doc-example</subproject>
+        <subproject>project-example</subproject>
+        <subproject>integration-tests-example</subproject>
+    </subprojects>
 
     <build>
         <plugins>

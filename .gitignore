@@ -72,7 +72,6 @@ ike꞉*.md
 # Maven reload or per workspace membership.
 !.idea/
 !.idea/.gitignore
-!.idea/misc.xml
 !.idea/kotlinc.xml
 !.idea/encodings.xml
 !.idea/jarRepositories.xml
