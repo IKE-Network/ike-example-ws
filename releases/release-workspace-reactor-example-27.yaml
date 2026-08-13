@@ -1,0 +1,23 @@
+# release-workspace-reactor-example-27.yaml — one release cycle of this working set.
+# Written by ws:record-release (IKE-Network/ike-issues#973); one file per cycle,
+# one row per released member. Do not hand-edit.
+
+cycle: "workspace-reactor-example-27"
+started: "2026-08-12"
+
+members:
+  integration-tests-example:
+    version: "28"
+    tag: "v28"
+    sha: "96a47c6f513ab3c89fad1305b3d956d296b9a8f2"
+    recorded: "2026-08-12"
+  project-example:
+    version: "36"
+    tag: "v36"
+    sha: "5d1fa5cb71bca76b7a1530036f4d9a0e3ee7f2bf"
+    recorded: "2026-08-12"
+  (workspace root):
+    version: "27"
+    tag: "v27"
+    sha: "044eedd55355bcb0741a44ad65bbb4c68104c1a8"
+    recorded: "2026-08-12"
